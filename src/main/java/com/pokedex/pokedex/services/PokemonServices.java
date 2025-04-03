@@ -7,13 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.pokedex.pokedex.repositories.IPokemonRepository;
 import com.pokedex.pokedex.services.interfaces.IPokemonServices;
+import com.pokedex.pokedex.dtos.Evolution.EvolutionDto;
+import com.pokedex.pokedex.dtos.Pokemon.PokemonDto;
+import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 import com.pokedex.pokedex.exceptions.APIError;
 import com.pokedex.pokedex.exceptions.APIException;
 import com.pokedex.pokedex.models.Evolution;
 import com.pokedex.pokedex.models.Pokemon;
-import dtos.Evolution.EvolutionDto;
-import dtos.Pokemon.PokemonDto;
-import dtos.json.JsonApiresponse;
+
 
 @Service
 public class PokemonServices implements IPokemonServices {

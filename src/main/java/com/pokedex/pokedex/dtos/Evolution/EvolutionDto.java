@@ -1,37 +1,22 @@
-package dtos.Pokemon;
-import java.util.List;
+package com.pokedex.pokedex.dtos.Evolution;
 
-import dtos.Evolution.EvolutionDto;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
-public class PokemonDto {
+public class EvolutionDto {
     private Long id;
-    @NotBlank
-    @Size(min = 1, max = 20)
     private String name;
-    @NotNull
     private Double height;
-    @NotNull
     private Double weight;
-    @NotNull
-    @Size(min=5, max = 10, message = "El formato del codigo es de #0000")
     private String code;
-    @NotBlank
     private String image;
-    private List<EvolutionDto> evolutions;
-    
-    public PokemonDto() {
-    }
-    
-    public PokemonDto(String name, Double height, Double weight, String code,String image, List<EvolutionDto> evolutions) {
+    public EvolutionDto() {
+
+    }    
+    public EvolutionDto(Long id, String name, Double height, Double weight,String code, String image) {
+        this.id = id;
         this.name = name;
         this.height = height;
         this.weight = weight;
-        this.code = code;
+        this.code=code;
         this.image = image;
-        this.evolutions = evolutions;
     }
 
     public Long getId() {
@@ -58,25 +43,19 @@ public class PokemonDto {
     public void setWeight(Double weight) {
         this.weight = weight;
     }
-    public String getImage() {
-        return image;
-    }
     public String getCode() {
         return code;
     }
-
     public void setCode(String code) {
         this.code = code;
+    }
+    public String getImage() {
+        return image;
     }
     public void setImage(String image) {
         this.image = image;
     }
-    public List<EvolutionDto> getEvolutions() {
-        return evolutions;
-    }
-    public void setEvolutions(List<EvolutionDto> evolutions) {
-        this.evolutions = evolutions;
-    }
+  
 
     
 }

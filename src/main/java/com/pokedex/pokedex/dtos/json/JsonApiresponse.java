@@ -1,4 +1,4 @@
-package dtos.json;
+package com.pokedex.pokedex.dtos.json;
 
 public class JsonApiresponse {
     private Integer code;

@@ -1,13 +1,11 @@
 package com.pokedex.pokedex.exceptions;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import dtos.json.JsonApiresponse;
+import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {

@@ -1,6 +1,6 @@
 package com.pokedex.pokedex.services.interfaces;
-import dtos.Pokemon.PokemonDto;
-import dtos.json.JsonApiresponse;
+import com.pokedex.pokedex.dtos.Pokemon.PokemonDto;
+import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 
 public interface IPokemonServices {
     
