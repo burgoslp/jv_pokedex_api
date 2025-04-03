@@ -1,22 +1,18 @@
 package com.pokedex.pokedex.services.interfaces;
-
-import java.util.List;
-import java.util.Optional;
-import com.pokedex.pokedex.models.Pokemon;
-
 import dtos.Pokemon.PokemonDto;
+import dtos.json.JsonApiresponse;
 
 public interface IPokemonServices {
     
-    List<PokemonDto> findAll();
-    List<PokemonDto> findAllByOrderByWeightDesc();
-    List<PokemonDto> findAllByOrderByWeightAsc();
-    List<PokemonDto> findAllByOrderByHeightDesc();
-    List<PokemonDto> findAllByOrderByHeightAsc();
-    Optional<PokemonDto> findById (Long id) throws Exception;
-    List<PokemonDto> findByNameLikeIgnoreCaseOrCodeLikeIgnoreCase(String name, String code);
+    JsonApiresponse findAll();
+    JsonApiresponse findAllByOrderByWeightDesc();
+    JsonApiresponse findAllByOrderByWeightAsc();
+    JsonApiresponse findAllByOrderByHeightDesc();
+    JsonApiresponse findAllByOrderByHeightAsc();
+    JsonApiresponse findById (Long id);
+    JsonApiresponse findByNameLikeIgnoreCaseOrCodeLikeIgnoreCase(String name, String code);
 
-    PokemonDto save(PokemonDto evolution);
-    PokemonDto update(Long id,PokemonDto evolution);
-    Optional<Pokemon> delete(Long id);
+    JsonApiresponse save(PokemonDto evolution);
+    JsonApiresponse update(Long id,PokemonDto evolution);
+    JsonApiresponse delete(Long id);
 }

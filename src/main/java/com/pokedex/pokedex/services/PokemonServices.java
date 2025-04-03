@@ -3,13 +3,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.pokedex.pokedex.repositories.IPokemonRepository;
 import com.pokedex.pokedex.services.interfaces.IPokemonServices;
+import com.pokedex.pokedex.exceptions.APIError;
+import com.pokedex.pokedex.exceptions.APIException;
 import com.pokedex.pokedex.models.Evolution;
 import com.pokedex.pokedex.models.Pokemon;
 import dtos.Evolution.EvolutionDto;
 import dtos.Pokemon.PokemonDto;
+import dtos.json.JsonApiresponse;
 
 @Service
 public class PokemonServices implements IPokemonServices {
@@ -18,120 +22,188 @@ public class PokemonServices implements IPokemonServices {
     IPokemonRepository pr;
     
     @Override
-    public List<PokemonDto> findAll() {
-       
+    public JsonApiresponse findAll() {       
         Iterable<Pokemon> pokemons =pr.findAll();
         List<PokemonDto> pokemonDtos= new ArrayList<>();
+        JsonApiresponse jsonApiresponse = new JsonApiresponse();
+
+        jsonApiresponse.setCode(HttpStatus.OK.value());
+        jsonApiresponse.setMessage(HttpStatus.OK.getReasonPhrase());
 
         pokemons.forEach(poke ->{
             pokemonDtos.add(pokemonToDto(poke));
         });
-        
-        return pokemonDtos;
+
+        jsonApiresponse.setData(pokemonDtos);
+        return jsonApiresponse;
     }
 
     @Override
-    public List<PokemonDto> findAllByOrderByWeightDesc() {
+    public JsonApiresponse findAllByOrderByWeightDesc() {
        List<Pokemon> pokemons = pr.findAllByOrderByWeightDesc();
-
        List<PokemonDto> pokemonDtos= new ArrayList<>();
+       JsonApiresponse jsonApiresponse = new JsonApiresponse();
+
+       jsonApiresponse.setCode(HttpStatus.OK.value());
+       jsonApiresponse.setMessage(HttpStatus.OK.getReasonPhrase());
 
        pokemons.forEach(poke ->{
            pokemonDtos.add(pokemonToDto(poke));
        });
-       
-       return pokemonDtos;
+
+       jsonApiresponse.setData(pokemonDtos);       
+       return jsonApiresponse;
     }
 
     @Override
-    public List<PokemonDto> findAllByOrderByWeightAsc() {
+    public JsonApiresponse findAllByOrderByWeightAsc() {
         List<Pokemon> pokemons=pr.findAllByOrderByWeightAsc();
         List<PokemonDto> pokemonDtos= new ArrayList<>();
-
+        JsonApiresponse jsonApiresponse= new JsonApiresponse();
+        jsonApiresponse.setCode(HttpStatus.OK.value());
+        jsonApiresponse.setMessage(HttpStatus.OK.getReasonPhrase());
         pokemons.forEach(poke ->{
             pokemonDtos.add(pokemonToDto(poke));
         });
 
-        return pokemonDtos;
+        jsonApiresponse.setData(pokemonDtos);
+        return jsonApiresponse;
     }
     
 
     @Override
-    public List<PokemonDto> findAllByOrderByHeightDesc() {
-        List<Pokemon> pokemons = pr.findAllByOrderByHeightDesc();
-
+    public JsonApiresponse findAllByOrderByHeightDesc() {
+       List<Pokemon> pokemons = pr.findAllByOrderByHeightDesc();
        List<PokemonDto> pokemonDtos= new ArrayList<>();
-
+       JsonApiresponse jsonApiresponse = new JsonApiresponse();
+        
+       jsonApiresponse.setCode(HttpStatus.OK.value());
+       jsonApiresponse.setMessage(HttpStatus.OK.getReasonPhrase());
        pokemons.forEach(poke ->{
            pokemonDtos.add(pokemonToDto(poke));
        });
-       
-       return pokemonDtos;
+
+       jsonApiresponse.setData(pokemonDtos);
+       return jsonApiresponse;
     }
 
     @Override
-    public List<PokemonDto> findAllByOrderByHeightAsc() {
+    public JsonApiresponse findAllByOrderByHeightAsc() {
         List<Pokemon> pokemons = pr.findAllByOrderByHeightAsc();
+        List<PokemonDto> pokemonDtos= new ArrayList<>();
+        JsonApiresponse jsonApiresponse= new JsonApiresponse();
+        jsonApiresponse.setCode(HttpStatus.OK.value());
+        jsonApiresponse.setMessage(HttpStatus.OK.getReasonPhrase());
+        
+        pokemons.forEach(poke ->{
+            pokemonDtos.add(pokemonToDto(poke));
+        });
 
-       List<PokemonDto> pokemonDtos= new ArrayList<>();
-
-       pokemons.forEach(poke ->{
-           pokemonDtos.add(pokemonToDto(poke));
-       });
-       
-       return pokemonDtos;
+        jsonApiresponse.setData(pokemonDtos);       
+        return jsonApiresponse;
     }
 
     @Override
-    public Optional<PokemonDto> findById(Long id)  throws Exception {
-        Optional<Pokemon> pokemon= pr.findById(id);     
+    public JsonApiresponse findById(Long id)  {
+        Optional<Pokemon> pokemon= pr.findById(id); 
+        JsonApiresponse jsonApiresponse = new JsonApiresponse();
 
-       return Optional.ofNullable(pokemonToDto(pokemon.orElseThrow()));
+        try {
+            jsonApiresponse.setCode(HttpStatus.OK.value());
+            jsonApiresponse.setMessage(HttpStatus.OK.getReasonPhrase());
+            jsonApiresponse.setData(pokemonToDto(pokemon.orElseThrow()));
+            return jsonApiresponse;
+        } catch (Exception ex) {
+
+            throw new APIException(APIError.POKEMON_BYID_NOT_FOUND);
+        }
+      
     }
 
     @Override
-    public List<PokemonDto>  findByNameLikeIgnoreCaseOrCodeLikeIgnoreCase(String name, String code) {
+    public JsonApiresponse  findByNameLikeIgnoreCaseOrCodeLikeIgnoreCase(String name, String code) {
         
         List<Pokemon> pokemons=pr.findByNameLikeIgnoreCaseOrCodeLikeIgnoreCase("%"+name+"%","%"+code+"%");
         List<PokemonDto> pokemonsDto= new ArrayList<>();
+        JsonApiresponse jsonApiresponse= new JsonApiresponse();
+
+        if (pokemons.isEmpty()) {
+            throw new APIException(APIError.POKEMON_VALUE_NOT_FOUND);
+        }
+
+        jsonApiresponse.setCode(HttpStatus.OK.value());
+        jsonApiresponse.setMessage(HttpStatus.OK.getReasonPhrase());
         pokemons.forEach(poke->{
             pokemonsDto.add(pokemonToDto(poke));
         });
-        return pokemonsDto;
+       
+        jsonApiresponse.setData(pokemonsDto);     
+
+        return jsonApiresponse;
     }
 
     
 
     @Override
-    public PokemonDto save(PokemonDto pokemonDto) {
-
-        Pokemon pokemon= new Pokemon(pokemonDto.getName(),pokemonDto.getHeight(),pokemonDto.getHeight(),pokemonDto.getCode(),pokemonDto.getImage());
-        return pokemonToDto(pr.save(pokemon));
+    public JsonApiresponse save(PokemonDto pokemonDto) {
+        Pokemon pokemon = new Pokemon();
+        JsonApiresponse jsonApiresponse= new JsonApiresponse();
+        pokemon.setName(pokemonDto.getName());
+        pokemon.setHeight(pokemonDto.getHeight());
+        pokemon.setWeight(pokemonDto.getWeight());
+        pokemon.setCode(pokemonDto.getCode());
+        pokemon.setImage(pokemonDto.getImage());
+        
+        jsonApiresponse.setCode(HttpStatus.OK.value());
+        jsonApiresponse.setMessage(HttpStatus.OK.getReasonPhrase());
+        jsonApiresponse.setData(pokemonToDto(pr.save(pokemon)));
+        
+        return jsonApiresponse;
     }
 
     @Override
-    public PokemonDto update(Long id, PokemonDto pokemonDto) {
+    public JsonApiresponse update(Long id, PokemonDto pokemonDto) {
        Optional<Pokemon> originalPokemon= pr.findById(id);
+       JsonApiresponse jsonApiresponse= new JsonApiresponse();
+
+       if(!originalPokemon.isPresent()){
+            throw new APIException(APIError.POKEMON_BYID_NOT_FOUND);
+       }
+
        Pokemon updatePokemon=originalPokemon.map(poke ->{
             Pokemon pokemon = poke;
-            pokemon.setName(pokemonDto.getName());
-            pokemon.setHeight(pokemonDto.getHeight());
-            pokemon.setWeight(pokemonDto.getWeight());
-            pokemon.setCode(pokemonDto.getCode());
-            pokemon.setImage(pokemonDto.getImage());
+            // Asignar usando operador ternario
+            pokemon.setName(pokemonDto.getName() != null ? pokemonDto.getName() : poke.getName());
+            pokemon.setHeight(pokemonDto.getHeight() != null ? pokemonDto.getHeight() : poke.getHeight());
+            pokemon.setWeight(pokemonDto.getWeight() != null ? pokemonDto.getWeight() : poke.getWeight());
+            pokemon.setCode(pokemonDto.getCode() != null ? pokemonDto.getCode() : poke.getCode());
+            pokemon.setImage(pokemonDto.getImage() != null ? pokemonDto.getImage() : poke.getImage());
             return pr.save(pokemon);
        }).orElseThrow();
 
-       return pokemonToDto(updatePokemon);
+       jsonApiresponse.setCode(HttpStatus.OK.value());
+       jsonApiresponse.setMessage(HttpStatus.OK.getReasonPhrase());
+       jsonApiresponse.setData(pokemonToDto(updatePokemon));
+
+       return jsonApiresponse;
     }
 
     @Override
-    public  Optional<Pokemon> delete(Long id) {
-        Optional<Pokemon> pokemonOptional= pr.findById(id);
-        pokemonOptional.ifPresent(evolution -> {
+    public  JsonApiresponse delete(Long id) {
+        Optional<Pokemon> optionalPokemon= pr.findById(id);
+        JsonApiresponse jsonApiresponse=new JsonApiresponse();
+        
+        optionalPokemon.ifPresentOrElse(evolution -> {
             pr.delete(evolution);
+        },()->{
+            throw new APIException(APIError.POKEMON_BYID_NOT_FOUND);
         });
-        return pokemonOptional;
+
+        jsonApiresponse.setCode(HttpStatus.OK.value());
+        jsonApiresponse.setMessage(HttpStatus.OK.getReasonPhrase());
+        jsonApiresponse.setData(pokemonToDto(optionalPokemon.get()));
+
+        return jsonApiresponse;
     }
 
 
