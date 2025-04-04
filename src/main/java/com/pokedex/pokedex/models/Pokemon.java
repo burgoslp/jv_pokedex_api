@@ -3,6 +3,7 @@ package com.pokedex.pokedex.models;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,7 +27,11 @@ public class Pokemon {
     private List<Evolution> evolutions;
     @NotBlank
     @Size(min = 1, max = 20)
-    private String name;
+    private String name;    
+    @Column(length = 1000)
+    @NotBlank
+    @Size(min=1, message="debes agregar una descripción")   
+    private String description;
     @NotNull
     private Double height;
     @NotNull
@@ -66,7 +71,13 @@ public class Pokemon {
     public void setName(String name) {
         this.name = name;
     }
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
     public Double getHeight() {
         return height;
     }

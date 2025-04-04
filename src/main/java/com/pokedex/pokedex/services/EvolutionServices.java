@@ -1,14 +1,19 @@
 package com.pokedex.pokedex.services;
 
+import static com.pokedex.pokedex.util.MapToDto.evolutionToDtoList;
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 import com.pokedex.pokedex.models.Evolution;
 import com.pokedex.pokedex.repositories.IEvolutionRepository;
 import com.pokedex.pokedex.services.interfaces.IEvolutionServices;
+
 @Service
 public class EvolutionServices implements IEvolutionServices{
 
@@ -16,8 +21,9 @@ public class EvolutionServices implements IEvolutionServices{
     IEvolutionRepository er;
 
     @Override
-    public List<Evolution> findAll() {
-       return (List<Evolution>) er.findAll();
+    public JsonApiresponse findAll() {
+      List<Evolution> evolutions= (List<Evolution>) er.findAll();
+      return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),evolutionToDtoList(evolutions));
     }
 
     @Override

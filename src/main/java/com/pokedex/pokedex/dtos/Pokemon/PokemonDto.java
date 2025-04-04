@@ -2,6 +2,7 @@ package com.pokedex.pokedex.dtos.Pokemon;
 import java.util.List;
 import com.pokedex.pokedex.dtos.Evolution.EvolutionDto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -11,6 +12,10 @@ public class PokemonDto {
     @NotBlank
     @Size(min = 1, max = 20)
     private String name;
+    @Column(length = 1000)
+    @NotBlank
+    @Size(min=1, message="debes agregar una descripción")   
+    private String description;
     @NotNull
     private Double height;
     @NotNull
@@ -25,8 +30,9 @@ public class PokemonDto {
     public PokemonDto() {
     }
     
-    public PokemonDto(String name, Double height, Double weight, String code,String image, List<EvolutionDto> evolutions) {
+    public PokemonDto(String name, String description,Double height, Double weight, String code,String image, List<EvolutionDto> evolutions) {
         this.name = name;
+        this.description=description;
         this.height = height;
         this.weight = weight;
         this.code = code;
@@ -45,6 +51,13 @@ public class PokemonDto {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     public Double getHeight() {
         return height;
