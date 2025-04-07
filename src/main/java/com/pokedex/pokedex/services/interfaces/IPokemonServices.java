@@ -1,5 +1,5 @@
 package com.pokedex.pokedex.services.interfaces;
-import com.pokedex.pokedex.dtos.Pokemon.PokemonDto;
+import com.pokedex.pokedex.dtos.Pokemon.CreatePokemonDto;
 import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 
 public interface IPokemonServices {
@@ -12,7 +12,7 @@ public interface IPokemonServices {
     JsonApiresponse findById (Long id);
     JsonApiresponse findByNameLikeIgnoreCaseOrCodeLikeIgnoreCase(String name, String code);
 
-    JsonApiresponse save(PokemonDto evolution);
-    JsonApiresponse update(Long id,PokemonDto evolution);
+    JsonApiresponse save(CreatePokemonDto createPokemonDto);
+    JsonApiresponse update(Long id,CreatePokemonDto createPokemonDto);
     JsonApiresponse delete(Long id);
 }

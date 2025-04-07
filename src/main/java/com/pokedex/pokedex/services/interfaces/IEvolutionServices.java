@@ -1,15 +1,18 @@
 package com.pokedex.pokedex.services.interfaces;
-
-import java.util.List;
-import java.util.Optional;
-
+import com.pokedex.pokedex.dtos.Evolution.CreateEvolutionDto;
+import com.pokedex.pokedex.dtos.Evolution.EvolutionDto;
 import com.pokedex.pokedex.dtos.json.JsonApiresponse;
-import com.pokedex.pokedex.models.Evolution;
 
 public interface IEvolutionServices {
 
     JsonApiresponse findAll();
-    Optional<Evolution> findById(Long id);
-    Evolution save(Evolution evolution);
-    Optional<Evolution> delete(Long id);
+    JsonApiresponse findAllByOrderByWeightDesc();
+    JsonApiresponse findAllByOrderByWeightAsc();
+    JsonApiresponse findAllByOrderByHeightDesc();
+    JsonApiresponse findAllByOrderByHeightAsc();
+    JsonApiresponse findById(Long id);
+    JsonApiresponse findByNameLikeIgnoreCaseOrCodeLikeIgnoreCase(String name, String code);
+    JsonApiresponse save(CreateEvolutionDto CreateevolutionDTO);
+    JsonApiresponse update(Long id,EvolutionDto evolutionDTO);
+    JsonApiresponse delete(Long id);
 }

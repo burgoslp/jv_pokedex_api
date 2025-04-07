@@ -2,14 +2,12 @@ package com.pokedex.pokedex.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.pokedex.pokedex.dtos.Pokemon.PokemonDto;
+import com.pokedex.pokedex.dtos.Pokemon.CreatePokemonDto;
 import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 import com.pokedex.pokedex.services.PokemonServices;
 import jakarta.validation.Valid;
@@ -67,14 +65,14 @@ public class PokemonController {
     
     //crear un nuevo pokemon
     @PostMapping("/create")
-    public ResponseEntity<JsonApiresponse> create(@Valid @RequestBody PokemonDto PokemonDto) {       
-        return ResponseEntity.status(HttpStatus.CREATED).body(ps.save(PokemonDto));
+    public ResponseEntity<JsonApiresponse> create(@Valid @RequestBody CreatePokemonDto CreatePokemonDto) {       
+        return ResponseEntity.status(HttpStatus.CREATED).body(ps.save(CreatePokemonDto));
     }
     
     //actualizar pokemon existente
     @PutMapping("update/{id}")
-    public ResponseEntity<JsonApiresponse> update(@PathVariable Long id,@Valid @RequestBody PokemonDto pokemonDto,BindingResult result) {                 
-        return ResponseEntity.status(HttpStatus.CREATED).body(ps.update(id, pokemonDto));
+    public ResponseEntity<JsonApiresponse> update(@PathVariable Long id,@Valid @RequestBody CreatePokemonDto CreatePokemonDto) {                 
+        return ResponseEntity.status(HttpStatus.CREATED).body(ps.update(id, CreatePokemonDto));
     }
     //eliminar pokemon existente
     @DeleteMapping("delete/{id}")

@@ -10,64 +10,6 @@ import com.pokedex.pokedex.models.Pokemon;
 
 public class MapToDto {
 
-    public static List<EvolutionDto> evolutionToDtoList(List<Evolution> evolutions){
-        List<EvolutionDto> listEvolutionDTO= new ArrayList<>();
-        evolutions.forEach(evo ->{
-            listEvolutionDTO.add(evolutionDto(evo)); 
-        });
-
-        return listEvolutionDTO;
-    }
-    public static List<EvolutionDto> evolutionRelatedPokemonToDtoList(List<Evolution> evolutions){
-        List<EvolutionDto> listEvolutionDTO= new ArrayList<>();
-        evolutions.forEach(evo ->{
-            listEvolutionDTO.add(evolutionRelatedDto(evo)); 
-        });
-        return listEvolutionDTO;
-    }
-
-
-    // convierte una entidad evolution a un evolutionDto sin relaciones
-    public static EvolutionDto evolutionDto(Evolution evolution){
-
-            EvolutionDto evolutionDto = new EvolutionDto();   
-    
-            evolutionDto.setId(evolution.getId());
-            evolutionDto.setName(evolution.getName());
-            evolutionDto.setDescription(evolution.getDescription());
-            evolutionDto.setHeight(evolution.getHeight());
-            evolutionDto.setWeight(evolution.getWeight());
-            evolutionDto.setCode(evolution.getCode());
-            evolutionDto.setImage(evolution.getImage());
-    
-            return evolutionDto;
-
-    } 
-
-    // convierte una entidad evolution a un evolutionDto con sus respectivas relaciones
-    public static EvolutionDto evolutionRelatedDto(Evolution evolution){
-
-        EvolutionDto evolutionDto = new EvolutionDto();   
-        
-        evolutionDto.setId(evolution.getId());
-        evolutionDto.setName(evolution.getName());
-        evolutionDto.setDescription(evolution.getDescription());
-        evolutionDto.setHeight(evolution.getHeight());
-        evolutionDto.setWeight(evolution.getWeight());
-        evolutionDto.setCode(evolution.getCode());
-        evolutionDto.setImage(evolution.getImage());
-
-        //tranformamos la entidad pokemon a pokemondto 
-        evolutionDto.setPokemon(pokemonToDto(evolution.getPokemon()));
-
-        return evolutionDto;
-
-    } 
-    /*
-     * 
-     * 
-     * 
-    */
     public static PokemonDto pokemonToDto(Pokemon pokemon){
 
         PokemonDto pokemonDto= new PokemonDto();
@@ -97,7 +39,7 @@ public class MapToDto {
         if(pokemon.getEvolutions() != null){
             for (Evolution evolution : pokemon.getEvolutions()) {          
 
-                evolutionDtos.add(evolutionDto(evolution));
+                evolutionDtos.add(evolutionToDto(evolution));
             }
             pokemonDto.setEvolutions(evolutionDtos);
        }
@@ -121,4 +63,63 @@ public class MapToDto {
         });
         return listPokemonDTO;
     }
+    public static List<EvolutionDto> evolutionToDtoList(List<Evolution> evolutions){
+        List<EvolutionDto> listEvolutionDTO= new ArrayList<>();
+        evolutions.forEach(evo ->{
+            listEvolutionDTO.add(evolutionToDto(evo)); 
+        });
+
+        return listEvolutionDTO;
+    }
+    public static List<EvolutionDto> evolutionRelatedPokemonToDtoList(List<Evolution> evolutions){
+        List<EvolutionDto> listEvolutionDTO= new ArrayList<>();
+        evolutions.forEach(evo ->{
+            listEvolutionDTO.add(evolutionRelatedToDto(evo)); 
+        });
+        return listEvolutionDTO;
+    }
+    /*
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+    */
+    // convierte una entidad evolution a un evolutionDto sin relaciones
+    public static EvolutionDto evolutionToDto(Evolution evolution){
+
+            EvolutionDto evolutionDto = new EvolutionDto();   
+    
+            evolutionDto.setId(evolution.getId());
+            evolutionDto.setName(evolution.getName());
+            evolutionDto.setDescription(evolution.getDescription());
+            evolutionDto.setHeight(evolution.getHeight());
+            evolutionDto.setWeight(evolution.getWeight());
+            evolutionDto.setCode(evolution.getCode());
+            evolutionDto.setImage(evolution.getImage());
+    
+            return evolutionDto;
+
+    } 
+
+    // convierte una entidad evolution a un evolutionDto con sus respectivas relaciones
+    public static EvolutionDto evolutionRelatedToDto(Evolution evolution){
+
+        EvolutionDto evolutionDto = new EvolutionDto();   
+        
+        evolutionDto.setId(evolution.getId());
+        evolutionDto.setName(evolution.getName());
+        evolutionDto.setDescription(evolution.getDescription());
+        evolutionDto.setHeight(evolution.getHeight());
+        evolutionDto.setWeight(evolution.getWeight());
+        evolutionDto.setCode(evolution.getCode());
+        evolutionDto.setImage(evolution.getImage());
+
+        //tranformamos la entidad pokemon a pokemondto 
+        evolutionDto.setPokemon(pokemonToDto(evolution.getPokemon()));
+
+        return evolutionDto;
+
+    } 
 }

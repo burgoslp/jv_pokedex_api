@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.pokedex.pokedex.repositories.IPokemonRepository;
 import com.pokedex.pokedex.services.interfaces.IPokemonServices;
-import com.pokedex.pokedex.dtos.Pokemon.PokemonDto;
+import com.pokedex.pokedex.dtos.Pokemon.CreatePokemonDto;
 import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 import com.pokedex.pokedex.exceptions.APIError;
 import com.pokedex.pokedex.exceptions.APIException;
@@ -71,40 +71,32 @@ public class PokemonServices implements IPokemonServices {
 
 
     @Override
-    public JsonApiresponse save(PokemonDto pokemonDto) {
+    public JsonApiresponse save(CreatePokemonDto CreatePokemonDto) {
         Pokemon pokemon = new Pokemon();
 
-        pokemon.setName(pokemonDto.getName());
-        pokemon.setDescription(pokemonDto.getDescription());
-        pokemon.setHeight(pokemonDto.getHeight());
-        pokemon.setWeight(pokemonDto.getWeight());
-        pokemon.setCode(pokemonDto.getCode());
-        pokemon.setImage(pokemonDto.getImage());
+        pokemon.setName(CreatePokemonDto.getName());
+        pokemon.setDescription(CreatePokemonDto.getDescription());
+        pokemon.setHeight(CreatePokemonDto.getHeight());
+        pokemon.setWeight(CreatePokemonDto.getWeight());
+        pokemon.setCode(CreatePokemonDto.getCode());
+        pokemon.setImage(CreatePokemonDto.getImage());
         
         return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),pokemonToDto(pr.save(pokemon)));
     }
 
     @Override
-    public JsonApiresponse update(Long id, PokemonDto pokemonDto) {
-       Optional<Pokemon> originalPokemon= pr.findById(id);
+    public JsonApiresponse update(Long id, CreatePokemonDto CreatePokemonDto) {
+       Pokemon pokemon= pr.findById(id).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
 
-       if(!originalPokemon.isPresent()){
-            throw new APIException(APIError.POKEMON_BYID_NOT_FOUND);
-       }
+       pokemon.setName(CreatePokemonDto.getName() != null ? CreatePokemonDto.getName() : pokemon.getName());
+       pokemon.setName(CreatePokemonDto.getDescription() != null ? CreatePokemonDto.getDescription() : pokemon.getDescription());
+       pokemon.setHeight(CreatePokemonDto.getHeight() != null ? CreatePokemonDto.getHeight() : pokemon.getHeight());
+       pokemon.setWeight(CreatePokemonDto.getWeight() != null ? CreatePokemonDto.getWeight() : pokemon.getWeight());
+       pokemon.setCode(CreatePokemonDto.getCode() != null ? CreatePokemonDto.getCode() : pokemon.getCode());
+       pokemon.setImage(CreatePokemonDto.getImage() != null ? CreatePokemonDto.getImage() : pokemon.getImage());
 
-       Pokemon updatePokemon=originalPokemon.map(poke ->{
-            Pokemon pokemon = poke;
-            // Asignar usando operador ternario
-            pokemon.setName(pokemonDto.getName() != null ? pokemonDto.getName() : poke.getName());
-            pokemon.setName(pokemonDto.getDescription() != null ? pokemonDto.getDescription() : poke.getDescription());
-            pokemon.setHeight(pokemonDto.getHeight() != null ? pokemonDto.getHeight() : poke.getHeight());
-            pokemon.setWeight(pokemonDto.getWeight() != null ? pokemonDto.getWeight() : poke.getWeight());
-            pokemon.setCode(pokemonDto.getCode() != null ? pokemonDto.getCode() : poke.getCode());
-            pokemon.setImage(pokemonDto.getImage() != null ? pokemonDto.getImage() : poke.getImage());
-            return pr.save(pokemon);
-       }).orElseThrow();
 
-       return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),pokemonToDto(updatePokemon));
+       return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),pokemonToDto(pr.save(pokemon)));
     }
 
     @Override
