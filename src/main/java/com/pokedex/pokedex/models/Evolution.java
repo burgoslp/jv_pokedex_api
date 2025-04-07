@@ -11,9 +11,17 @@ import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="evolutions", uniqueConstraints = @UniqueConstraint(columnNames = "code"))
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Evolution {
 
     @Id
@@ -36,61 +44,5 @@ public class Evolution {
     @Size(min=5, max = 10, message = "El formato del codigo es de #0000")
     private String code;
     @NotBlank
-    private String image;
-    public Evolution() {
-    }
-    public Evolution(String name, String description,Double height, Double weight, String code,String image) {
-        this.name = name;
-        this.height = height;
-        this.weight = weight;
-        this.code = code;
-        this.image = image;
-    }
-    public Long getId() {
-        return id;
-    }
-    public Pokemon getPokemon() {
-        return pokemon;
-    }
-    public void setPokemon(Pokemon pokemon) {
-        this.pokemon = pokemon;
-    }
-   
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public Double getHeight() {
-        return height;
-    }
-    public void setHeight(Double height) {
-        this.height = height;
-    }
-    public Double getWeight() {
-        return weight;
-    }
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-    public String getCode() {
-        return code;
-    }
-    public void setCode(String code) {
-        this.code = code;
-    }
-    public String getImage() {
-        return image;
-    }
-    public void setImage(String image) {
-        this.image = image;
-    }
-   
+    private String image;   
 }

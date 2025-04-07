@@ -72,14 +72,13 @@ public class PokemonServices implements IPokemonServices {
 
     @Override
     public JsonApiresponse save(CreatePokemonDto CreatePokemonDto) {
-        Pokemon pokemon = new Pokemon();
-
-        pokemon.setName(CreatePokemonDto.getName());
-        pokemon.setDescription(CreatePokemonDto.getDescription());
-        pokemon.setHeight(CreatePokemonDto.getHeight());
-        pokemon.setWeight(CreatePokemonDto.getWeight());
-        pokemon.setCode(CreatePokemonDto.getCode());
-        pokemon.setImage(CreatePokemonDto.getImage());
+        Pokemon pokemon = Pokemon.builder()
+                                            .name(CreatePokemonDto.getName())
+                                            .description(CreatePokemonDto.getDescription())
+                                            .height(CreatePokemonDto.getHeight())
+                                            .weight(CreatePokemonDto.getWeight())
+                                            .code(CreatePokemonDto.getCode())
+                                            .image(CreatePokemonDto.getImage()).build();
         
         return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),pokemonToDto(pr.save(pokemon)));
     }

@@ -78,16 +78,15 @@ public class EvolutionServices implements IEvolutionServices{
     @Override
     public JsonApiresponse save(CreateEvolutionDto createEvolutionDto) {
       Pokemon pokemon= pr.findById(createEvolutionDto.getPokemonId()).orElseThrow(() -> new APIException(APIError.POKEMON_BYID_NOT_FOUND));    
-      
-      Evolution evolution = new Evolution();
-      evolution.setName(createEvolutionDto.getName());
-      evolution.setDescription(createEvolutionDto.getDescription());
-      evolution.setHeight(createEvolutionDto.getHeight());
-      evolution.setWeight(createEvolutionDto.getWeight());
-      evolution.setCode(createEvolutionDto.getCode());
-      evolution.setImage(createEvolutionDto.getImage());
+        Evolution evolution= Evolution.builder()
+                                                .name(createEvolutionDto.getName())
+                                                .description(createEvolutionDto.getDescription())
+                                                .height(createEvolutionDto.getHeight())
+                                                .weight(createEvolutionDto.getWeight())
+                                                .code(createEvolutionDto.getCode())
+                                                .image(createEvolutionDto.getImage())
+                                                .pokemon(pokemon).build();
 
-      evolution.setPokemon(pokemon); 
       return new JsonApiresponse(HttpStatus.CREATED.value(),HttpStatus.CREATED.getReasonPhrase(),evolutionRelatedToDto(er.save(evolution)));
     }
 
