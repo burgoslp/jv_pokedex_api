@@ -1,6 +1,7 @@
 package com.pokedex.pokedex.dtos.Pokemon;
 import java.util.List;
 import com.pokedex.pokedex.dtos.Evolution.EvolutionDto;
+import com.pokedex.pokedex.dtos.type.TypeDto;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
@@ -33,4 +34,5 @@ public class PokemonDto {
     @NotBlank
     private String image;
     private List<EvolutionDto> evolutions;
+    private List<TypeDto> types;
 }

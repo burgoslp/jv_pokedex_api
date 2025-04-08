@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -33,6 +34,8 @@ public class Pokemon {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="pokemon_id")
     private List<Evolution> evolutions;
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    private List<Type> types;
     @NotBlank
     @Size(min = 1, max = 20)
     private String name;    

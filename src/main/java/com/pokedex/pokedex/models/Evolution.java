@@ -1,10 +1,14 @@
 package com.pokedex.pokedex.models;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -29,7 +33,9 @@ public class Evolution {
     private Long id;
     @ManyToOne
     private Pokemon pokemon;
-   @NotBlank
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    private List<Type> types;
+    @NotBlank
     @Size(min = 1, max = 20)
     private String name;    
     @Column(length = 1000)

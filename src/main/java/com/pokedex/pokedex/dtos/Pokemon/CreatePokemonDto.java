@@ -1,5 +1,5 @@
 package com.pokedex.pokedex.dtos.Pokemon;
-
+import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -29,5 +29,7 @@ public class CreatePokemonDto {
     private String code;
     @NotBlank
     private String image;
+    @NotNull
+    private List<Long> typeIdList;
    
 }

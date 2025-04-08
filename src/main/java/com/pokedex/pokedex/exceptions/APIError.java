@@ -10,7 +10,9 @@ public enum APIError {
     POKEMON_VALUE_NOT_FOUND(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"El valor ingresado no pertenece a algun pokemon",List.of("")),
     POKEMON_VALIDATION_ERROR(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"Algunos de los valores ingresados no son correctos",List.of("")),
     EVOLUTION_BYID_NOT_FOUND(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"El ID ingresado no pertenece a ninguna evolución existente",List.of("")),
-    EVOLUTION_VALUE_NOT_FOUND(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"El valor ingresado no pertenece a alguna evolución",List.of(""));
+    EVOLUTION_VALUE_NOT_FOUND(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"El valor ingresado no pertenece a alguna evolución",List.of("")),
+    TYPE_BYID_NOT_FOUND(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"El ID ingresado no pertenece a ningun tipo",List.of("")),
+    TYPELIST_BYID_NOT_FOUND(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"Uno de los ID ingresado no pertenece a ningun tipo",List.of(""));
 
     private final Integer code;
     private final HttpStatus httpStatus;
