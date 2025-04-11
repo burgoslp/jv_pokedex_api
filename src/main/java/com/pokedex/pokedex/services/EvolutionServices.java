@@ -84,13 +84,8 @@ public class EvolutionServices implements IEvolutionServices{
 
     @Override
     public JsonApiresponse save(CreateEvolutionDto createEvolutionDto) {
-        List<Type> typesList= new ArrayList<>();
         Pokemon pokemon= pr.findById(createEvolutionDto.getPokemonId()).orElseThrow(() -> new APIException(APIError.POKEMON_BYID_NOT_FOUND));    
-
-        createEvolutionDto.getTypeIdList().forEach(id->{
-           typesList.add(tr.findById(id).orElseThrow(()->new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
-        });
-
+        
         Evolution evolution= Evolution.builder()
                                               .name(createEvolutionDto.getName())
                                               .description(createEvolutionDto.getDescription())
@@ -99,7 +94,6 @@ public class EvolutionServices implements IEvolutionServices{
                                               .code(createEvolutionDto.getCode())
                                               .image(createEvolutionDto.getImage())
                                               .pokemon(pokemon)
-                                              .types(typesList)
                                               .build();
 
         return new JsonApiresponse(HttpStatus.CREATED.value(),HttpStatus.CREATED.getReasonPhrase(),map.evolutionRelatedToDto(er.save(evolution)));
@@ -124,6 +118,38 @@ public class EvolutionServices implements IEvolutionServices{
         Evolution evolution= er.findById(id).orElseThrow(()-> new APIException(APIError.EVOLUTION_BYID_NOT_FOUND));
         er.delete(evolution);
         return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),"Se ha eliminado la evolución con exito.");
+    }
+
+    @Override
+    public JsonApiresponse addType(Long evolutionId, List<Long> typeListId) {
+        Evolution evolution= er.findById(evolutionId).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
+        List<Type> typeList= new ArrayList<>();
+        typeListId.forEach(id ->{
+
+            tr.findById(id).ifPresent(type ->{
+                throw new APIException(APIError.TYPElIST_BYID_COINCIDENCE);
+            });
+            typeList.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
+        });
+        evolution.getTypes().addAll(typeList);    
+        er.save(evolution);
+        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),"Los tipos se han agregado correctamente");
+    }
+
+    @Override
+    public JsonApiresponse addweakness(Long evolutionId, List<Long> weaknessListId) {
+        Evolution evolution= er.findById(evolutionId).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
+        List<Type> weaknessList= new ArrayList<>();
+        weaknessListId.forEach(id ->{
+
+            tr.findById(id).ifPresent(type ->{
+                throw new APIException(APIError.TYPElIST_BYID_COINCIDENCE);
+            });
+            weaknessList.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
+        });
+        evolution.getTypes().addAll(weaknessList);    
+        er.save(evolution);
+        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),"Los tipos se han agregado correctamente");
     }
 
 }

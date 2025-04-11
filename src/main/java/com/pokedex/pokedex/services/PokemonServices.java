@@ -77,23 +77,16 @@ public class PokemonServices implements IPokemonServices {
 
 
     @Override
-    public JsonApiresponse save(CreatePokemonDto CreatePokemonDto) {
-        List<Type> types= new ArrayList<>();
-
-        CreatePokemonDto.getTypeIdList().forEach(id ->{
-           types.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
-        });
-
+    public JsonApiresponse save(CreatePokemonDto createPokemonDto) {
+     
         Pokemon pokemon = Pokemon.builder()
-                                            .name(CreatePokemonDto.getName())
-                                            .description(CreatePokemonDto.getDescription())
-                                            .height(CreatePokemonDto.getHeight())
-                                            .weight(CreatePokemonDto.getWeight())
-                                            .code(CreatePokemonDto.getCode())
-                                            .image(CreatePokemonDto.getImage())
-                                            .types(types)
+                                            .name(createPokemonDto.getName())
+                                            .description(createPokemonDto.getDescription())
+                                            .height(createPokemonDto.getHeight())
+                                            .weight(createPokemonDto.getWeight())
+                                            .code(createPokemonDto.getCode())
+                                            .image(createPokemonDto.getImage())                                            
                                             .build();
-        
         return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonToDto(pr.save(pokemon)));
     }
 
@@ -109,7 +102,7 @@ public class PokemonServices implements IPokemonServices {
        pokemon.setImage(CreatePokemonDto.getImage() != null ? CreatePokemonDto.getImage() : pokemon.getImage());
 
 
-       return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonToDto(pr.save(pokemon)));
+       return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonRelatedToDto(pr.save(pokemon)));
     }
 
     @Override
@@ -124,4 +117,41 @@ public class PokemonServices implements IPokemonServices {
 
         return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonToDto(optionalPokemon.get()));
     }
+
+    @Override
+    public JsonApiresponse addType(Long pokemonId, List<Long> typeIdList) {
+        Pokemon pokemon = pr.findById(pokemonId).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
+        List<Type> typeList= new ArrayList<>();
+        typeIdList.forEach(id ->{
+
+            tr.findById(id).ifPresent(type ->{
+                throw new APIException(APIError.TYPElIST_BYID_COINCIDENCE);
+            });
+            typeList.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
+        });
+        pokemon.getTypes().addAll(typeList);    
+        pr.save(pokemon);
+
+        return new JsonApiresponse(HttpStatus.CREATED.value(),HttpStatus.CREATED.getReasonPhrase(),"Los tipos se han agregado correctamente");
+    }
+
+    @Override
+    public JsonApiresponse addweakness(Long pokemonId, List<Long> weaknessIdList) {
+        Pokemon pokemon = pr.findById(pokemonId).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
+        List<Type> weaknessList= new ArrayList<>();
+        weaknessIdList.forEach(id ->{
+            tr.findById(id).ifPresent(weakness ->{
+                throw new APIException(APIError.TYPElIST_BYID_COINCIDENCE);
+            });
+            weaknessList.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
+        });
+
+        pokemon.getTypes().addAll(weaknessList);
+        pr.save(pokemon);
+        return new JsonApiresponse(HttpStatus.CREATED.value(),HttpStatus.CREATED.getReasonPhrase(),"Las debilidades se han agregado correctamente");
+    }
+
+
+
+    
 }

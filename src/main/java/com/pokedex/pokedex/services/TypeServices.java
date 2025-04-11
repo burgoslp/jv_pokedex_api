@@ -22,7 +22,7 @@ public class TypeServices implements ITypeServices{
     @Override
     public JsonApiresponse findAll() {
         List<Type> typeList=(List<Type>)tr.findAll();
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.TypeDtoTolist(typeList)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.typeToDtoList(typeList)).build();
     }
 
     @Override
@@ -30,5 +30,9 @@ public class TypeServices implements ITypeServices{
         Type type = tr.findById(id).orElseThrow(() -> new APIException(APIError.TYPE_BYID_NOT_FOUND));        
         return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.typeToDto(type)).build();
     }
+
+    
+
+
 
 }

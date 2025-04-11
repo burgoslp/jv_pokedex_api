@@ -1,4 +1,6 @@
 package com.pokedex.pokedex.services.interfaces;
+import java.util.List;
+
 import com.pokedex.pokedex.dtos.Evolution.CreateEvolutionDto;
 import com.pokedex.pokedex.dtos.Evolution.EvolutionDto;
 import com.pokedex.pokedex.dtos.json.JsonApiresponse;
@@ -15,4 +17,7 @@ public interface IEvolutionServices {
     JsonApiresponse save(CreateEvolutionDto CreateevolutionDTO);
     JsonApiresponse update(Long id,EvolutionDto evolutionDTO);
     JsonApiresponse delete(Long id);
+
+    JsonApiresponse addType(Long evolutionId,List<Long> typeId);
+    JsonApiresponse addweakness(Long evolutionId,List<Long> typeId);
 }

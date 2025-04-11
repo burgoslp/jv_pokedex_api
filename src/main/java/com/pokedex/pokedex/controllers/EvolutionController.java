@@ -6,6 +6,9 @@ import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 import com.pokedex.pokedex.services.EvolutionServices;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +71,18 @@ public class EvolutionController {
     @PostMapping("/create")
     public ResponseEntity<JsonApiresponse> create(@Valid @RequestBody CreateEvolutionDto CreateEvolutionDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(es.save(CreateEvolutionDto));
+    }
+
+     //agregar tipos  a la evolución
+    @PostMapping("/add/{id}/type")
+    public ResponseEntity<JsonApiresponse> addType(@PathVariable Long id,@Valid @RequestBody List<Long> typeIdList) {       
+        return ResponseEntity.status(HttpStatus.CREATED).body(es.addType(id, typeIdList));
+    }
+
+    //agregar debilidades a la evolución
+    @PostMapping("/add/{id}/weakness")
+    public ResponseEntity<JsonApiresponse> addWeakness(@PathVariable Long id,@Valid @RequestBody List<Long> weaknessIdList) {       
+        return ResponseEntity.status(HttpStatus.CREATED).body(es.addweakness(id, weaknessIdList));
     }
 
     //actualizar evolución de un pokemon

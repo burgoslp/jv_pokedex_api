@@ -9,8 +9,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
@@ -36,6 +38,15 @@ public class Pokemon {
     private List<Evolution> evolutions;
     @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<Type> types;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "pokemons_weaknesses",
+        joinColumns = @JoinColumn(name = "pokemons_id"),
+        inverseJoinColumns = @JoinColumn(name = "types_id")
+    )
+    private List<Type> weaknesses;
+    @OneToOne(mappedBy = "pokemon", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Statistic statistic;
     @NotBlank
     @Size(min = 1, max = 20)
     private String name;    

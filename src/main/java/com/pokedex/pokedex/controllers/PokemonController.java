@@ -1,4 +1,6 @@
 package com.pokedex.pokedex.controllers;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,6 +69,18 @@ public class PokemonController {
     @PostMapping("/create")
     public ResponseEntity<JsonApiresponse> create(@Valid @RequestBody CreatePokemonDto CreatePokemonDto) {       
         return ResponseEntity.status(HttpStatus.CREATED).body(ps.save(CreatePokemonDto));
+    }
+
+    //agregar tipos al pokemon
+    @PostMapping("/add/{id}/type")
+    public ResponseEntity<JsonApiresponse> addType(@PathVariable Long id,@Valid @RequestBody List<Long> typeIdList) {       
+        return ResponseEntity.status(HttpStatus.CREATED).body(ps.addType(id, typeIdList));
+    }
+
+    //agregar debilidades al pokemon
+    @PostMapping("/add/{id}/weakness")
+    public ResponseEntity<JsonApiresponse> addWeakness(@PathVariable Long id,@Valid @RequestBody List<Long> weaknessIdList) {       
+        return ResponseEntity.status(HttpStatus.CREATED).body(ps.addweakness(id, weaknessIdList));
     }
     
     //actualizar pokemon existente

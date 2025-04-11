@@ -1,6 +1,4 @@
 package com.pokedex.pokedex.dtos.Evolution;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -38,8 +36,4 @@ public class CreateEvolutionDto {
     
     @NotNull
     private Long pokemonId;
-
-    @NotNull
-    private List<Long> typeIdList;
-
 }
