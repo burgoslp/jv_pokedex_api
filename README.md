@@ -35,6 +35,9 @@ La API de Pokedex está diseñada para administrar información completa sobre P
  La API implementa un comportamiento en cascada para la eliminación de Pokémon. Esto significa que si se elimina un Pokémon, todas sus evoluciones y estadisticas asociadas también se eliminarán automáticamente.
 Esta función garantiza la integridad de los datos, evitando evoluciones y estadisticas huérfanas en la base de datos.
 
+<h3>Diagrama de la base de datos:</h3>
+
+![db_pokedex](https://github.com/user-attachments/assets/e508cdc8-52a3-4625-9d05-ac2ae1bd3c91)
 
  
  
