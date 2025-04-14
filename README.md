@@ -39,7 +39,7 @@ Esta función garantiza la integridad de los datos, evitando evoluciones y estad
 
 ![db_pokedex](https://github.com/user-attachments/assets/e508cdc8-52a3-4625-9d05-ac2ae1bd3c91)
 
-<h3>Listado de endpoints</h3>
+<h3>Listado de endpoints:</h3>
 
  
  
