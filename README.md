@@ -35,12 +35,164 @@ La API de Pokedex está diseñada para administrar información completa sobre P
  La API implementa un comportamiento en cascada para la eliminación de Pokémon. Esto significa que si se elimina un Pokémon, todas sus evoluciones y estadisticas asociadas también se eliminarán automáticamente.
 Esta función garantiza la integridad de los datos, evitando evoluciones y estadisticas huérfanas en la base de datos.
 
-<h3>Diagrama de la base de datos:</h3>
+<h2>Diagrama de la base de datos:</h2>
 
 ![db_pokedex](https://github.com/user-attachments/assets/e508cdc8-52a3-4625-9d05-ac2ae1bd3c91)
 
-<h3>Listado de endpoints:</h3>
+<h2>Listado de endpoints:</h2>
+la api cuenta con multiples rutas que nos permite la creación, eliminación, actualización y lectura de los pokemons y sus evoluciones, ademas cuenta con rutas aparte para agregar tipos, debilidades y estadisticas.
 
- 
- 
- 
+<h3>1. Creación del pokemon</h3>
+<hr>
+<span>POST:</span> <strong>api/pokedex/pokemon/create</strong>
+ <pre>
+   {
+      "name": "pikachu",
+      "description":"descripción aquí",
+      "weight": 80,
+      "height": 2.5,
+      "image": "pikachu.png",
+      "code": "#1111"
+    }
+ </pre>
+ <span>Respuesta:</span>
+ <pre>
+   {
+        "code": 200,
+        "message": "OK",
+        "data": {
+            "id": 6,
+            "name": "lucario",
+            "description": "descripción aquí",
+            "height": 2.5,
+            "weight": 80.0,
+            "code": "#1111",
+            "image": "lucario.png",
+            "evolutions": null,
+            "types": null,
+            "weaknesses": null,
+            "statistic": null
+        }
+    }
+ </pre>
+ <span>Validaciones:</span>
+ <pre>
+   {
+      "code": 400,
+      "message": "Bad Request",
+      "data": [
+          "name: no debe estar vacío",
+          "weight: no debe ser nulo",
+          "image: no debe estar vacío",
+          "height: no debe ser nulo",
+          "code: no debe ser nulo",
+          "description: no debe estar vacío"
+      ]
+  }
+ </pre>
+ <h3>2. Listar todos los pokemons</h3>
+ <hr>
+ <span>GET:</span> <strong>api/pokedex/pokemon</strong>
+<pre>
+  {
+    "code": 200,
+    "message": "OK",
+    "data": [
+                {
+                    "id": 1,
+                    "name": "pichu",
+                    "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+                    "height": 1.0,
+                    "weight": 4.4,
+                    "code": "#0172",
+                    "image": "pichu.png",
+                    "evolutions": [
+                        {
+                            "id": 1,
+                            "name": "pikachu",
+                            "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
+                            "height": 1.04,
+                            "weight": 13.2,
+                            "code": "#0025",
+                            "image": "pikachu.png"
+                        } ................................................
+          ]
+  }
+</pre>
+
+<h3>3. Listar pokemon por id:</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/pokemon/{id}</strong>
+<pre>
+  {
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "name": "pichu",
+        "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+        "height": 1.0,
+        "weight": 4.4,
+        "code": "#0172",
+        "image": "pichu.png",
+        "evolutions": [
+            {
+                "id": 1,
+                "name": "pikachu",
+                "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
+                "height": 1.04,
+                "weight": 13.2,
+                "code": "#0025",
+                "image": "pikachu.png"
+            }.......................................................
+      ]
+    }
+}
+</pre>
+<span>Excepción: En caso de no existir el pokemon solicitado se mostrará un mensaje 400.</span>
+<pre>
+    {
+      "code": 400,
+      "message": "Bad Request",
+      "data": "El ID ingresado no pertenece a ningun pokemon existente"
+    }
+</pre>
+<h3>4. Listar pokemon por nombre o codigo:</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/pokemon/{nameorcode}</strong><br>
+PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codigo (campo unico) puede arrojar un unico registro o varios
+<pre>
+  {
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "name": "pichu",
+        "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+        "height": 1.0,
+        "weight": 4.4,
+        "code": "#0172",
+        "image": "pichu.png",
+        "evolutions": [
+            {
+                "id": 1,
+                "name": "pikachu",
+                "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
+                "height": 1.04,
+                "weight": 13.2,
+                "code": "#0025",
+                "image": "pikachu.png"
+            }.......................................................
+      ]
+    }
+}
+</pre>
+
+ <span>Excepción: En caso de no existir un pokemon con el valor ingresado:</span>
+<pre>
+    {
+      "code": 400,
+      "message": "Bad Request",
+      "data": "El valor ingresado no pertenece a algun pokemon"
+    }
+</pre>
