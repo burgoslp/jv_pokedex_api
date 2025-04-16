@@ -92,7 +92,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
  </pre>
 <h3>2. Actualizar pokemon</h3>
  <hr>
- <span>GET:</span> <strong>api/pokedex/pokemon/update/{id}</strong>
+ <span>PUT:</span> <strong>api/pokedex/pokemon/update/{id}</strong>
 <pre>
   {
     "name": "lucario",
@@ -118,8 +118,110 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
     ]
 }
  </pre>
-
- <h3>3. Listar todos los pokemons</h3>
+<h3>3. Agregar tipos al pokemon</h3>
+<hr>
+<span>POST:</span> <strong>api/pokedex/pokemon/add/{id}/type</strong>
+<pre>
+  [9,6]
+</pre>
+<span>Respuesta:</span>
+<pre>
+  {
+    "code": 201,
+    "message": "Created",
+    "data": "Los tipos se han agregado correctamente"
+  }
+</pre>
+<span>Pokemon con tipos agregados:</span>
+<pre>
+  {
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 6,
+        "name": "lucario",
+        "description": "descripción aquí",
+        "height": 2.5,
+        "weight": 80.0,
+        "code": "#1111",
+        "image": "lucario.png",
+        "evolutions": [],
+        "types": [
+            {
+                "id": 9,
+                "name": "Hielo",
+                "description": "Tipo de Pokemon que es fuerte contra Dragon, Planta, Tierra y Volador, y debil contra Acero, Agua, Fuego e Hielo."
+            },
+            {
+                "id": 6,
+                "name": "Fantasma",
+                "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
+            }
+        ],
+        "weaknesses": [],
+        "statistic": null
+    }
+}
+</pre>
+ <h3>4. Agregar debilidades al pokemon:</h3>
+ <hr>
+ <span>GET:</span> <strong>api/pokedex/add/{id}/weakness</strong>
+ <pre>
+   [1,4]
+ </pre>
+ <span>Respuesta:</span>
+ <pre>
+   {
+      "code": 201,
+      "message": "Created",
+      "data": "Las debilidades se han agregado correctamente"
+  }
+ </pre>
+ <span>
+   Pokemon con debilidades agregadas:
+ </span>
+ <pre>
+   {
+      "code": 200,
+      "message": "OK",
+      "data": {
+          "id": 6,
+          "name": "lucario",
+          "description": "descripción aquí",
+          "height": 2.5,
+          "weight": 80.0,
+          "code": "#1111",
+          "image": "lucario.png",
+          "evolutions": [],
+          "types": [
+              {
+                  "id": 9,
+                  "name": "Hielo",
+                  "description": "Tipo de Pokemon que es fuerte contra Dragon, Planta, Tierra y Volador, y debil contra Acero, Agua, Fuego e Hielo."
+              },
+              {
+                  "id": 6,
+                  "name": "Fantasma",
+                  "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
+              }            
+          ],
+          "weaknesses": [
+              {
+                  "id": 1,
+                  "name": "Acero",
+                  "description": "Tipo de Pokemon que es fuerte contra Hielo, Roca y Hada, y debil contra Fuego, Lucha y Tierra."
+              },
+              {
+                  "id": 4,
+                  "name": "Electrico",
+                  "description": "Tipo de Pokemon que es fuerte contra Agua y Volador, y debil contra Dragon, Electrico y Planta."
+              }
+          ],
+          "statistic": null
+      }
+  }
+ </pre>
+ <h3>5. Listar todos los pokemons</h3>
  <hr>
  <span>GET:</span> <strong>api/pokedex/pokemon</strong>
 <pre>
@@ -149,7 +251,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
   }
 </pre>
 
-<h3>4. Listar pokemon por id:</h3>
+<h3>6. Listar pokemon por id:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/{id}</strong>
 <pre>
@@ -186,7 +288,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
       "data": "El ID ingresado no pertenece a ningun pokemon existente"
     }
 </pre>
-<h3>5. Listar pokemon por nombre o codigo:</h3>
+<h3>7. Listar pokemon por nombre o codigo:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/{nameorcode}</strong><br>
 PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codigo (campo unico) puede arrojar un unico registro o varios
@@ -226,15 +328,15 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
     }
 </pre>
 
-<h3>6. Listar pokemons por mayor peso:</h3>
+<h3>8. Listar pokemons por mayor peso:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/weight/desc</strong><br>
-<h3>7. Listar pokemons por menor peso:</h3>
+<h3>9. Listar pokemons por menor peso:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/weight/asc</strong><br>
-<h3>8. Listar pokemons por mayor altura:</h3>
+<h3>10. Listar pokemons por mayor altura:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/height/desc</strong><br>
-<h3>9. Listar pokemons por menor altura:</h3>
+<h3>11. Listar pokemons por menor altura:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/height/asc</strong><br>
