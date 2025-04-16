@@ -196,3 +196,16 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
       "data": "El valor ingresado no pertenece a algun pokemon"
     }
 </pre>
+
+<h3>5. Listar pokemons por mayor peso:</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/pokemon/weight/desc</strong><br>
+<h3>6. Listar pokemons por menor peso:</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/pokemon/weight/asc</strong><br>
+<h3>7. Listar pokemons por mayor altura:</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/pokemon/height/desc</strong><br>
+<h3>8. Listar pokemons por menor altura:</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/pokemon/height/asc</strong><br>
