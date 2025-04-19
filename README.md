@@ -221,6 +221,48 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
       }
   }
  </pre>
+ <h3>5. Agregar Estadisticas al Pokemon</h3>
+ <hr>
+ <span>POST: <strong>api/pokedex/statistic/create/pokemon</strong></span>
+ <pre>
+   {
+    "attack":20,
+    "defence":60,
+    "velocity":80,
+    "life":50,
+    "pokemonId":6
+  }
+ </pre>
+<span>Respuesta:</span>
+ <pre>
+   {
+       "code": 201,
+       "message": "Created",
+       "data": "Se han creado las estadisticas del pokemon"
+    }
+ </pre>
+ <span>validación:</span>
+ <pre>
+   {
+      "code": 400,
+      "message": "Bad Request",
+      "data": [
+          "defence: no debe ser nulo",
+          "velocity: no debe ser nulo",
+          "attack: no debe ser nulo",
+          "pokemonId: no debe ser nulo",
+          "life: no debe ser nulo"
+      ]
+  }
+ </pre>
+ <span>Validación del pokemon id:</span>
+ <pre>
+   {
+      "code": 400,
+      "message": "Bad Request",
+      "data": "El ID ingresado no pertenece a ningun pokemon existente"
+  }
+ </pre>
  <h3>5. Listar todos los pokemons</h3>
  <hr>
  <span>GET:</span> <strong>api/pokedex/pokemon</strong>
