@@ -263,7 +263,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
       "data": "El ID ingresado no pertenece a ningun pokemon existente"
   }
  </pre>
- <h3>5. Listar todos los pokemons</h3>
+ <h3>6. Listar todos los pokemons</h3>
  <hr>
  <span>GET:</span> <strong>api/pokedex/pokemon</strong>
 <pre>
@@ -293,7 +293,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
   }
 </pre>
 
-<h3>6. Listar pokemon por id:</h3>
+<h3>7. Listar pokemon por id:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/{id}</strong>
 <pre>
@@ -330,7 +330,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
       "data": "El ID ingresado no pertenece a ningun pokemon existente"
     }
 </pre>
-<h3>7. Listar pokemon por nombre o codigo:</h3>
+<h3>8. Listar pokemon por nombre o codigo:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/{nameorcode}</strong><br>
 PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codigo (campo unico) puede arrojar un unico registro o varios
@@ -370,15 +370,15 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
     }
 </pre>
 
-<h3>8. Listar pokemons por mayor peso:</h3>
+<h3>9. Listar pokemons por mayor peso:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/weight/desc</strong><br>
-<h3>9. Listar pokemons por menor peso:</h3>
+<h3>10. Listar pokemons por menor peso:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/weight/asc</strong><br>
-<h3>10. Listar pokemons por mayor altura:</h3>
+<h3>11. Listar pokemons por mayor altura:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/height/desc</strong><br>
-<h3>11. Listar pokemons por menor altura:</h3>
+<h3>12. Listar pokemons por menor altura:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/height/asc</strong><br>
