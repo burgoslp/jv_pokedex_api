@@ -90,6 +90,14 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
       ]
   }
  </pre>
+ <span>Validación del pokemon id</span>
+ <pre>
+   {
+    "code": 400,
+    "message": "Bad Request",
+    "data": "El ID ingresado no pertenece a ningun pokemon existente"
+  }
+ </pre>
 <h3>2. Actualizar pokemon</h3>
  <hr>
  <span>PUT:</span> <strong>api/pokedex/pokemon/update/{id}</strong>
