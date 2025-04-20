@@ -140,6 +140,14 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
     "data": "Los tipos se han agregado correctamente"
   }
 </pre>
+<span>Validacion:</span>
+<pre>
+  {
+    "code": 400,
+    "message": "Bad Request",
+    "data": "La lista de valores se encuentran vacios o no existen"
+}
+</pre>
 <span>Pokemon con tipos agregados:</span>
 <pre>
   {
@@ -185,6 +193,14 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
       "data": "Las debilidades se han agregado correctamente"
   }
  </pre>
+ <span>Validacion:</span>
+<pre>
+  {
+    "code": 400,
+    "message": "Bad Request",
+    "data": "La lista de valores se encuentran vacios o no existen"
+}
+</pre>
  <span>
    Pokemon con debilidades agregadas:
  </span>
