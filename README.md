@@ -805,7 +805,7 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
             "description": "Tipo de Pokemon que es fuerte contra Fuego, Roca y Tierra, y debil contra Agua, Dragon y Planta."
         },..............................
 </pre>
-<h3>25. Listar tipos por si id</h3>
+<h3>25. Listar tipos por su id</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/type</strong><br>
 <pre>
