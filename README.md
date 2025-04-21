@@ -148,6 +148,14 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
     "data": "La lista de valores se encuentran vacios o no existen"
 }
 </pre>
+<span>Validación del pokemon id</span>
+ <pre>
+   {
+    "code": 400,
+    "message": "Bad Request",
+    "data": "El ID ingresado no pertenece a ningun pokemon existente"
+  }
+ </pre>
 <span>Pokemon con tipos agregados:</span>
 <pre>
   {
@@ -201,6 +209,14 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
     "data": "La lista de valores se encuentran vacios o no existen"
 }
 </pre>
+<span>Validación del pokemon id</span>
+ <pre>
+   {
+    "code": 400,
+    "message": "Bad Request",
+    "data": "El ID ingresado no pertenece a ningun pokemon existente"
+  }
+ </pre>
  <span>
    Pokemon con debilidades agregadas:
  </span>
