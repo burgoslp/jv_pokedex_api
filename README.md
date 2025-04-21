@@ -189,7 +189,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 </pre>
  <h3>4. Agregar debilidades al pokemon:</h3>
  <hr>
- <span>GET:</span> <strong>api/pokedex/add/{id}/weakness</strong>
+ <span>GET:</span> <strong>api/pokedex/pokemon/add/{id}/weakness</strong>
  <pre>
    [1,4]
  </pre>
@@ -422,3 +422,271 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
 <h3>12. Listar pokemons por menor altura:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/height/asc</strong><br>
+<h3>13. Crear Evolución:</h3>
+<hr>
+<span>POST:</span> <strong>api/pokedex/evolution/create</strong><br>
+<pre>
+  {
+     "name": "lucario",
+     "description":"descripción aquí",
+     "weight": 80,
+     "height": 2.5,
+     "image": "lucario.png",
+     "code": "#1111",
+     "pokemonId":1
+  }
+</pre>
+<span>Validaciones: </span>
+<pre>
+  {
+        "code": 400,
+        "message": "Bad Request",
+        "data": [
+            "name: no debe estar vacío",
+            "pokemonId: no debe ser nulo",
+            "weight: no debe ser nulo",
+            "image: no debe estar vacío",
+            "code: no debe ser nulo",
+            "height: no debe ser nulo",
+            "description: no debe estar vacío"
+        ]
+}
+</pre>
+<span>Validación pokemon id: </span>
+<pre>
+  {
+      "code": 400,
+      "message": "Bad Request",
+      "data": "El ID ingresado no pertenece a ningun pokemon existente"
+  }
+</pre>
+<span>Respuesta: </span>
+<pre>
+  {
+        "code": 201,
+        "message": "Created",
+        "data": {
+            "id": 14,
+            "name": "lucario",
+            "description": "descripción aquí",
+            "height": 2.5,
+            "weight": 80.0,
+            "code": "#8888",
+            "image": "lucario.png",
+        }
+  }
+</pre>
+<h3>14. Actualizar Evolución:</h3>
+<hr>
+<span>PUT:</span> <strong>api/pokedex/evolution/update/{id}</strong><br>
+<pre>
+  {
+      "name": "lucario",
+      "code": "#0056",
+      "description": "description",
+      "weight": 85,
+      "image": "lucario.png",
+      "height": 70  
+  }
+</pre>
+<span>Validaciones: </span>
+<pre>
+  {
+      "code": 400,
+      "message": "Bad Request",
+      "data": [
+          "image: no debe estar vacío",
+          "height: no debe ser nulo",
+          "code: no debe ser nulo",
+          "description: no debe estar vacío",
+          "name: no debe estar vacío",
+          "weight: no debe ser nulo"
+      ]
+  }
+</pre>
+<span>Validación evolución id:</span>
+<pre>
+  {
+      "code": 400,
+      "message": "Bad Request",
+      "data": "El ID ingresado no pertenece a ninguna evolución existente"
+  }
+</pre>
+<h3>15. Agregar tipos a la evolución</h3>
+<hr>
+<span>POST:</span> <strong>api/pokedex/evolution/add/{id}/type</strong>
+<pre>
+  [9,6]
+</pre>
+<span>Respuesta:</span>
+<pre>
+  {
+    "code": 201,
+    "message": "Created",
+    "data": "Los tipos se han agregado correctamente"
+  }
+</pre>
+<span>Validacion:</span>
+<pre>
+  {
+    "code": 400,
+    "message": "Bad Request",
+    "data": "La lista de valores se encuentran vacios o no existen"
+}
+</pre>
+<span>Validación del evolución id</span>
+ <pre>
+   {
+    "code": 400,
+    "message": "Bad Request",
+    "data": "El ID ingresado no pertenece a ninguna evolución existente"
+  }
+ </pre>
+<span>Evolución con tipos agregados:</span>
+<pre>
+  {
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 8,
+        "name": "lucario",
+        "description": "descripción aquí",
+        "height": 2.5,
+        "weight": 80.0,
+        "code": "#1111",
+        "image": "lucario.png",
+        "pokemon": [],
+        "types": [
+            {
+                "id": 9,
+                "name": "Hielo",
+                "description": "Tipo de Pokemon que es fuerte contra Dragon, Planta, Tierra y Volador, y debil contra Acero, Agua, Fuego e Hielo."
+            },
+            {
+                "id": 6,
+                "name": "Fantasma",
+                "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
+            }
+        ],
+        "weaknesses": [],
+        "statistic": null
+    }
+}
+</pre>
+ <h3>16. Agregar debilidades a la evolución:</h3>
+ <hr>
+ <span>GET:</span> <strong>api/pokedex/evolution/add/{id}/weakness</strong>
+ <pre>
+   [1,4]
+ </pre>
+ <span>Respuesta:</span>
+ <pre>
+   {
+      "code": 201,
+      "message": "Created",
+      "data": "Las debilidades se han agregado correctamente"
+  }
+ </pre>
+ <span>Validacion:</span>
+<pre>
+  {
+    "code": 400,
+    "message": "Bad Request",
+    "data": "La lista de valores se encuentran vacios o no existen"
+}
+</pre>
+<span>Validación del evolución id</span>
+ <pre>
+   {
+    "code": 400,
+    "message": "Bad Request",
+    "data": "El ID ingresado no pertenece a ninguna evolución existente"
+  }
+ </pre>
+ <span>
+   evolución con debilidades agregadas:
+ </span>
+ <pre>
+   {
+      "code": 200,
+      "message": "OK",
+      "data": {
+          "id": 8,
+          "name": "lucario",
+          "description": "descripción aquí",
+          "height": 2.5,
+          "weight": 80.0,
+          "code": "#1111",
+          "image": "lucario.png",
+          "evolutions": [],
+          "types": [
+              {
+                  "id": 9,
+                  "name": "Hielo",
+                  "description": "Tipo de Pokemon que es fuerte contra Dragon, Planta, Tierra y Volador, y debil contra Acero, Agua, Fuego e Hielo."
+              },
+              {
+                  "id": 6,
+                  "name": "Fantasma",
+                  "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
+              }            
+          ],
+          "weaknesses": [
+              {
+                  "id": 1,
+                  "name": "Acero",
+                  "description": "Tipo de Pokemon que es fuerte contra Hielo, Roca y Hada, y debil contra Fuego, Lucha y Tierra."
+              },
+              {
+                  "id": 4,
+                  "name": "Electrico",
+                  "description": "Tipo de Pokemon que es fuerte contra Agua y Volador, y debil contra Dragon, Electrico y Planta."
+              }
+          ],
+          "statistic": null
+      }
+  }
+ </pre>
+ <h3>17. Agregar Estadisticas a la evolución</h3>
+ <hr>
+ <span>POST: <strong>api/pokedex/statistic/create/evolution</strong></span>
+ <pre>
+   {
+    "attack":20,
+    "defence":60,
+    "velocity":80,
+    "life":50,
+    "evolutionId":8
+  }
+ </pre>
+<span>Respuesta:</span>
+ <pre>
+   {
+       "code": 201,
+       "message": "Created",
+       "data": "Se han creado las estadisticas de la evolución"
+    }
+ </pre>
+ <span>validación:</span>
+ <pre>
+   {
+      "code": 400,
+      "message": "Bad Request",
+      "data": [
+          "defence: no debe ser nulo",
+          "velocity: no debe ser nulo",
+          "attack: no debe ser nulo",
+          "evolutionId: no debe ser nulo",
+          "life: no debe ser nulo"
+      ]
+  }
+ </pre>
+ <span>Validación del pokemon id:</span>
+ <pre>
+   {
+      "code": 400,
+      "message": "Bad Request",
+      "data": "El ID ingresado no pertenece a ninguna evolución existente"
+  }
+ </pre>
+
