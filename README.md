@@ -681,7 +681,7 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
       ]
   }
  </pre>
- <span>Validación del pokemon id:</span>
+ <span>Validación del evolución id:</span>
  <pre>
    {
       "code": 400,
@@ -689,4 +689,100 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
       "data": "El ID ingresado no pertenece a ninguna evolución existente"
   }
  </pre>
-
+<h3>18. Listar todas las evoluciones</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/evolution</strong>
+<pre>
+  {
+    "code": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "name": "pikachu",
+            "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
+            "height": 1.04,
+            "weight": 13.2,
+            "code": "#0025",
+            "image": "pikachu.png"            
+        }, ........................
+</pre>
+<h3>18. Listar evolución por id</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/evolution/{id}</strong>
+<pre>
+  {
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "name": "pikachu",
+        "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
+        "height": 1.04,
+        "weight": 13.2,
+        "code": "#0025",
+        "image": "pikachu.png",
+        "pokemon": {
+            "id": 1,
+            "name": "pichu",
+            "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+            "height": 1.0,
+            "weight": 4.4,
+            "code": "#0172",
+            "image": "pichu.png",
+            "evolutions": null,
+            "types": null,
+            "weaknesses": null,
+            "statistic": null
+        },
+        "types": [
+            {
+                "id": 5,
+                "name": "Electrico",
+                "description": "Tipo de Pokemon que es fuerte contra Agua y Volador, y debil contra Dragon, Electrico y Planta."
+            }
+        ],
+        "weaknesses": [],
+        "statistic": {
+            "id": 2,
+            "attack": 55,
+            "defence": 40,
+            "velocity": 90,
+            "life": 35
+        }
+    }
+}
+</pre>
+<h3>19. Listar evolución por nombre o codigo</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/evolution/nameorcode/{nameorcode}</strong>
+PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codigo (campo unico) puede arrojar un unico registro o varios
+<pre>
+  {
+    "code": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 10,
+            "name": "butterfree",
+            "description": "Butterfree es la forma final de Caterpie. Es un hermoso PokÃ©mon de tipo bicho y volador con grandes alas que le permiten volar y libar nÃ©ctar de las flores. Butterfree es considerado un PokÃ©mon muy elegante y es conocido por sus habilidades en batalla.",
+            "height": 3.07,
+            "weight": 70.5,
+            "code": "#0012",
+            "image": "butterfree.png"            
+        }
+    ]
+}
+</pre>
+<h3>20. Listar evoluciones por mayor peso:</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/evolution/weight/desc</strong><br>
+<h3>21. Listar evoluciones por menor peso:</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/evolution/weight/asc</strong><br>
+<h3>22. Listar evoluciones por mayor altura:</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/evolution/height/desc</strong><br>
+<h3>23. Listar evoluciones por menor altura:</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/evolution/height/asc</strong><br>
