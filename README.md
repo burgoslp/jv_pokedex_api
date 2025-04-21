@@ -786,3 +786,44 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
 <h3>23. Listar evoluciones por menor altura:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/evolution/height/asc</strong><br>
+<h3>24. Listar todos los tipos</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/type</strong><br>
+<pre>
+  {
+    "code": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "name": "Acero",
+            "description": "Tipo de Pokemon que es fuerte contra Hielo, Roca y Hada, y debil contra Fuego, Lucha y Tierra."
+        },
+        {
+            "id": 2,
+            "name": "Agua",
+            "description": "Tipo de Pokemon que es fuerte contra Fuego, Roca y Tierra, y debil contra Agua, Dragon y Planta."
+        },..............................
+</pre>
+<h3>25. Listar tipos por si id</h3>
+<hr>
+<span>GET:</span> <strong>api/pokedex/type</strong><br>
+<pre>
+  {
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "name": "Acero",
+        "description": "Tipo de Pokemon que es fuerte contra Hielo, Roca y Hada, y debil contra Fuego, Lucha y Tierra."
+    }
+  }
+</pre>
+<span>Validación del id del tipo:</span>
+<pre>
+{
+    "code": 400,
+    "message": "Bad Request",
+    "data": "El ID ingresado no pertenece a ningun tipo"
+}
+</pre>
