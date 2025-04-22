@@ -30,39 +30,39 @@ public class PokemonServices implements IPokemonServices {
     @Override
     public JsonApiresponse findAll() {       
         List<Pokemon> pokemons =(List<Pokemon>)pr.findAll();
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonRelatedToDtoList(pokemons));
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
     }
 
     @Override
     public JsonApiresponse findAllByOrderByWeightDesc() {
        List<Pokemon> pokemons = pr.findAllByOrderByWeightDesc();
-       return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonRelatedToDtoList(pokemons));
+       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
 
     }
 
     @Override
     public JsonApiresponse findAllByOrderByWeightAsc() {
         List<Pokemon> pokemons=pr.findAllByOrderByWeightAsc();
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonRelatedToDtoList(pokemons));
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
     }
     
 
     @Override
     public JsonApiresponse findAllByOrderByHeightDesc() {
        List<Pokemon> pokemons = pr.findAllByOrderByHeightDesc();
-       return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonRelatedToDtoList(pokemons));
+       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
     }
 
     @Override
     public JsonApiresponse findAllByOrderByHeightAsc() {
         List<Pokemon> pokemons = pr.findAllByOrderByHeightAsc();
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonRelatedToDtoList(pokemons));
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
     }
 
     @Override
     public JsonApiresponse findById(Long id)  {
         Optional<Pokemon> pokemon= pr.findById(id); 
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonRelatedToDto(pokemon.orElseThrow(()->new APIException(APIError.POKEMON_BYID_NOT_FOUND))));
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDto(pokemon.orElseThrow(()->new APIException(APIError.POKEMON_BYID_NOT_FOUND)))).build();
       
     }
 
@@ -72,7 +72,7 @@ public class PokemonServices implements IPokemonServices {
         if (pokemons.isEmpty()) {
             throw new APIException(APIError.POKEMON_VALUE_NOT_FOUND);
         }
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonRelatedToDtoList(pokemons));
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
     }
 
 
@@ -87,7 +87,7 @@ public class PokemonServices implements IPokemonServices {
                                             .code(createPokemonDto.getCode())
                                             .image(createPokemonDto.getImage())                                            
                                             .build();
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonToDto(pr.save(pokemon)));
+        return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.pokemonToDto(pr.save(pokemon))).build();
     }
 
     @Override
@@ -102,7 +102,7 @@ public class PokemonServices implements IPokemonServices {
        pokemon.setImage(CreatePokemonDto.getImage() != null ? CreatePokemonDto.getImage() : pokemon.getImage());
 
 
-       return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonRelatedToDto(pr.save(pokemon)));
+       return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.pokemonRelatedToDto(pr.save(pokemon))).build();
     }
 
     @Override
@@ -115,40 +115,39 @@ public class PokemonServices implements IPokemonServices {
             throw new APIException(APIError.POKEMON_BYID_NOT_FOUND);
         });
 
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.pokemonToDto(optionalPokemon.get()));
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonToDto(optionalPokemon.get())).build();
     }
 
     @Override
     public JsonApiresponse addType(Long pokemonId, List<Long> typeIdList) {
         Pokemon pokemon = pr.findById(pokemonId).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
+        if(typeIdList ==null || typeIdList.isEmpty()){
+            throw new APIException(APIError.LIST_EMPTY);
+        }
         List<Type> typeList= new ArrayList<>();
         typeIdList.forEach(id ->{
-
-            tr.findById(id).ifPresent(type ->{
-                throw new APIException(APIError.TYPElIST_BYID_COINCIDENCE);
-            });
             typeList.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
         });
         pokemon.getTypes().addAll(typeList);    
         pr.save(pokemon);
 
-        return new JsonApiresponse(HttpStatus.CREATED.value(),HttpStatus.CREATED.getReasonPhrase(),"Los tipos se han agregado correctamente");
+        return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data("Los tipos se han agregado correctamente").build();
     }
 
     @Override
     public JsonApiresponse addweakness(Long pokemonId, List<Long> weaknessIdList) {
         Pokemon pokemon = pr.findById(pokemonId).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
+        if(weaknessIdList ==null || weaknessIdList.isEmpty()){
+            throw new APIException(APIError.LIST_EMPTY);
+        }
         List<Type> weaknessList= new ArrayList<>();
         weaknessIdList.forEach(id ->{
-            tr.findById(id).ifPresent(weakness ->{
-                throw new APIException(APIError.TYPElIST_BYID_COINCIDENCE);
-            });
             weaknessList.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
         });
 
-        pokemon.getTypes().addAll(weaknessList);
+        pokemon.getWeaknesses().addAll(weaknessList);
         pr.save(pokemon);
-        return new JsonApiresponse(HttpStatus.CREATED.value(),HttpStatus.CREATED.getReasonPhrase(),"Las debilidades se han agregado correctamente");
+        return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data("Las debilidades se han agregado correctamente").build();
     }
 
 

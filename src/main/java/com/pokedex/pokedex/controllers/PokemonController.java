@@ -73,7 +73,7 @@ public class PokemonController {
 
     //agregar tipos al pokemon
     @PostMapping("/add/{id}/type")
-    public ResponseEntity<JsonApiresponse> addType(@PathVariable Long id,@Valid @RequestBody List<Long> typeIdList) {       
+    public ResponseEntity<JsonApiresponse> addType(@PathVariable Long id,@RequestBody List<Long> typeIdList) {       
         return ResponseEntity.status(HttpStatus.CREATED).body(ps.addType(id, typeIdList));
     }
 

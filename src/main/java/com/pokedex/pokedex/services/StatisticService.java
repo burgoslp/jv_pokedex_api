@@ -37,8 +37,8 @@ public class StatisticService  implements IStatisticService {
                                         .life(createStatisticPokemonDto.getLife())
                                         .pokemon(pokemon)
                                         .build();
-
-       return new JsonApiresponse(HttpStatus.CREATED.value(),HttpStatus.CREATED.getReasonPhrase(),sr.save(statistic));
+        sr.save(statistic);
+       return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data("Se han creado las estadisticas del pokemon").build();
     }
 
     @Override
@@ -52,8 +52,8 @@ public class StatisticService  implements IStatisticService {
                                         .life(createStatisticEvolutionDto.getLife())
                                         .evolution(evolution)
                                         .build();
-
-       return new JsonApiresponse(HttpStatus.CREATED.value(),HttpStatus.CREATED.getReasonPhrase(),sr.save(statistic));
+        sr.save(statistic);
+       return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data("Se han creado las estadisticas de la evolución").build();
     }  
 
 

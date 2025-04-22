@@ -30,9 +30,4 @@ public class TypeServices implements ITypeServices{
         Type type = tr.findById(id).orElseThrow(() -> new APIException(APIError.TYPE_BYID_NOT_FOUND));        
         return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.typeToDto(type)).build();
     }
-
-    
-
-
-
 }

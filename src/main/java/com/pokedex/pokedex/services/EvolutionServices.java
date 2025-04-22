@@ -37,40 +37,39 @@ public class EvolutionServices implements IEvolutionServices{
     @Override
     public JsonApiresponse findAll() {
       List<Evolution> evolutions= (List<Evolution>) er.findAll();
-      return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.evolutionToDtoList(evolutions));
+      return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.evolutionToDtoList(evolutions)).build();
     }
 
     @Override
     public JsonApiresponse findAllByOrderByWeightDesc() {
        List<Evolution> evolutions = er.findAllByOrderByWeightDesc();
-       return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.evolutionToDtoList(evolutions));
+       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.evolutionToDtoList(evolutions)).build();
 
     }
 
     @Override
     public JsonApiresponse findAllByOrderByWeightAsc() {
         List<Evolution> evolutions=er.findAllByOrderByWeightAsc();
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.evolutionToDtoList(evolutions));
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.evolutionToDtoList(evolutions)).build();
     }
     
 
     @Override
     public JsonApiresponse findAllByOrderByHeightDesc() {
        List<Evolution> evolutions = er.findAllByOrderByHeightDesc();
-       return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.evolutionToDtoList(evolutions));
+       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.evolutionToDtoList(evolutions)).build();
     }
 
     @Override
     public JsonApiresponse findAllByOrderByHeightAsc() {
         List<Evolution> evolutions = er.findAllByOrderByHeightAsc();
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.evolutionToDtoList(evolutions));
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.evolutionToDtoList(evolutions)).build();
     }
 
     @Override
     public JsonApiresponse findById(Long id) {
        Optional<Evolution> evolution= er.findById(id); 
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.evolutionRelatedToDto(evolution.orElseThrow(()->new APIException(APIError.EVOLUTION_BYID_NOT_FOUND))));
-      
+       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data( map.evolutionRelatedToDto(evolution.orElseThrow(()->new APIException(APIError.EVOLUTION_BYID_NOT_FOUND)))).build();
     }
 
     @Override
@@ -79,7 +78,7 @@ public class EvolutionServices implements IEvolutionServices{
         if (evolutions.isEmpty()) {
             throw new APIException(APIError.EVOLUTION_VALUE_NOT_FOUND);
         }
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),map.evolutionToDtoList(evolutions));
+        return  JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.evolutionToDtoList(evolutions)).build();
     }
 
     @Override
@@ -96,7 +95,7 @@ public class EvolutionServices implements IEvolutionServices{
                                               .pokemon(pokemon)
                                               .build();
 
-        return new JsonApiresponse(HttpStatus.CREATED.value(),HttpStatus.CREATED.getReasonPhrase(),map.evolutionRelatedToDto(er.save(evolution)));
+        return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.evolutionRelatedToDto(er.save(evolution))).build();
     }
 
     @Override
@@ -110,19 +109,22 @@ public class EvolutionServices implements IEvolutionServices{
       evolution.setCode(evolutionDTO.getCode() != null ? evolutionDTO.getCode() : evolution.getCode());
       evolution.setImage(evolutionDTO.getImage() != null ? evolutionDTO.getImage() : evolution.getImage());
 
-      return new JsonApiresponse(HttpStatus.CREATED.value(),HttpStatus.CREATED.getReasonPhrase(),map.evolutionToDto(er.save(evolution)));
+      return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.evolutionToDto(er.save(evolution))).build();
     }
 
     @Override
     public JsonApiresponse delete(Long id) {
         Evolution evolution= er.findById(id).orElseThrow(()-> new APIException(APIError.EVOLUTION_BYID_NOT_FOUND));
         er.delete(evolution);
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),"Se ha eliminado la evolución con exito.");
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data("Se ha eliminado la evolución con exito.").build();
     }
 
     @Override
     public JsonApiresponse addType(Long evolutionId, List<Long> typeListId) {
-        Evolution evolution= er.findById(evolutionId).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
+        Evolution evolution= er.findById(evolutionId).orElseThrow(()-> new APIException(APIError.EVOLUTION_BYID_NOT_FOUND));
+        if(typeListId ==null || typeListId.isEmpty()){
+            throw new APIException(APIError.LIST_EMPTY);
+        }
         List<Type> typeList= new ArrayList<>();
         typeListId.forEach(id ->{
 
@@ -133,12 +135,15 @@ public class EvolutionServices implements IEvolutionServices{
         });
         evolution.getTypes().addAll(typeList);    
         er.save(evolution);
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),"Los tipos se han agregado correctamente");
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data("Los tipos se han agregado correctamente").build();
     }
 
     @Override
     public JsonApiresponse addweakness(Long evolutionId, List<Long> weaknessListId) {
-        Evolution evolution= er.findById(evolutionId).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
+        Evolution evolution= er.findById(evolutionId).orElseThrow(()-> new APIException(APIError.EVOLUTION_BYID_NOT_FOUND));
+        if(weaknessListId ==null || weaknessListId.isEmpty()){
+            throw new APIException(APIError.LIST_EMPTY);
+        }
         List<Type> weaknessList= new ArrayList<>();
         weaknessListId.forEach(id ->{
 
@@ -149,7 +154,7 @@ public class EvolutionServices implements IEvolutionServices{
         });
         evolution.getTypes().addAll(weaknessList);    
         er.save(evolution);
-        return new JsonApiresponse(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(),"Los tipos se han agregado correctamente");
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data("Los tipos se han agregado correctamente").build();
     }
 
 }
