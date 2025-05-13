@@ -37,7 +37,8 @@ Esta función garantiza la integridad de los datos, evitando evoluciones y estad
 
 <h2>Diagrama de la base de datos:</h2>
 
-![db_pokedex](https://github.com/user-attachments/assets/e508cdc8-52a3-4625-9d05-ac2ae1bd3c91)
+![imagen](https://github.com/user-attachments/assets/cd5d9c05-c418-4f6e-803a-f5b2bc6b86c7)
+
 
 <h2>Listado de endpoints:</h2>
 la api cuenta con multiples rutas que nos permite la creación, eliminación, actualización y lectura de los pokemons y sus evoluciones, ademas cuenta con rutas aparte para agregar tipos, debilidades y estadisticas.
