@@ -1,6 +1,6 @@
-package com.pokedex.pokedex.dtos.Pokemon;
+package com.pokedex.pokedex.dtos.Evolution;
 import java.util.List;
-import com.pokedex.pokedex.dtos.Evolution.EvolutionDto;
+import com.pokedex.pokedex.dtos.Pokemon.PokemonSumaryDto;
 import com.pokedex.pokedex.dtos.statistic.StatisticDto;
 import com.pokedex.pokedex.dtos.type.TypeDto;
 import jakarta.persistence.Column;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class PokemonDto {
+public class EvolutionDetailsDto {
     private Long id;
     @NotBlank
     @Size(min = 1, max = 20)
@@ -33,8 +33,9 @@ public class PokemonDto {
     private String code;
     @NotBlank
     private String image;
-    private List<EvolutionDto> evolutions;
+    private PokemonSumaryDto pokemon;
     private List<TypeDto> types;
     private List<TypeDto> weaknesses;
     private StatisticDto statistic;
+
 }

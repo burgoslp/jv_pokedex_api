@@ -35,11 +35,12 @@ public class Evolution {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    @JoinColumn(name = "pokemon_id", referencedColumnName = "id")
     @NotNull
     private Pokemon pokemon;
     @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<Type> types;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable(
         name = "evolutions_weaknesses",
         joinColumns = @JoinColumn(name = "evolutions_id"),

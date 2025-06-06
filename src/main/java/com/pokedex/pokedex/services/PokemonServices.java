@@ -30,39 +30,39 @@ public class PokemonServices implements IPokemonServices {
     @Override
     public JsonApiresponse findAll() {       
         List<Pokemon> pokemons =(List<Pokemon>)pr.findAll();
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
     }
 
     @Override
     public JsonApiresponse findAllByOrderByWeightDesc() {
        List<Pokemon> pokemons = pr.findAllByOrderByWeightDesc();
-       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
+       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
 
     }
 
     @Override
     public JsonApiresponse findAllByOrderByWeightAsc() {
         List<Pokemon> pokemons=pr.findAllByOrderByWeightAsc();
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
     }
     
 
     @Override
     public JsonApiresponse findAllByOrderByHeightDesc() {
        List<Pokemon> pokemons = pr.findAllByOrderByHeightDesc();
-       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
+       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
     }
 
     @Override
     public JsonApiresponse findAllByOrderByHeightAsc() {
         List<Pokemon> pokemons = pr.findAllByOrderByHeightAsc();
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
     }
 
     @Override
     public JsonApiresponse findById(Long id)  {
         Optional<Pokemon> pokemon= pr.findById(id); 
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDto(pokemon.orElseThrow(()->new APIException(APIError.POKEMON_BYID_NOT_FOUND)))).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonToPokemonDetailsDto(pokemon.orElseThrow(()->new APIException(APIError.POKEMON_BYID_NOT_FOUND)))).build();
       
     }
 
@@ -72,7 +72,7 @@ public class PokemonServices implements IPokemonServices {
         if (pokemons.isEmpty()) {
             throw new APIException(APIError.POKEMON_VALUE_NOT_FOUND);
         }
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonRelatedToDtoList(pokemons)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
     }
 
 
@@ -87,7 +87,7 @@ public class PokemonServices implements IPokemonServices {
                                             .code(createPokemonDto.getCode())
                                             .image(createPokemonDto.getImage())                                            
                                             .build();
-        return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.pokemonToDto(pr.save(pokemon))).build();
+        return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.pokemonToPokemonSumaryDto(pr.save(pokemon))).build();
     }
 
     @Override
@@ -102,21 +102,10 @@ public class PokemonServices implements IPokemonServices {
        pokemon.setImage(CreatePokemonDto.getImage() != null ? CreatePokemonDto.getImage() : pokemon.getImage());
 
 
-       return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.pokemonRelatedToDto(pr.save(pokemon))).build();
+       return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.pokemonToPokemonSumaryDto(pr.save(pokemon))).build();
     }
 
-    @Override
-    public  JsonApiresponse delete(Long id) {
-        Optional<Pokemon> optionalPokemon= pr.findById(id);
-        
-        optionalPokemon.ifPresentOrElse(evolution -> {
-            pr.delete(evolution);
-        },()->{
-            throw new APIException(APIError.POKEMON_BYID_NOT_FOUND);
-        });
-
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonToDto(optionalPokemon.get())).build();
-    }
+   
 
     @Override
     public JsonApiresponse addType(Long pokemonId, List<Long> typeIdList) {
@@ -150,7 +139,18 @@ public class PokemonServices implements IPokemonServices {
         return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data("Las debilidades se han agregado correctamente").build();
     }
 
+    @Override
+    public  JsonApiresponse delete(Long id) {
+        Optional<Pokemon> optionalPokemon= pr.findById(id);
+        
+        optionalPokemon.ifPresentOrElse(pokemon -> {
+            pr.delete(pokemon);
+        },()->{
+            throw new APIException(APIError.POKEMON_BYID_NOT_FOUND);
+        });
 
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data("Pokemon eliminado con exito").build();
+    }
 
     
 }

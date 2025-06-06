@@ -1,7 +1,7 @@
 package com.pokedex.pokedex.controllers;
 import org.springframework.web.bind.annotation.RestController;
 import com.pokedex.pokedex.dtos.Evolution.CreateEvolutionDto;
-import com.pokedex.pokedex.dtos.Evolution.EvolutionDto;
+import com.pokedex.pokedex.dtos.Evolution.EvolutionUpdateDto;
 import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 import com.pokedex.pokedex.services.EvolutionServices;
 import jakarta.validation.Valid;
@@ -87,8 +87,8 @@ public class EvolutionController {
 
     //actualizar evolución de un pokemon
     @PutMapping("/update/{id}")
-    public ResponseEntity<JsonApiresponse> create(@PathVariable Long id,@Valid @RequestBody EvolutionDto evolutionDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(es.update(id,evolutionDto));
+    public ResponseEntity<JsonApiresponse> create(@PathVariable Long id,@Valid @RequestBody EvolutionUpdateDto evolutionUpdateDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(es.update(id,evolutionUpdateDto));
     }
     
     @DeleteMapping("/delete/{id}")

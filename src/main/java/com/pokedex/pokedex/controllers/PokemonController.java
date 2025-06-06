@@ -92,7 +92,7 @@ public class PokemonController {
     @DeleteMapping("delete/{id}")
     public ResponseEntity<JsonApiresponse>  delete(@PathVariable Long id){
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(ps.delete(id));
+        return ResponseEntity.status(HttpStatus.OK).body(ps.delete(id));
     }
     
 }

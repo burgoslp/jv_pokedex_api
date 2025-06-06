@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-import com.pokedex.pokedex.dtos.Evolution.EvolutionDto;
-import com.pokedex.pokedex.dtos.Pokemon.PokemonDto;
+
+import com.pokedex.pokedex.dtos.Evolution.EvolutionDetailsDto;
+import com.pokedex.pokedex.dtos.Evolution.EvolutionSumaryDto;
+import com.pokedex.pokedex.dtos.Pokemon.PokemonDetailsDto;
+import com.pokedex.pokedex.dtos.Pokemon.PokemonSumaryDto;
 import com.pokedex.pokedex.dtos.statistic.StatisticDto;
 import com.pokedex.pokedex.dtos.type.TypeDto;
 import com.pokedex.pokedex.models.Evolution;
@@ -15,8 +18,8 @@ import com.pokedex.pokedex.models.Type;
 @Component
 public class MapToDto { 
     //exporta un objeto PokemonDto
-    public  PokemonDto pokemonToDto(Pokemon pokemon){
-        return PokemonDto.builder()
+    public  PokemonSumaryDto pokemonToPokemonSumaryDto(Pokemon pokemon){
+        return PokemonSumaryDto.builder()
                             .id(pokemon.getId())
                             .name(pokemon.getName())
                             .description(pokemon.getDescription())
@@ -27,8 +30,8 @@ public class MapToDto {
                             .build();
     }
     //exporta un objetos PokemonDto con relaciones
-    public  PokemonDto pokemonRelatedToDto(Pokemon pokemon){
-        return PokemonDto.builder()
+    public  PokemonDetailsDto pokemonToPokemonDetailsDto(Pokemon pokemon){
+        return PokemonDetailsDto.builder()
                                 .id(pokemon.getId())
                                 .name(pokemon.getName())
                                 .description(pokemon.getDescription())
@@ -36,18 +39,30 @@ public class MapToDto {
                                 .weight(pokemon.getWeight())
                                 .code(pokemon.getCode())
                                 .image(pokemon.getImage())
-                                .evolutions(evolutionToDtoList(pokemon.getEvolutions()))
+                                .evolutions(evolutionListToEvolutionSumaryDtoList(pokemon.getEvolutions()))
                                 .types(typeToDtoList(pokemon.getTypes()))
                                 .weaknesses(typeToDtoList(pokemon.getWeaknesses()))
                                 .statistic(pokemon.getStatistic() != null ? statisticToDto(pokemon.getStatistic()):null)
                                 .build();
     }
-    //exporta una lista de objetos PokemonDto con relaciones
-    public  List<PokemonDto> pokemonRelatedToDtoList(List<Pokemon> pokemons){
-        List<PokemonDto> listPokemonDTO= new ArrayList<>();
+
+    //exporta una lista de objetos PokemonDetailsDto esta tiene sus relaciones
+    public  List<PokemonDetailsDto> pokemonListToPokemonDetailsDtoList(List<Pokemon> pokemons){
+        List<PokemonDetailsDto> listPokemonDTO= new ArrayList<>();
         pokemons.forEach(evo ->{
-            listPokemonDTO.add(pokemonRelatedToDto(evo)); 
+            listPokemonDTO.add(pokemonToPokemonDetailsDto(evo)); 
         });
+        return listPokemonDTO;
+    }
+    //esporta una lista de objetos PokemonSumaryDto esta no tiene relaciones
+    public List<PokemonSumaryDto> pokemonListToPokemonSumaryDtoList(List<Pokemon> pokemons){
+
+        List<PokemonSumaryDto> listPokemonDTO= new ArrayList<>();
+
+        pokemons.forEach(poke ->{
+            listPokemonDTO.add(pokemonToPokemonSumaryDto(poke)); 
+        });
+
         return listPokemonDTO;
     }
     /*
@@ -55,8 +70,8 @@ public class MapToDto {
      * 
      * 
     */   
-    public  EvolutionDto evolutionToDto(Evolution evolution){
-        return EvolutionDto.builder()
+    public  EvolutionSumaryDto evolutionToEvolutionSumaryDto(Evolution evolution){
+        return EvolutionSumaryDto.builder()
                             .id(evolution.getId())
                             .name(evolution.getName())
                             .description(evolution.getDescription())
@@ -67,8 +82,8 @@ public class MapToDto {
                             .build();
     } 
 
-    public  EvolutionDto evolutionRelatedToDto(Evolution evolution){
-        return EvolutionDto.builder()
+    public  EvolutionDetailsDto evolutionToEvolutionDetailsDto(Evolution evolution){
+        return EvolutionDetailsDto.builder()
                                     .id(evolution.getId())
                                     .name(evolution.getName())
                                     .description(evolution.getDescription())
@@ -76,27 +91,27 @@ public class MapToDto {
                                     .weight(evolution.getWeight())
                                     .code(evolution.getCode())
                                     .image(evolution.getImage())
-                                    .pokemon(pokemonToDto(evolution.getPokemon()))
+                                    .pokemon(pokemonToPokemonSumaryDto(evolution.getPokemon()))
                                     .types(typeToDtoList(evolution.getTypes()))
                                     .weaknesses(typeToDtoList(evolution.getWeaknesses()))
                                     .statistic(evolution.getStatistic() != null ? statisticToDto(evolution.getStatistic()):null)
                                     .build();
     } 
 
-    public  List<EvolutionDto> evolutionToDtoList(List<Evolution> evolutions){
-        List<EvolutionDto> listEvolutionDTO= new ArrayList<>();
+    public  List<EvolutionSumaryDto> evolutionListToEvolutionSumaryDtoList(List<Evolution> evolutions){
+        List<EvolutionSumaryDto> listEvolutionSumaryDTO= new ArrayList<>();
         evolutions.forEach(evo ->{
-            listEvolutionDTO.add(evolutionToDto(evo)); 
+            listEvolutionSumaryDTO.add(evolutionToEvolutionSumaryDto(evo)); 
         });
 
-        return listEvolutionDTO;
+        return listEvolutionSumaryDTO;
     }
-    public  List<EvolutionDto> evolutionRelatedPokemonToDtoList(List<Evolution> evolutions){
-        List<EvolutionDto> listEvolutionDTO= new ArrayList<>();
+    public  List<EvolutionDetailsDto> evolutionListToEvolutionDetailsDtoList(List<Evolution> evolutions){
+        List<EvolutionDetailsDto> listEvolutionDetailsDTO= new ArrayList<>();
         evolutions.forEach(evo ->{
-            listEvolutionDTO.add(evolutionRelatedToDto(evo)); 
+            listEvolutionDetailsDTO.add(evolutionToEvolutionDetailsDto(evo)); 
         });
-        return listEvolutionDTO;
+        return listEvolutionDetailsDTO;
     }
     /* 
      * 

@@ -33,12 +33,11 @@ public class Pokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="pokemon_id")
+    @OneToMany(mappedBy = "pokemon",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Evolution> evolutions;
     @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<Type> types;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable(
         name = "pokemons_weaknesses",
         joinColumns = @JoinColumn(name = "pokemons_id"),
