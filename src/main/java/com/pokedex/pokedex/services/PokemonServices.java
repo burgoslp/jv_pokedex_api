@@ -2,6 +2,8 @@ package com.pokedex.pokedex.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -108,13 +110,19 @@ public class PokemonServices implements IPokemonServices {
    
 
     @Override
-    public JsonApiresponse addType(Long pokemonId, List<Long> typeIdList) {
+    public JsonApiresponse addType(Long pokemonId, Set<Long> typeIdList) {
         Pokemon pokemon = pr.findById(pokemonId).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
         if(typeIdList ==null || typeIdList.isEmpty()){
             throw new APIException(APIError.LIST_EMPTY);
         }
         List<Type> typeList= new ArrayList<>();
         typeIdList.forEach(id ->{
+            Type type = tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND));
+            //verificar si el tipo ya existe en la lista de tipos
+            if(pokemon.getTypes().stream().anyMatch(t -> t.getId().equals(type.getId()))){
+                throw new APIException(APIError.TYPElIST_BYID_COINCIDENCE);
+            }
+
             typeList.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
         });
         pokemon.getTypes().addAll(typeList);    
@@ -131,7 +139,15 @@ public class PokemonServices implements IPokemonServices {
         }
         List<Type> weaknessList= new ArrayList<>();
         weaknessIdList.forEach(id ->{
-            weaknessList.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
+
+            Type type=tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND));
+
+            //verificar si el tipo ya existe en la lista de debilidades
+            if(pokemon.getWeaknesses().stream().anyMatch(t -> t.getId().equals(type.getId()))){
+                throw new APIException(APIError.WEAKNESSlIST_BYID_COINCIDENCE);
+
+            }
+            weaknessList.add(type);
         });
 
         pokemon.getWeaknesses().addAll(weaknessList);

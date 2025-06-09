@@ -14,7 +14,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,7 +23,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Pokemons", uniqueConstraints = @UniqueConstraint(columnNames = "code"))
+@Table(name = "Pokemons")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -59,6 +58,7 @@ public class Pokemon {
     private Double weight;
     @NotNull
     @Size(min=5, max = 10, message = "El formato del codigo es de #0000")
+    @Column(unique = true)
     private String code;
     @NotBlank
     private String image;

@@ -13,7 +13,8 @@ public enum APIError {
     EVOLUTION_VALUE_NOT_FOUND(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"El valor ingresado no pertenece a alguna evolución",List.of("")),
     TYPE_BYID_NOT_FOUND(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"El ID ingresado no pertenece a ningun tipo",List.of("")),
     TYPELIST_BYID_NOT_FOUND(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"Uno de los ID ingresado no pertenece a ningun tipo",List.of("")),
-    TYPElIST_BYID_COINCIDENCE(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"Uno de los ID ingresado ya esta agregado.",List.of("")),
+    TYPElIST_BYID_COINCIDENCE(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"Uno de los ID ingresado ya esta agregado en los tipos.",List.of("")),
+    WEAKNESSlIST_BYID_COINCIDENCE(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"Uno de los ID ingresado ya esta agregado en las debilidades.",List.of("")),
     LIST_EMPTY(HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST,"La lista de valores se encuentran vacios o no existen",List.of(""));
 
     private final Integer code;

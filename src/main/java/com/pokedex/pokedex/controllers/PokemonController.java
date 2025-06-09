@@ -1,5 +1,6 @@
 package com.pokedex.pokedex.controllers;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -73,7 +74,7 @@ public class PokemonController {
 
     //agregar tipos al pokemon
     @PostMapping("/add/{id}/type")
-    public ResponseEntity<JsonApiresponse> addType(@PathVariable Long id,@RequestBody List<Long> typeIdList) {       
+    public ResponseEntity<JsonApiresponse> addType(@PathVariable Long id,@RequestBody Set<Long> typeIdList) {       
         return ResponseEntity.status(HttpStatus.CREATED).body(ps.addType(id, typeIdList));
     }
 
