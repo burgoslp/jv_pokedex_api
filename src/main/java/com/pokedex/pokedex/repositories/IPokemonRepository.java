@@ -11,4 +11,6 @@ public interface IPokemonRepository extends CrudRepository<Pokemon,Long> {
     List<Pokemon> findAllByOrderByHeightDesc();
     List<Pokemon> findAllByOrderByHeightAsc();
     List<Pokemon> findByNameLikeIgnoreCaseOrCodeLikeIgnoreCase(String name,String code);
+
+    Boolean existsByCode(String code);
 }

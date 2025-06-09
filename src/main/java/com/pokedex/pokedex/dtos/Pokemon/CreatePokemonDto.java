@@ -1,4 +1,6 @@
 package com.pokedex.pokedex.dtos.Pokemon;
+import com.pokedex.pokedex.validations.UniquePokemonCode;
+
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,6 +27,7 @@ public class CreatePokemonDto {
     private Double weight;
     @NotNull
     @Size(min=5, max = 10, message = "El formato del codigo es de #0000")
+    @UniquePokemonCode
     private String code;
     @NotBlank
     private String image;

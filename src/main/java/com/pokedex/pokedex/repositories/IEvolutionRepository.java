@@ -10,4 +10,5 @@ public interface IEvolutionRepository extends CrudRepository<Evolution,Long>{
     List<Evolution> findAllByOrderByHeightDesc();
     List<Evolution> findAllByOrderByHeightAsc();
     List<Evolution> findByNameLikeIgnoreCaseOrCodeLikeIgnoreCase(String name,String code);
+    boolean existsByCode(String code);
 }
