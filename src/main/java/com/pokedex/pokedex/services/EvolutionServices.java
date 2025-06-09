@@ -127,11 +127,14 @@ public class EvolutionServices implements IEvolutionServices{
         }
         List<Type> typeList= new ArrayList<>();
         typeListId.forEach(id ->{
-
-            tr.findById(id).ifPresent(type ->{
+            // Verifica si el tipo existe
+            Type type= tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND));
+            // Verifica si el tipo ya está en la lista de tipos
+            if(evolution.getTypes().stream().anyMatch(t -> t.getId().equals(type.getId()))){
                 throw new APIException(APIError.TYPElIST_BYID_COINCIDENCE);
-            });
-            typeList.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
+            }
+
+            typeList.add(type);
         });
         evolution.getTypes().addAll(typeList);    
         er.save(evolution);
@@ -146,11 +149,14 @@ public class EvolutionServices implements IEvolutionServices{
         }
         List<Type> weaknessList= new ArrayList<>();
         weaknessListId.forEach(id ->{
-
-            tr.findById(id).ifPresent(type ->{
-                throw new APIException(APIError.TYPElIST_BYID_COINCIDENCE);
-            });
-            weaknessList.add(tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND)));
+            // Verifica si el tipo existe
+            Type type= tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPE_BYID_NOT_FOUND));
+            // Verifica si el tipo ya está en la lista de debilidades
+            if(evolution.getWeaknesses().stream().anyMatch(t -> t.getId().equals(type.getId()))){
+                throw new APIException(APIError.WEAKNESSlIST_BYID_COINCIDENCE);
+            }
+          
+            weaknessList.add(type);
         });
         evolution.getTypes().addAll(weaknessList);    
         er.save(evolution);
