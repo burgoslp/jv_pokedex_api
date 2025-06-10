@@ -41,57 +41,89 @@ Esta función garantiza la integridad de los datos, evitando evoluciones y estad
 ![imagen](https://github.com/user-attachments/assets/cd5d9c05-c418-4f6e-803a-f5b2bc6b86c7)
 
 
-<h2>Listado de endpoints:</h2>
+## 📜 Listado de endpoints 
 la api cuenta con multiples rutas que nos permite la creación, eliminación, actualización y lectura de los pokemons y sus evoluciones, ademas cuenta con rutas aparte para agregar tipos, debilidades y estadisticas.
 
-<h3>1. Creación del pokemon</h3>
-<hr>
-<span>POST:</span> <strong>api/pokedex/pokemon/create</strong>
- <pre>
-   {
-      "name": "pikachu",
-      "description":"descripción aquí",
-      "weight": 80,
-      "height": 2.5,
-      "image": "pikachu.png",
-      "code": "#1111"
-    }
- </pre>
- <span>Respuesta:</span>
- <pre>
-   {
-        "code": 200,
-        "message": "OK",
-        "data": {
-            "id": 6,
-            "name": "lucario",
-            "description": "descripción aquí",
-            "height": 2.5,
-            "weight": 80.0,
-            "code": "#1111",
-            "image": "lucario.png",
-            "evolutions": null,
-            "types": null,
-            "weaknesses": null,
-            "statistic": null
-        }
-    }
- </pre>
- <span>Validaciones:</span>
- <pre>
-   {
-      "code": 400,
-      "message": "Bad Request",
-      "data": [
-          "name: no debe estar vacío",
-          "weight: no debe ser nulo",
-          "image: no debe estar vacío",
-          "height: no debe ser nulo",
-          "code: no debe ser nulo",
-          "description: no debe estar vacío"
-      ]
+## 📑 Índice de Endpoints
+
+- 🌱 [1. Crear Pokémon](#1-crear-pokémon)
+- ✏️ [2. Actualizar Pokémon](#2-actualizar-pokémon)
+- 🏷️ [3. Agregar tipos a un Pokémon](#3-agregar-tipos-a-un-pokémon)
+- ⚠️ [4. Agregar debilidades a un Pokémon](#4-agregar-debilidades-a-un-pokémon)
+- 📊 [5. Agregar estadísticas a un Pokémon](#5-agregar-estadísticas-a-un-pokémon)
+- 📋 [6. Listar todos los Pokémon](#6-listar-todos-los-pokémon)
+- 🔍 [7. Buscar Pokémon por ID](#7-buscar-pokémon-por-id)
+- 🔡 [8. Buscar Pokémon por nombre o código](#8-buscar-pokémon-por-nombre-o-código)
+- ⚖️ [9. Listar Pokémon por mayor peso](#9-listar-pokémon-por-mayor-peso)
+- 🪶 [10. Listar Pokémon por menor peso](#10-listar-pokémon-por-menor-peso)
+- 📏 [11. Listar Pokémon por mayor altura](#11-listar-pokémon-por-mayor-altura)
+- 📐 [12. Listar Pokémon por menor altura](#12-listar-pokémon-por-menor-altura)
+- 🌱✨ [13. Crear evolución](#13-crear-evolución)
+- ✏️✨ [14. Actualizar evolución](#14-actualizar-evolución)
+- 🏷️✨ [15. Agregar tipos a una evolución](#15-agregar-tipos-a-una-evolución)
+- ⚠️✨ [16. Agregar debilidades a una evolución](#16-agregar-debilidades-a-una-evolución)
+- 📊✨ [17. Agregar estadísticas a una evolución](#17-agregar-estadísticas-a-una-evolución)
+- 🧬 [18. Listar todas las evoluciones](#18-listar-todas-las-evoluciones)
+- 🔍✨ [19. Buscar evolución por ID](#19-buscar-evolución-por-id)
+- 🔡✨ [20. Buscar evolución por nombre o código](#20-buscar-evolución-por-nombre-o-código)
+- ⚖️✨ [21. Listar evoluciones por mayor peso](#21-listar-evoluciones-por-mayor-peso)
+- 🪶✨ [22. Listar evoluciones por menor peso](#22-listar-evoluciones-por-menor-peso)
+- 📏✨ [23. Listar evoluciones por mayor altura](#23-listar-evoluciones-por-mayor-altura)
+- 📐✨ [24. Listar evoluciones por menor altura](#24-listar-evoluciones-por-menor-altura)
+- 🧩 [25. Listar todos los tipos](#25-listar-todos-los-tipos)
+- 🧩🔍 [26. Buscar tipo por ID](#26-buscar-tipo-por-id)
+
+## 🌱 1. Crear Pokémon 
+
+**Método:** `POST`  
+**Endpoint:** `/api/pokedex/pokemon/create`  
+
+### 📝 Descripción
+Crea un nuevo Pokémon con los datos suministrados.
+
+```json
+{
+  "name": "pikachu",
+  "description": "descripción aquí",
+  "weight": 80,
+  "height": 2.5,
+  "image": "pikachu.png",
+  "code": "#1111"
+}
+```
+### ✅ Respuesta exitosa
+
+```json
+{
+  "code": 200,
+  "message": "OK",
+  "data": {
+    "id": 6,
+    "name": "lucario",
+    "description": "descripción aquí",
+    "height": 2.5,
+    "weight": 80.0,
+    "code": "#1111",
+    "image": "lucario.png"  
   }
- </pre>
+}
+```
+### ❌ Respuesta de validación
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": [
+    "name: no debe estar vacío",
+    "weight: no debe ser nulo",
+    "image: no debe estar vacío",
+    "height: no debe ser nulo",
+    "code: no debe ser nulo",
+    "description: no debe estar vacío"
+  ]
+}
+```
+
 <h3>2. Actualizar pokemon</h3>
  <hr>
  <span>PUT:</span> <strong>api/pokedex/pokemon/update/{id}</strong>
