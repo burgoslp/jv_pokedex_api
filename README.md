@@ -46,7 +46,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 
 ## 📑 Índice de Endpoints
 
-- 🌱 [1. Crear Pokémon](#1-crear-pokémon)
+- 🌱 [1. Crear Pokémon](#1-crear-pokemon)
 - ✏️ [2. Actualizar Pokémon](#2-actualizar-pokémon)
 - 🏷️ [3. Agregar tipos a un Pokémon](#3-agregar-tipos-a-un-pokémon)
 - ⚠️ [4. Agregar debilidades a un Pokémon](#4-agregar-debilidades-a-un-pokémon)
@@ -73,6 +73,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 - 🧩 [25. Listar todos los tipos](#25-listar-todos-los-tipos)
 - 🧩🔍 [26. Buscar tipo por ID](#26-buscar-tipo-por-id)
 
+<a name="1-crear-pokemon"></a>
 ## 🌱 1. Crear Pokémon 
 
 **Método:** `POST`  
