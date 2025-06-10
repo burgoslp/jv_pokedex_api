@@ -372,29 +372,37 @@ Puedes agregar debilidades a los  pokemon que crees (fuego, tierra, hielo), debe
 }
 ```
 
+<a name="5-agregar-estadísticas-a-un-pokémon"></a>
+## 📊 5. Agregar Estadisticas al Pokemon
 
- <h3>5. Agregar Estadisticas al Pokemon</h3>
- <hr>
- <span>POST: <strong>api/pokedex/statistic/create/pokemon</strong></span>
- <pre>
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/statistic/create/pokemon` 
+
+#### 📝 Descripción
+Puedes agregar las estadisticas a tus pokemon para que crees graficos comparativos.
+
+```json
    {
+    "pokemonId":6
     "attack":20,
     "defence":60,
     "velocity":80,
     "life":50,
-    "pokemonId":6
   }
- </pre>
-<span>Respuesta:</span>
- <pre>
-   {
-       "code": 201,
-       "message": "Created",
-       "data": "Se han creado las estadisticas del pokemon"
-    }
- </pre>
- <span>validación:</span>
- <pre>
+```
+
+#### ✅ Respuesta exitosa
+
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Se han creado las estadisticas del pokemon"
+}
+```
+#### ❌ Respuesta de validación
+
+ ```json
    {
       "code": 400,
       "message": "Bad Request",
@@ -406,15 +414,17 @@ Puedes agregar debilidades a los  pokemon que crees (fuego, tierra, hielo), debe
           "life: no debe ser nulo"
       ]
   }
- </pre>
- <span>Validación del pokemon id:</span>
- <pre>
-   {
-      "code": 400,
-      "message": "Bad Request",
-      "data": "El ID ingresado no pertenece a ningun pokemon existente"
-  }
- </pre>
+ ```
+#### ❌ Validación del pokémon id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun pokémon existente"
+}
+```
+
  <h3>6. Listar todos los pokemons</h3>
  <hr>
  <span>GET:</span> <strong>api/pokedex/pokemon</strong>
