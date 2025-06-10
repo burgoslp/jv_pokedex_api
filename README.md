@@ -272,43 +272,42 @@ Puedes agregar que tipo de pokemon es (fuego, tierra, hielo), debes enviar una l
   "data": "Uno de los ID ingresado no pertenece a ningun tipo"
 }
 ```
+#### ❌ Validación del type id repetido
 
-
- <h3>4. Agregar debilidades al pokemon:</h3>
- <hr>
- <span>GET:</span> <strong>api/pokedex/pokemon/add/{id}/weakness</strong>
- <pre>
-   [1,4]
- </pre>
- <span>Respuesta:</span>
- <pre>
-   {
-      "code": 201,
-      "message": "Created",
-      "data": "Las debilidades se han agregado correctamente"
-  }
- </pre>
- <span>Validacion:</span>
-<pre>
-  {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "La lista de valores se encuentran vacios o no existen"
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado ya esta agregado en los tipos."
 }
-</pre>
-<span>Validación del pokemon id</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ningun pokemon existente"
-  }
- </pre>
- <span>
-   Pokemon con debilidades agregadas:
- </span>
- <pre>
-   {
+```
+
+<a name="4-agregar-debilidades-a-un-pokémon"></a>
+## ⚠️ 4. Agregar debilidades al pokemon
+
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/pokemon/add/{id}/weakness` 
+
+#### 📝 Descripción
+Puedes agregar debilidades a los  pokemon que crees (fuego, tierra, hielo), debes enviar una lista de id.
+
+ ```json
+ [1,4]
+```
+#### ✅ Respuesta exitosa
+
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Las debilidades se han agregado correctamente"
+}
+ ```
+
+#### ✅ Ejemplo de un pokémon con los tipos añadidos
+
+```json
+{
       "code": 200,
       "message": "OK",
       "data": {
@@ -319,19 +318,6 @@ Puedes agregar que tipo de pokemon es (fuego, tierra, hielo), debes enviar una l
           "weight": 80.0,
           "code": "#1111",
           "image": "lucario.png",
-          "evolutions": [],
-          "types": [
-              {
-                  "id": 9,
-                  "name": "Hielo",
-                  "description": "Tipo de Pokemon que es fuerte contra Dragon, Planta, Tierra y Volador, y debil contra Acero, Agua, Fuego e Hielo."
-              },
-              {
-                  "id": 6,
-                  "name": "Fantasma",
-                  "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
-              }            
-          ],
           "weaknesses": [
               {
                   "id": 1,
@@ -344,10 +330,49 @@ Puedes agregar que tipo de pokemon es (fuego, tierra, hielo), debes enviar una l
                   "description": "Tipo de Pokemon que es fuerte contra Agua y Volador, y debil contra Dragon, Electrico y Planta."
               }
           ],
-          "statistic": null
       }
   }
- </pre>
+```
+
+#### ❌ Respuesta de validación
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "La lista de valores se encuentran vacios o no existen"
+}
+```
+#### ❌ Validación del pokémon id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun pokémon existente"
+}
+```
+
+#### ❌ Validación del weaknness id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado no pertenece a ninguna debilidad"
+}
+```
+
+#### ❌ Validación del weaknness id repetido
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado ya esta agregado en las debilidades."
+}
+```
+
+
  <h3>5. Agregar Estadisticas al Pokemon</h3>
  <hr>
  <span>POST: <strong>api/pokedex/statistic/create/pokemon</strong></span>
