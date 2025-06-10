@@ -47,7 +47,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 ## 📑 Índice de Endpoints
 
 - 🌱 [1. Crear Pokémon](#1-crear-pokemon)
-- ✏️ [2. Actualizar Pokémon](#2-actualizar-pokémon)
+- ✏️ [2. Actualizar Pokémon](#2-actualizar-pokemon)
 - 🏷️ [3. Agregar tipos a un Pokémon](#3-agregar-tipos-a-un-pokémon)
 - ⚠️ [4. Agregar debilidades a un Pokémon](#4-agregar-debilidades-a-un-pokémon)
 - 📊 [5. Agregar estadísticas a un Pokémon](#5-agregar-estadísticas-a-un-pokémon)
@@ -58,28 +58,28 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 - 🪶 [10. Listar Pokémon por menor peso](#10-listar-pokémon-por-menor-peso)
 - 📏 [11. Listar Pokémon por mayor altura](#11-listar-pokémon-por-mayor-altura)
 - 📐 [12. Listar Pokémon por menor altura](#12-listar-pokémon-por-menor-altura)
-- 🌱✨ [13. Crear evolución](#13-crear-evolución)
-- ✏️✨ [14. Actualizar evolución](#14-actualizar-evolución)
-- 🏷️✨ [15. Agregar tipos a una evolución](#15-agregar-tipos-a-una-evolución)
-- ⚠️✨ [16. Agregar debilidades a una evolución](#16-agregar-debilidades-a-una-evolución)
-- 📊✨ [17. Agregar estadísticas a una evolución](#17-agregar-estadísticas-a-una-evolución)
+- 🌱 [13. Crear evolución](#13-crear-evolución)
+- ✏️ [14. Actualizar evolución](#14-actualizar-evolución)
+- 🏷️ [15. Agregar tipos a una evolución](#15-agregar-tipos-a-una-evolución)
+- ⚠️ [16. Agregar debilidades a una evolución](#16-agregar-debilidades-a-una-evolución)
+- 📊 [17. Agregar estadísticas a una evolución](#17-agregar-estadísticas-a-una-evolución)
 - 🧬 [18. Listar todas las evoluciones](#18-listar-todas-las-evoluciones)
-- 🔍✨ [19. Buscar evolución por ID](#19-buscar-evolución-por-id)
-- 🔡✨ [20. Buscar evolución por nombre o código](#20-buscar-evolución-por-nombre-o-código)
-- ⚖️✨ [21. Listar evoluciones por mayor peso](#21-listar-evoluciones-por-mayor-peso)
-- 🪶✨ [22. Listar evoluciones por menor peso](#22-listar-evoluciones-por-menor-peso)
-- 📏✨ [23. Listar evoluciones por mayor altura](#23-listar-evoluciones-por-mayor-altura)
-- 📐✨ [24. Listar evoluciones por menor altura](#24-listar-evoluciones-por-menor-altura)
+- 🔍 [19. Buscar evolución por ID](#19-buscar-evolución-por-id)
+- 🔡 [20. Buscar evolución por nombre o código](#20-buscar-evolución-por-nombre-o-código)
+- ⚖️ [21. Listar evoluciones por mayor peso](#21-listar-evoluciones-por-mayor-peso)
+- 🪶 [22. Listar evoluciones por menor peso](#22-listar-evoluciones-por-menor-peso)
+- 📏 [23. Listar evoluciones por mayor altura](#23-listar-evoluciones-por-mayor-altura)
+- 📐 [24. Listar evoluciones por menor altura](#24-listar-evoluciones-por-menor-altura)
 - 🧩 [25. Listar todos los tipos](#25-listar-todos-los-tipos)
 - 🧩🔍 [26. Buscar tipo por ID](#26-buscar-tipo-por-id)
 
-<a name="1-crear-pokemon"></a>
 ## 🌱 1. Crear Pokémon 
+<a name="1-crear-pokemon"></a>
 
 **Método:** `POST`  
 **Endpoint:** `/api/pokedex/pokemon/create`  
 
-### 📝 Descripción
+#### 📝 Descripción
 Crea un nuevo Pokémon con los datos suministrados.
 
 ```json
@@ -92,7 +92,7 @@ Crea un nuevo Pokémon con los datos suministrados.
   "code": "#1111"
 }
 ```
-### ✅ Respuesta exitosa
+#### ✅ Respuesta exitosa
 
 ```json
 {
@@ -109,7 +109,7 @@ Crea un nuevo Pokémon con los datos suministrados.
   }
 }
 ```
-### ❌ Respuesta de validación
+#### ❌ Respuesta de validación
 ```json
 {
   "code": 400,
@@ -125,74 +125,98 @@ Crea un nuevo Pokémon con los datos suministrados.
 }
 ```
 
-<h3>2. Actualizar pokemon</h3>
- <hr>
- <span>PUT:</span> <strong>api/pokedex/pokemon/update/{id}</strong>
-<pre>
-  {
-    "name": "lucario",
-    "description":"descripción aquí",
-    "weight": 80,
-    "height": 2.5,
-    "image": "lucario.png",
-    "code": "#1111"
-  }
-</pre>
- <span>Validaciones:</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": [
-        "image: no debe estar vacío",
-        "height: no debe ser nulo",
-        "weight: no debe ser nulo",
-        "name: no debe estar vacío",
-        "code: no debe ser nulo",
-        "description: no debe estar vacío"
-    ]
+## ✏️ 2. Actualizar Pokémon
+<a name="2-actualizar-pokemon"></a>
+
+**Método:** `PUT`  
+**Endpoint:** `api/pokedex/pokemon/update/{id}`  
+
+#### 📝 Descripción
+Actualiza los datos de los Pokémons suministrando los siguientes datos.
+
+```json
+{
+  "name": "lucario",
+  "description":"descripción aquí",
+  "weight": 80,
+  "height": 2.5,
+  "image": "lucario.png",
+  "code": "#1111"
 }
- </pre>
- <span>Validación del pokemon id</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ningun pokemon existente"
-  }
- </pre>
-<h3>3. Agregar tipos al pokemon</h3>
-<hr>
-<span>POST:</span> <strong>api/pokedex/pokemon/add/{id}/type</strong>
-<pre>
-  [9,6]
-</pre>
-<span>Respuesta:</span>
-<pre>
-  {
+```
+#### ✅ Respuesta exitosa
+
+```json
+{
     "code": 201,
     "message": "Created",
-    "data": "Los tipos se han agregado correctamente"
-  }
-</pre>
-<span>Validacion:</span>
-<pre>
-  {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "La lista de valores se encuentran vacios o no existen"
+    "data": {
+              "id": 1,
+               "name": "lucario",
+              "description":"descripción aquí",
+              "weight": 80,
+              "height": 2.5,
+              "image": "lucario.png",
+              "code": "#1111"
+          }
 }
-</pre>
-<span>Validación del pokemon id</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ningun pokemon existente"
-  }
- </pre>
-<span>Pokemon con tipos agregados:</span>
-<pre>
+```
+#### ❌ Respuesta de validación
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": [
+            "name: no debe estar vacío",
+            "weight: no debe ser nulo",
+            "image: no debe estar vacío",
+            "height: no debe ser nulo",
+            "code: no debe ser nulo",
+            "description: no debe estar vacío"
+          ]
+}
+```
+#### ❌ Validación del pokémon id
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun pokémon existente"
+}
+```
+### ❌ Validación del pokémon code
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "code: El código del pokemon ya existe en la base de datos"
+}
+```
+## 🏷️ 3. Agregar tipos al pokemon
+<a name="3-agregar-tipos-a-un-pokémon"></a>
+
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/pokemon/add/{id}/type` 
+
+#### 📝 Descripción
+Puedes agregar que tipo de pokemon es (fuego, tierra, hielo), debes enviar una lista de id.
+
+```json
+[9,6]
+```
+#### ✅ Respuesta exitosa
+
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Los tipos se han agregado correctamente"
+}
+```
+#### ✅ Ejemplo de un pokémon con los tipos añadidos
+
+```json
   {
     "code": 200,
     "message": "OK",
@@ -204,7 +228,6 @@ Crea un nuevo Pokémon con los datos suministrados.
         "weight": 80.0,
         "code": "#1111",
         "image": "lucario.png",
-        "evolutions": [],
         "types": [
             {
                 "id": 9,
@@ -217,11 +240,41 @@ Crea un nuevo Pokémon con los datos suministrados.
                 "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
             }
         ],
-        "weaknesses": [],
-        "statistic": null
     }
 }
-</pre>
+```
+
+#### ❌ Respuesta de validación
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "La lista de valores se encuentran vacios o no existen"
+}
+```
+
+#### ❌ Validación del pokémon id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun pokémon existente"
+}
+```
+
+#### ❌ Validación del type id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado no pertenece a ningun tipo"
+}
+```
+
+
  <h3>4. Agregar debilidades al pokemon:</h3>
  <hr>
  <span>GET:</span> <strong>api/pokedex/pokemon/add/{id}/weakness</strong>
