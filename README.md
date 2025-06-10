@@ -373,7 +373,7 @@ Puedes agregar debilidades a los  pokemon que crees (fuego, tierra, hielo), debe
 ```
 
 <a name="5-agregar-estadísticas-a-un-pokémon"></a>
-## 📊 5. Agregar Estadisticas al Pokemon
+## 📊 5. Agregar Estadisticas al Pokémon
 
 **Método:** `POST`  
 **Endpoint:** `api/pokedex/statistic/create/pokemon` 
@@ -425,35 +425,41 @@ Puedes agregar las estadisticas a tus pokemon para que crees graficos comparativ
 }
 ```
 
- <h3>6. Listar todos los pokemons</h3>
- <hr>
- <span>GET:</span> <strong>api/pokedex/pokemon</strong>
-<pre>
-  {
-    "code": 200,
-    "message": "OK",
-    "data": [
-                {
-                    "id": 1,
-                    "name": "pichu",
-                    "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
-                    "height": 1.0,
-                    "weight": 4.4,
-                    "code": "#0172",
-                    "image": "pichu.png",
-                    "evolutions": [
-                        {
-                            "id": 1,
-                            "name": "pikachu",
-                            "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
-                            "height": 1.04,
-                            "weight": 13.2,
-                            "code": "#0025",
-                            "image": "pikachu.png"
-                        } ................................................
+<a name="6-listar-todos-los-pokémon"></a>
+## 📋 6. Listar todos los pokémons
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los pokemons.
+
+```json
+{
+  "code": 200,
+  "message": "OK",
+  "data": [
+            {
+              "id": 1,
+              "name": "pichu",
+              "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+              "height": 1.0,
+              "weight": 4.4,
+              "code": "#0172",
+              "image": "pichu.png"
+            },
+            {
+              "id": 2,
+              "name": "bulbasaur",
+              "description": "Bulbasaur es un PokÃ©mon de tipo planta y veneno. Es conocido por tener una planta en su espalda que crecerÃ¡ a medida que evoluciona. Tiene un cuerpo de color verde y unas manchas mÃ¡s oscuras en su piel. Es pequeÃ±o pero muy fuerte y Ã¡gil, y a menudo es considerado un excelente compaÃ±ero por los entrenadores.",
+              "height": 2.04,
+              "weight": 15.2,
+              "code": "#0001",
+              "image": "bulbasaur.png"
+            }
           ]
-  }
-</pre>
+}
+```
 
 <h3>7. Listar pokemon por id:</h3>
 <hr>
