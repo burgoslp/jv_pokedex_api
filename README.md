@@ -124,6 +124,16 @@ Crea un nuevo Pokémon con los datos suministrados.
   ]
 }
 ```
+
+### ❌ Validación del pokémon code
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "code: El código del pokemon ya existe en la base de datos"
+}
+```
+
 <a name="2-actualizar-pokemon"></a>
 ## ✏️ 2. Actualizar Pokémon
 
