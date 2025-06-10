@@ -72,9 +72,9 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 - 📐 [24. Listar evoluciones por menor altura](#24-listar-evoluciones-por-menor-altura)
 - 🧩 [25. Listar todos los tipos](#25-listar-todos-los-tipos)
 - 🧩🔍 [26. Buscar tipo por ID](#26-buscar-tipo-por-id)
-
-## 🌱 1. Crear Pokémon 
+  
 <a name="1-crear-pokemon"></a>
+## 🌱 1. Crear Pokémon  
 
 **Método:** `POST`  
 **Endpoint:** `/api/pokedex/pokemon/create`  
@@ -124,9 +124,8 @@ Crea un nuevo Pokémon con los datos suministrados.
   ]
 }
 ```
-
-## ✏️ 2. Actualizar Pokémon
 <a name="2-actualizar-pokemon"></a>
+## ✏️ 2. Actualizar Pokémon
 
 **Método:** `PUT`  
 **Endpoint:** `api/pokedex/pokemon/update/{id}`  
@@ -193,8 +192,8 @@ Actualiza los datos de los Pokémons suministrando los siguientes datos.
   "data": "code: El código del pokemon ya existe en la base de datos"
 }
 ```
-## 🏷️ 3. Agregar tipos al pokemon
 <a name="3-agregar-tipos-a-un-pokémon"></a>
+## 🏷️ 3. Agregar tipos al pokemon
 
 **Método:** `POST`  
 **Endpoint:** `api/pokedex/pokemon/add/{id}/type` 
