@@ -471,7 +471,7 @@ Este endpoint te suministrará todos los pokemons.
 }
 ```
 <a name="7-buscar-pokémon-por-id"></a>
-## 🔍 7. Listar pokémons por id:
+## 🔍 7. Listar pokémons por id
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/pokemon/{id}` 
@@ -482,12 +482,12 @@ Este endpoint te suministrará todos el pokemon a detalle, con todas sus relacio
 
 ```json
 {
-  "code": 200,
-  "message": "OK",
-  "data": {
+    "code": 200,
+    "message": "OK",
+    "data": {
         "id": 1,
         "name": "pichu",
-        "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+        "description": "Pichu está basado en un roedor. Pichu tiene una piel de color amarillo pálido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeño tamaño puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
         "height": 1.0,
         "weight": 4.4,
         "code": "#0172",
@@ -496,7 +496,7 @@ Este endpoint te suministrará todos el pokemon a detalle, con todas sus relacio
             {
                 "id": 1,
                 "name": "pikachu",
-                "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
+                "description": "Pikachu es un pequeño Pokémon cuya morfología se encuentra basada en un roedor. Aunque su nombre y su categoría hagan alusión a un ratón, según su diseñadora, sus mejillas están basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran círculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazón si es hembra.",
                 "height": 1.04,
                 "weight": 13.2,
                 "code": "#0025",
@@ -505,7 +505,7 @@ Este endpoint te suministrará todos el pokemon a detalle, con todas sus relacio
             {
                 "id": 2,
                 "name": "raichu",
-                "description": "Este PokÃ©mon es un gran roedor bÃ­pedo. Tiene un pelaje anaranjado, una cola oscura y gruesa como un cable de tendido elÃ©ctrico que termina en forma de rayo y totalmente plano, que ademÃ¡s puede soportar grandes cargas.",
+                "description": "Este Pokémon es un gran roedor bípedo. Tiene un pelaje anaranjado, una cola oscura y gruesa como un cable de tendido eléctrico que termina en forma de rayo y totalmente plano, que además puede soportar grandes cargas.",
                 "height": 2.07,
                 "weight": 66.1,
                 "code": "#0026",
@@ -537,7 +537,7 @@ Este endpoint te suministrará todos el pokemon a detalle, con todas sus relacio
 }
 ```
 
-#### ❌ Respuesta de validación
+#### ❌ Respuesta de validación del Id
 ```json
     {
       "code": 400,
@@ -545,59 +545,88 @@ Este endpoint te suministrará todos el pokemon a detalle, con todas sus relacio
       "data": "El ID ingresado no pertenece a ningun pokemon existente"
     }
 ```
+<a name="8-buscar-pokémon-por-nombre-o-código"></a>
+## 🔡 8. Listar pokemon por nombre o codigo
 
-<h3>8. Listar pokemon por nombre o codigo:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/{nameorcode}</strong><br>
-PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codigo (campo unico) puede arrojar un unico registro o varios
-<pre>
-  {
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/{nameorcode}` 
+
+#### 📝 Descripción
+Este endpoint te suministrará una busqueda de pokemons tipo like %""%, este busca por el nombre o el codigo (campo unico) puede arrojar un registro o varios.
+
+```json
+{
     "code": 200,
     "message": "OK",
-    "data": {
-        "id": 1,
-        "name": "pichu",
-        "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
-        "height": 1.0,
-        "weight": 4.4,
-        "code": "#0172",
-        "image": "pichu.png",
-        "evolutions": [
-            {
-                "id": 1,
-                "name": "pikachu",
-                "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
-                "height": 1.04,
-                "weight": 13.2,
-                "code": "#0025",
-                "image": "pikachu.png"
-            }.......................................................
-      ]
-    }
+    "data": [
+        {
+            "id": 1,
+            "name": "pichu",
+            "description": "Pichu está basado en un roedor. Pichu tiene una piel de color amarillo pálido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeño tamaño puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+            "height": 1.0,
+            "weight": 4.4,
+            "code": "#0172",
+            "image": "pichu.png"
+        },
+        {
+            "id": 5,
+            "name": "caterpie",
+            "description": "Caterpie es un Pokémon de tipo bicho que se asemeja a una oruga. Es conocido por ser uno de los Pokémon más débiles pero también uno de los más abundantes. Su cuerpo es de un verde brillante, y tiene grandes ojos que le permiten ver en todas direcciones.",
+            "height": 1.0,
+            "weight": 6.4,
+            "code": "#0010",
+            "image": "caterpie.png"
+        }
+    ]
 }
-</pre>
+```
 
- <span>Excepción: En caso de no existir un pokemon con el valor ingresado:</span>
-<pre>
-    {
-      "code": 400,
-      "message": "Bad Request",
-      "data": "El valor ingresado no pertenece a algun pokemon"
-    }
-</pre>
+#### ❌ En caso de no existir un pokemon con el valor ingresado
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El valor ingresado no pertenece a algun pokemon"
+}
+```
 
-<h3>9. Listar pokemons por mayor peso:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/weight/desc</strong><br>
-<h3>10. Listar pokemons por menor peso:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/weight/asc</strong><br>
-<h3>11. Listar pokemons por mayor altura:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/height/desc</strong><br>
-<h3>12. Listar pokemons por menor altura:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/height/asc</strong><br>
+<a name="9-listar-pokémon-por-mayor-peso"></a>
+## ⚖️ 9. Listar pokemons por mayor peso
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/weight/desc` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los pokémons ordenados por su peso  de mayor a menor.
+
+<a name="10-listar-pokémon-por-menor-peso"></a>
+## 🪶 10. Listar pokemons por menor peso
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/weight/asc` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los pokémons ordenados por su peso  de menor a mayor.
+
+<a name="11-listar-pokémon-por-mayor-altura"></a>
+## 📏 11. Listar pokemons por mayor altura:
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/height/desc` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de mayor a menor.
+
+<a name="12-listar-pokémon-por-menor-altura"></a>
+## 📐 12. Listar pokemons por menor altura:
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/height/asc` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de menor a mayor.
+
+
 <h3>13. Crear Evolución:</h3>
 <hr>
 <span>POST:</span> <strong>api/pokedex/evolution/create</strong><br>
