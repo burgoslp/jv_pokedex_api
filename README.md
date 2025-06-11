@@ -470,11 +470,17 @@ Este endpoint te suministrará todos los pokemons.
           ]
 }
 ```
+<a name="7-buscar-pokémon-por-id"></a>
+## 🔍 7. Listar pokémons por id:
 
-<h3>7. Listar pokemon por id:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/{id}</strong>
-<pre>
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/{id}` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos el pokemon a detalle, con todas sus relaciones.
+
+
+```json
   {
     "code": 200,
     "message": "OK",
@@ -499,7 +505,7 @@ Este endpoint te suministrará todos los pokemons.
       ]
     }
 }
-</pre>
+```
 <span>Excepción: En caso de no existir el pokemon solicitado se mostrará un mensaje 400.</span>
 <pre>
     {
