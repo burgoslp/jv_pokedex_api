@@ -818,7 +818,7 @@ Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hie
 ```json
    [1,4]
 ```
- #### ✅ Respuesta exitosa
+#### ✅ Respuesta exitosa
 ```json
 {
   "code": 201,
@@ -865,30 +865,36 @@ Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hie
 }
 ```
 
+<a name="17-agregar-estadísticas-a-una-evolución"></a>
+## 📊 17. Agregar Estadisticas a la evolución
 
- <h3>17. Agregar Estadisticas a la evolución</h3>
- <hr>
- <span>POST: <strong>api/pokedex/statistic/create/evolution</strong></span>
- <pre>
-   {
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/statistic/create/evolution`  
+
+#### 📝 Descripción
+Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id.
+
+```json
+{
     "attack":20,
     "defence":60,
     "velocity":80,
     "life":50,
     "evolutionId":8
-  }
- </pre>
-<span>Respuesta:</span>
- <pre>
-   {
-       "code": 201,
-       "message": "Created",
-       "data": "Se han creado las estadisticas de la evolución"
-    }
- </pre>
- <span>validación:</span>
- <pre>
-   {
+}
+```
+#### ✅ Respuesta exitosa
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Se han creado las estadisticas de la evolución"
+}
+```
+#### ❌ Respuesta de validación
+
+```json
+{
       "code": 400,
       "message": "Bad Request",
       "data": [
@@ -898,16 +904,18 @@ Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hie
           "evolutionId: no debe ser nulo",
           "life: no debe ser nulo"
       ]
-  }
- </pre>
- <span>Validación del evolución id:</span>
- <pre>
-   {
-      "code": 400,
-      "message": "Bad Request",
-      "data": "El ID ingresado no pertenece a ninguna evolución existente"
-  }
- </pre>
+}
+```
+#### ❌ Validación del id de la evolución 
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+
 <h3>18. Listar todas las evoluciones</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/evolution</strong>
