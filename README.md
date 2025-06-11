@@ -915,25 +915,40 @@ Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hie
   "data": "El ID ingresado no pertenece a ninguna evolución existente"
 }
 ```
+<a name="18-listar-todas-las-evoluciones"></a>
+## 🧬 18. Listar todas las evoluciones
 
-<h3>18. Listar todas las evoluciones</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution</strong>
-<pre>
-  {
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution`  
+
+#### 📝 Descripción
+Este endpoint te va a listar todos los registros de las evoluciones.
+
+```json
+{
     "code": 200,
     "message": "OK",
     "data": [
         {
             "id": 1,
             "name": "pikachu",
-            "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
+            "description": "Pikachu es un pequeño Pokémon cuya morfología se encuentra basada en un roedor. Aunque su nombre y su categoría hagan alusión a un ratón, según su diseñadora, sus mejillas están basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran círculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazón si es hembra.",
             "height": 1.04,
             "weight": 13.2,
             "code": "#0025",
-            "image": "pikachu.png"            
-        }, ........................
-</pre>
+            "image": "pikachu.png"
+        },
+        {
+            "id": 2,
+            "name": "raichu",
+            "description": "Este Pokémon es un gran roedor bípedo. Tiene un pelaje anaranjado, una cola oscura y gruesa como un cable de tendido eléctrico que termina en forma de rayo y totalmente plano, que además puede soportar grandes cargas.",
+            "height": 2.07,
+            "weight": 66.1,
+            "code": "#0026",
+            "image": "raichu.png"
+        }, ..................................
+```
+
 <h3>18. Listar evolución por id</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/evolution/{id}</strong>
