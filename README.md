@@ -746,67 +746,66 @@ Actualiza los datos de una evolución existente usando su ID.
 }
 ```
 
-<h3>15. Agregar tipos a la evolución</h3>
-<hr>
-<span>POST:</span> <strong>api/pokedex/evolution/add/{id}/type</strong>
-<pre>
-  [9,6]
-</pre>
-<span>Respuesta:</span>
-<pre>
-  {
-    "code": 201,
-    "message": "Created",
-    "data": "Los tipos se han agregado correctamente"
-  }
-</pre>
-<span>Validacion:</span>
-<pre>
-  {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "La lista de valores se encuentran vacios o no existen"
+<a name="15-agregar-tipos-a-una-evolución"></a>
+## 🏷️ 15. Agregar tipos a la evolución
+
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/evolution/add/{id}`  
+
+#### 📝 Descripción
+Puedes asociar los tipos a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id.
+
+```json
+[9,6]
+```
+
+#### ✅ Respuesta exitosa
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Los tipos se han agregado correctamente"
 }
-</pre>
-<span>Validación del evolución id</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ninguna evolución existente"
-  }
- </pre>
-<span>Evolución con tipos agregados:</span>
-<pre>
-  {
-    "code": 200,
-    "message": "OK",
-    "data": {
-        "id": 8,
-        "name": "lucario",
-        "description": "descripción aquí",
-        "height": 2.5,
-        "weight": 80.0,
-        "code": "#1111",
-        "image": "lucario.png",
-        "pokemon": [],
-        "types": [
-            {
-                "id": 9,
-                "name": "Hielo",
-                "description": "Tipo de Pokemon que es fuerte contra Dragon, Planta, Tierra y Volador, y debil contra Acero, Agua, Fuego e Hielo."
-            },
-            {
-                "id": 6,
-                "name": "Fantasma",
-                "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
-            }
-        ],
-        "weaknesses": [],
-        "statistic": null
-    }
+```
+#### ❌ Respuesta de validación
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "La lista de valores se encuentran vacios o no existen"
 }
-</pre>
+```
+
+#### ❌ Validación del id de la evolución 
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+
+#### ❌ Validación del type id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado no pertenece a ningun tipo"
+}
+```
+#### ❌ Validación del type id repetido
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado ya esta agregado en los tipos."
+}
+```
+
  <h3>16. Agregar debilidades a la evolución:</h3>
  <hr>
  <span>GET:</span> <strong>api/pokedex/evolution/add/{id}/weakness</strong>
