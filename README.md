@@ -481,10 +481,10 @@ Este endpoint te suministrará todos el pokemon a detalle, con todas sus relacio
 
 
 ```json
-  {
-    "code": 200,
-    "message": "OK",
-    "data": {
+{
+  "code": 200,
+  "message": "OK",
+  "data": {
         "id": 1,
         "name": "pichu",
         "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
@@ -501,8 +501,38 @@ Este endpoint te suministrará todos el pokemon a detalle, con todas sus relacio
                 "weight": 13.2,
                 "code": "#0025",
                 "image": "pikachu.png"
-            }.......................................................
-      ]
+            },
+            {
+                "id": 2,
+                "name": "raichu",
+                "description": "Este PokÃ©mon es un gran roedor bÃ­pedo. Tiene un pelaje anaranjado, una cola oscura y gruesa como un cable de tendido elÃ©ctrico que termina en forma de rayo y totalmente plano, que ademÃ¡s puede soportar grandes cargas.",
+                "height": 2.07,
+                "weight": 66.1,
+                "code": "#0026",
+                "image": "raichu.png"
+            }
+        ],
+        "types": [
+            {
+                "id": 5,
+                "name": "Electrico",
+                "description": "Tipo de Pokemon que es fuerte contra Agua y Volador, y debil contra Dragon, Electrico y Planta."
+            }
+        ],
+        "weaknesses": [
+            {
+                "id": 16,
+                "name": "Tierra",
+                "description": "Tipo de Pokemon que es fuerte contra Acero, Electrico, Fuego, Roca y Veneno, y debil contra Bicho, Planta y Volador."
+            }
+        ],
+        "statistic": {
+            "id": 1,
+            "attack": 40,
+            "defence": 15,
+            "velocity": 60,
+            "life": 20
+        }
     }
 }
 ```
