@@ -506,14 +506,16 @@ Este endpoint te suministrará todos el pokemon a detalle, con todas sus relacio
     }
 }
 ```
-<span>Excepción: En caso de no existir el pokemon solicitado se mostrará un mensaje 400.</span>
-<pre>
+
+#### ❌ Respuesta de validación
+```json
     {
       "code": 400,
       "message": "Bad Request",
       "data": "El ID ingresado no pertenece a ningun pokemon existente"
     }
-</pre>
+```
+
 <h3>8. Listar pokemon por nombre o codigo:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/pokemon/{nameorcode}</strong><br>
