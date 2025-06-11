@@ -202,6 +202,8 @@ Actualiza los datos de los Pokémons suministrando los siguientes datos.
   "data": "code: El código del pokemon ya existe en la base de datos"
 }
 ```
+
+
 <a name="3-agregar-tipos-a-un-pokémon"></a>
 ## 🏷️ 3. Agregar tipos al pokemon
 
@@ -691,44 +693,59 @@ Crea una nueva evolución asociada a un Pokémon existente con los datos suminis
 }
 ```
 
+<a name="14-actualizar-evolución"></a>
+## ✏️ 14. Actualizar evolución
 
+**Método:** `PUT`  
+**Endpoint:** `/api/pokedex/evolution/update/{id}`  
 
-<h3>14. Actualizar Evolución:</h3>
-<hr>
-<span>PUT:</span> <strong>api/pokedex/evolution/update/{id}</strong><br>
-<pre>
-  {
-      "name": "lucario",
-      "code": "#0056",
-      "description": "description",
-      "weight": 85,
-      "image": "lucario.png",
-      "height": 70  
-  }
-</pre>
-<span>Validaciones: </span>
-<pre>
-  {
-      "code": 400,
-      "message": "Bad Request",
-      "data": [
-          "image: no debe estar vacío",
-          "height: no debe ser nulo",
-          "code: no debe ser nulo",
-          "description: no debe estar vacío",
-          "name: no debe estar vacío",
-          "weight: no debe ser nulo"
-      ]
-  }
-</pre>
-<span>Validación evolución id:</span>
-<pre>
-  {
-      "code": 400,
-      "message": "Bad Request",
-      "data": "El ID ingresado no pertenece a ninguna evolución existente"
-  }
-</pre>
+#### 📝 Descripción
+Actualiza los datos de una evolución existente usando su ID.
+
+```json
+{
+  "name": "lucario",
+  "code": "#0056",
+  "description": "description",
+  "weight": 85,
+  "image": "lucario.png",
+  "height": 70
+}
+
+#### ✅ Respuesta exitosa
+
+```json
+{
+    "code": 201,
+    "message": "Created",
+    "data": {
+        "id": 11,
+        "name": "lucarion",
+        "description": "descripción aquí",
+        "height": 2.5,
+        "weight": 80.0,
+        "code": "#1111",
+        "image": "lucario.png"
+    }
+}
+```
+### ❌ Validación del evolución id
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+### ❌ Validación del evolution code
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "code: El código de la evolución ya existe en la base de datos"
+}
+```
+
 <h3>15. Agregar tipos a la evolución</h3>
 <hr>
 <span>POST:</span> <strong>api/pokedex/evolution/add/{id}/type</strong>
