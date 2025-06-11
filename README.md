@@ -627,60 +627,72 @@ Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de 
 Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de menor a mayor.
 
 
-<h3>13. Crear Evolución:</h3>
-<hr>
-<span>POST:</span> <strong>api/pokedex/evolution/create</strong><br>
-<pre>
-  {
-     "name": "lucario",
-     "description":"descripción aquí",
-     "weight": 80,
-     "height": 2.5,
-     "image": "lucario.png",
-     "code": "#1111",
-     "pokemonId":1
-  }
-</pre>
-<span>Validaciones: </span>
-<pre>
-  {
-        "code": 400,
-        "message": "Bad Request",
-        "data": [
-            "name: no debe estar vacío",
-            "pokemonId: no debe ser nulo",
-            "weight: no debe ser nulo",
-            "image: no debe estar vacío",
-            "code: no debe ser nulo",
-            "height: no debe ser nulo",
-            "description: no debe estar vacío"
-        ]
+<a name="13-crear-evolución"></a>
+## 🌱 13. Crear evolución
+
+**Método:** `POST`  
+**Endpoint:** `/api/pokedex/evolution/create`  
+
+#### 📝 Descripción
+
+Crea una nueva evolución asociada a un Pokémon existente con los datos suministrados.
+
+```json
+{
+  "name": "lucario",
+  "description": "descripción aquí",
+  "weight": 80,
+  "height": 2.5,
+  "image": "lucario.png",
+  "code": "#1111",
+  "pokemonId": 1
 }
-</pre>
-<span>Validación pokemon id: </span>
-<pre>
-  {
-      "code": 400,
-      "message": "Bad Request",
-      "data": "El ID ingresado no pertenece a ningun pokemon existente"
-  }
-</pre>
-<span>Respuesta: </span>
-<pre>
-  {
-        "code": 201,
-        "message": "Created",
-        "data": {
-            "id": 14,
-            "name": "lucario",
-            "description": "descripción aquí",
-            "height": 2.5,
-            "weight": 80.0,
-            "code": "#8888",
-            "image": "lucario.png",
-        }
-  }
-</pre>
+
+#### ✅ Respuesta exitosa
+
+```json
+{
+    "code": 201,
+    "message": "Created",
+    "data": {
+        "id": 11,
+        "name": "lucario",
+        "description": "descripción aquí",
+        "height": 2.5,
+        "weight": 80.0,
+        "code": "#1111",
+        "image": "lucario.png"
+    }
+}
+```
+#### ❌ Respuesta de validación
+```json
+{
+    "code": 400,
+    "message": "Bad Request",
+    "data": [
+        "description: no debe estar vacío",
+        "pokemonId: no debe ser nulo",
+        "code: no debe ser nulo",
+        "weight: no debe ser nulo",
+        "image: no debe estar vacío",
+        "height: no debe ser nulo",
+        "name: no debe estar vacío"
+    ]
+}
+```
+
+### ❌ Validación del evolution code
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "code: El código de la evolución ya existe en la base de datos"
+}
+```
+
+
+
 <h3>14. Actualizar Evolución:</h3>
 <hr>
 <span>PUT:</span> <strong>api/pokedex/evolution/update/{id}</strong><br>
