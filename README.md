@@ -956,7 +956,7 @@ Este endpoint te va a listar todos los registros de las evoluciones.
 **Endpoint:** `api/pokedex/evolution/{id}`  
 
 #### 📝 Descripción
-Este endpoint te va a listar todos los registros de las evoluciones.
+Este endpoint te va a listar las evoluciones por sus id.
 
 ```json
 {
@@ -991,11 +991,6 @@ Este endpoint te va a listar todos los registros de las evoluciones.
                 "id": 16,
                 "name": "Tierra",
                 "description": "Tipo de Pokemon que es fuerte contra Acero, Electrico, Fuego, Roca y Veneno, y debil contra Bicho, Planta y Volador."
-            },
-            {
-                "id": 16,
-                "name": "Tierra",
-                "description": "Tipo de Pokemon que es fuerte contra Acero, Electrico, Fuego, Roca y Veneno, y debil contra Bicho, Planta y Volador."
             }
         ],
         "statistic": {
@@ -1008,28 +1003,62 @@ Este endpoint te va a listar todos los registros de las evoluciones.
     }
 }
 ```
+#### ❌ Validación del id de la evolución 
 
-<h3>19. Listar evolución por nombre o codigo</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution/nameorcode/{nameorcode}</strong>
-PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codigo (campo unico) puede arrojar un unico registro o varios
-<pre>
-  {
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+
+<a name="20-buscar-evolución-por-nombre-o-código"></a>
+## 🔍 20. Listar evolución por nombre o codigo
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution/nameorcode/{nameorcode}`  
+
+#### 📝 Descripción
+Este endpoint te suministrará una busqueda de las evoluciones tipo like %""%, este busca por el nombre o el codigo (campo unico) puede arrojar un registro o varios.
+
+```json
+{
     "code": 200,
     "message": "OK",
     "data": [
         {
-            "id": 10,
-            "name": "butterfree",
-            "description": "Butterfree es la forma final de Caterpie. Es un hermoso PokÃ©mon de tipo bicho y volador con grandes alas que le permiten volar y libar nÃ©ctar de las flores. Butterfree es considerado un PokÃ©mon muy elegante y es conocido por sus habilidades en batalla.",
-            "height": 3.07,
-            "weight": 70.5,
-            "code": "#0012",
-            "image": "butterfree.png"            
+            "id": 1,
+            "name": "pikachu",
+            "description": "Pikachu es un pequeño Pokémon cuya morfología se encuentra basada en un roedor. Aunque su nombre y su categoría hagan alusión a un ratón, según su diseñadora, sus mejillas están basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran círculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazón si es hembra.",
+            "height": 1.04,
+            "weight": 13.2,
+            "code": "#0025",
+            "image": "pikachu.png"
+        },
+        {
+            "id": 9,
+            "name": "metapod",
+            "description": "Metapod es la evolución de Caterpie. Su cuerpo se transforma en una cápsula duradera, y aunque no tiene mucha capacidad de movimiento o ataque, es fuerte defensivamente y está en proceso de convertirse en un Pokémon más potente.",
+            "height": 2.04,
+            "weight": 21.8,
+            "code": "#0011",
+            "image": "metapod.png"
         }
     ]
 }
-</pre>
+```
+
+#### ❌ Validación en caso de existir coincidencias 
+
+```json
+{
+    "code": 400,
+    "message": "Bad Request",
+    "data": "No se han encontrado resultados en las evoluciones"
+}
+```
+
 <h3>20. Listar evoluciones por mayor peso:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/evolution/weight/desc</strong><br>
