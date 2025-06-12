@@ -949,17 +949,23 @@ Este endpoint te va a listar todos los registros de las evoluciones.
         }, ..................................
 ```
 
-<h3>18. Listar evolución por id</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution/{id}</strong>
-<pre>
-  {
+<a name="19-buscar-evolución-por-id"></a>
+## 🔍 19. Listar evolución por id
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution/{id}`  
+
+#### 📝 Descripción
+Este endpoint te va a listar todos los registros de las evoluciones.
+
+```json
+{
     "code": 200,
     "message": "OK",
     "data": {
         "id": 1,
         "name": "pikachu",
-        "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
+        "description": "Pikachu es un pequeño Pokémon cuya morfología se encuentra basada en un roedor. Aunque su nombre y su categoría hagan alusión a un ratón, según su diseñadora, sus mejillas están basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran círculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazón si es hembra.",
         "height": 1.04,
         "weight": 13.2,
         "code": "#0025",
@@ -967,15 +973,11 @@ Este endpoint te va a listar todos los registros de las evoluciones.
         "pokemon": {
             "id": 1,
             "name": "pichu",
-            "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+            "description": "Pichu está basado en un roedor. Pichu tiene una piel de color amarillo pálido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeño tamaño puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
             "height": 1.0,
             "weight": 4.4,
             "code": "#0172",
-            "image": "pichu.png",
-            "evolutions": null,
-            "types": null,
-            "weaknesses": null,
-            "statistic": null
+            "image": "pichu.png"
         },
         "types": [
             {
@@ -984,7 +986,18 @@ Este endpoint te va a listar todos los registros de las evoluciones.
                 "description": "Tipo de Pokemon que es fuerte contra Agua y Volador, y debil contra Dragon, Electrico y Planta."
             }
         ],
-        "weaknesses": [],
+        "weaknesses": [
+            {
+                "id": 16,
+                "name": "Tierra",
+                "description": "Tipo de Pokemon que es fuerte contra Acero, Electrico, Fuego, Roca y Veneno, y debil contra Bicho, Planta y Volador."
+            },
+            {
+                "id": 16,
+                "name": "Tierra",
+                "description": "Tipo de Pokemon que es fuerte contra Acero, Electrico, Fuego, Roca y Veneno, y debil contra Bicho, Planta y Volador."
+            }
+        ],
         "statistic": {
             "id": 2,
             "attack": 55,
@@ -994,7 +1007,8 @@ Este endpoint te va a listar todos los registros de las evoluciones.
         }
     }
 }
-</pre>
+```
+
 <h3>19. Listar evolución por nombre o codigo</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/evolution/nameorcode/{nameorcode}</strong>
