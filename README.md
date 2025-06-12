@@ -1060,7 +1060,7 @@ Este endpoint te suministrará una busqueda de las evoluciones tipo like %""%, e
 ```
 
 <a name="21-listar-evoluciones-por-mayor-peso"></a>
-## 🔍 21. Listar evoluciones por mayor peso
+## ⚖️ 21. Listar evoluciones por mayor peso
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/evolution/weight/desc`  
@@ -1068,9 +1068,16 @@ Este endpoint te suministrará una busqueda de las evoluciones tipo like %""%, e
 #### 📝 Descripción
 Este endpoint te suministrará todos las evoluciones ordenadas por su peso  de mayor a menor.
 
+<a name="22-listar-evoluciones-por-menor-peso"></a>
+## 🪶 22. Listar evoluciones por menor peso
 
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution/weight/asc`  
 
-<h3>22. Listar evoluciones por mayor altura:</h3>
+#### 📝 Descripción
+Este endpoint te suministrará todos las evoluciones ordenados por su peso de menor a mayor.
+
+<h3>23. Listar evoluciones por mayor altura:</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/evolution/height/desc</strong><br>
 <h3>23. Listar evoluciones por menor altura:</h3>
