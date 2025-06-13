@@ -1079,7 +1079,7 @@ Este endpoint te suministrará todos las evoluciones ordenados por su peso de me
 
 
 <a name="23-listar-evoluciones-por-mayor-altura"></a>
-## 🪶 23. Listar evoluciones por mayor altura
+## 📏 23. Listar evoluciones por mayor altura
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/evolution/height/desc`  
@@ -1087,10 +1087,16 @@ Este endpoint te suministrará todos las evoluciones ordenados por su peso de me
 #### 📝 Descripción
 Este endpoint te suministrará todos las evoluciones ordenados por su tamaño  de mayor a menor.
 
-<h3>23. Listar evoluciones por menor altura:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution/height/asc</strong><br>
-<h3>24. Listar todos los tipos</h3>
+<a name="24-listar-evoluciones-por-menor-altura"></a>
+## 📐 24. Listar evoluciones por menor altura:
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution/height/asc`  
+
+#### 📝 Descripción
+Este endpoint te suministrará todas las evoluciones ordenados por su tamaño  de menor a mayor.
+
+<h3>25. Listar todos los tipos</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/type</strong><br>
 <pre>
@@ -1109,7 +1115,7 @@ Este endpoint te suministrará todos las evoluciones ordenados por su tamaño  d
             "description": "Tipo de Pokemon que es fuerte contra Fuego, Roca y Tierra, y debil contra Agua, Dragon y Planta."
         },..............................
 </pre>
-<h3>25. Listar tipos por su id</h3>
+<h3>26. Listar tipos por su id</h3>
 <hr>
 <span>GET:</span> <strong>api/pokedex/type</strong><br>
 <pre>
