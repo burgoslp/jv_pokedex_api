@@ -1088,7 +1088,7 @@ Este endpoint te suministrará todos las evoluciones ordenados por su peso de me
 Este endpoint te suministrará todos las evoluciones ordenados por su tamaño  de mayor a menor.
 
 <a name="24-listar-evoluciones-por-menor-altura"></a>
-## 📐 24. Listar evoluciones por menor altura:
+## 📐 24. Listar evoluciones por menor altura
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/evolution/height/asc`  
