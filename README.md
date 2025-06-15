@@ -71,7 +71,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 - 📏 [23. Listar evoluciones por mayor altura](#23-listar-evoluciones-por-mayor-altura)
 - 📐 [24. Listar evoluciones por menor altura](#24-listar-evoluciones-por-menor-altura)
 - 🧩 [25. Listar todos los tipos](#25-listar-todos-los-tipos)
-- 🧩🔍 [26. Buscar tipo por ID](#26-buscar-tipo-por-id)
+- 🔍 [26. Buscar tipo por ID](#26-buscar-tipo-por-id)
   
 <a name="1-crear-pokemon"></a>
 ## 🌱 1. Crear Pokémon  
@@ -1123,7 +1123,7 @@ Este endpoint te suministrará todos los tipos para que puedas usarlos en el reg
         },..............................
 ```
 <a name="26-buscar-tipo-por-id"></a>
-## 🧩 26. Listar tipos por su id
+## 🔍 26. Listar tipos por su id
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/type/{id}`  
