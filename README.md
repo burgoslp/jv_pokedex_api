@@ -1096,10 +1096,17 @@ Este endpoint te suministrará todos las evoluciones ordenados por su tamaño  d
 #### 📝 Descripción
 Este endpoint te suministrará todas las evoluciones ordenados por su tamaño  de menor a mayor.
 
-<h3>25. Listar todos los tipos</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/type</strong><br>
-<pre>
+
+<a name="25-listar-todos-los-tipos"></a>
+## 🧩 25. Listar todos los tipos
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/type`  
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los tipos para que puedas usarlos en el registro de tus pokemones y evoluciones.
+
+```json
   {
     "code": 200,
     "message": "OK",
@@ -1114,11 +1121,17 @@ Este endpoint te suministrará todas las evoluciones ordenados por su tamaño  d
             "name": "Agua",
             "description": "Tipo de Pokemon que es fuerte contra Fuego, Roca y Tierra, y debil contra Agua, Dragon y Planta."
         },..............................
-</pre>
-<h3>26. Listar tipos por su id</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/type</strong><br>
-<pre>
+```
+<a name="26-buscar-tipo-por-id"></a>
+## 🧩 26. Listar tipos por su id
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/type/{id}`  
+
+#### 📝 Descripción
+Este endpoint te suministrará un tipo filtrado por su id.
+
+```json
   {
     "code": 200,
     "message": "OK",
@@ -1128,12 +1141,14 @@ Este endpoint te suministrará todas las evoluciones ordenados por su tamaño  d
         "description": "Tipo de Pokemon que es fuerte contra Hielo, Roca y Hada, y debil contra Fuego, Lucha y Tierra."
     }
   }
-</pre>
-<span>Validación del id del tipo:</span>
-<pre>
+```
+
+#### ❌ Validación del id del id del tipo 
+```json
 {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ningun tipo"
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun tipo"
 }
-</pre>
+```
+
