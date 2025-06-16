@@ -51,27 +51,29 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 - 🏷️ [3. Agregar tipos a un Pokémon](#3-agregar-tipos-a-un-pokémon)
 - ⚠️ [4. Agregar debilidades a un Pokémon](#4-agregar-debilidades-a-un-pokémon)
 - 📊 [5. Agregar estadísticas a un Pokémon](#5-agregar-estadísticas-a-un-pokémon)
-- 📋 [6. Listar todos los Pokémon](#6-listar-todos-los-pokémon)
-- 🔍 [7. Buscar Pokémon por ID](#7-buscar-pokémon-por-id)
-- 🔡 [8. Buscar Pokémon por nombre o código](#8-buscar-pokémon-por-nombre-o-código)
-- ⚖️ [9. Listar Pokémon por mayor peso](#9-listar-pokémon-por-mayor-peso)
-- 🪶 [10. Listar Pokémon por menor peso](#10-listar-pokémon-por-menor-peso)
-- 📏 [11. Listar Pokémon por mayor altura](#11-listar-pokémon-por-mayor-altura)
-- 📐 [12. Listar Pokémon por menor altura](#12-listar-pokémon-por-menor-altura)
-- 🌱 [13. Crear evolución](#13-crear-evolución)
-- ✏️ [14. Actualizar evolución](#14-actualizar-evolución)
-- 🏷️ [15. Agregar tipos a una evolución](#15-agregar-tipos-a-una-evolución)
-- ⚠️ [16. Agregar debilidades a una evolución](#16-agregar-debilidades-a-una-evolución)
-- 📊 [17. Agregar estadísticas a una evolución](#17-agregar-estadísticas-a-una-evolución)
-- 🧬 [18. Listar todas las evoluciones](#18-listar-todas-las-evoluciones)
-- 🔍 [19. Buscar evolución por ID](#19-buscar-evolución-por-id)
-- 🔡 [20. Buscar evolución por nombre o código](#20-buscar-evolución-por-nombre-o-código)
-- ⚖️ [21. Listar evoluciones por mayor peso](#21-listar-evoluciones-por-mayor-peso)
-- 🪶 [22. Listar evoluciones por menor peso](#22-listar-evoluciones-por-menor-peso)
-- 📏 [23. Listar evoluciones por mayor altura](#23-listar-evoluciones-por-mayor-altura)
-- 📐 [24. Listar evoluciones por menor altura](#24-listar-evoluciones-por-menor-altura)
-- 🧩 [25. Listar todos los tipos](#25-listar-todos-los-tipos)
-- 🔍 [26. Buscar tipo por ID](#26-buscar-tipo-por-id)
+- 🗑️ [6. eliminar a un pokémon](#6-eliminar-a-un-pokémon)
+- 📋 [7. Listar todos los Pokémon](#7-listar-todos-los-pokémon)
+- 🔍 [8. Buscar Pokémon por ID](#8-buscar-pokémon-por-id)
+- 🔡 [9. Buscar Pokémon por nombre o código](#9-buscar-pokémon-por-nombre-o-código)
+- ⚖️ [10. Listar Pokémon por mayor peso](#10-listar-pokémon-por-mayor-peso)
+- 🪶 [11. Listar Pokémon por menor peso](#11-listar-pokémon-por-menor-peso)
+- 📏 [12. Listar Pokémon por mayor altura](#12-listar-pokémon-por-mayor-altura)
+- 📐 [13. Listar Pokémon por menor altura](#13-listar-pokémon-por-menor-altura)
+- 🌱 [14. Crear evolución](#14-crear-evolución)
+- ✏️ [15. Actualizar evolución](#15-actualizar-evolución)
+- 🏷️ [16. Agregar tipos a una evolución](#16-agregar-tipos-a-una-evolución)
+- ⚠️ [17. Agregar debilidades a una evolución](#17-agregar-debilidades-a-una-evolución)
+- 📊 [18. Agregar estadísticas a una evolución](#18-agregar-estadísticas-a-una-evolución)
+- 🗑️ [19. eliminar una evolución](#19-eliminar-a-un-pokémon)
+- 🧬 [20. Listar todas las evoluciones](#20-listar-todas-las-evoluciones)
+- 🔍 [21. Buscar evolución por ID](#21-buscar-evolución-por-id)
+- 🔡 [22. Buscar evolución por nombre o código](#22-buscar-evolución-por-nombre-o-código)
+- ⚖️ [23. Listar evoluciones por mayor peso](#23-listar-evoluciones-por-mayor-peso)
+- 🪶 [24. Listar evoluciones por menor peso](#24-listar-evoluciones-por-menor-peso)
+- 📏 [25. Listar evoluciones por mayor altura](#25-listar-evoluciones-por-mayor-altura)
+- 📐 [26. Listar evoluciones por menor altura](#26-listar-evoluciones-por-menor-altura)
+- 🧩 [27. Listar todos los tipos](#27-listar-todos-los-tipos)
+- 🔍 [28. Buscar tipo por ID](#28-buscar-tipo-por-id)
   
 <a name="1-crear-pokemon"></a>
 ## 🌱 1. Crear Pokémon  
@@ -437,8 +439,8 @@ Puedes agregar las estadisticas a tus pokemon para que crees graficos comparativ
 }
 ```
 
-<a name="6-listar-todos-los-pokémon"></a>
-## 📋 6. Listar todos los pokémons
+<a name="7-listar-todos-los-pokémon"></a>
+## 📋 7. Listar todos los pokémons
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/pokemon` 
@@ -472,8 +474,8 @@ Este endpoint te suministrará todos los pokemons.
           ]
 }
 ```
-<a name="7-buscar-pokémon-por-id"></a>
-## 🔍 7. Listar pokémons por id
+<a name="8-buscar-pokémon-por-id"></a>
+## 🔍 8. Listar pokémons por id
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/pokemon/{id}` 
@@ -547,8 +549,8 @@ Este endpoint te suministrará todos el pokemon a detalle, con todas sus relacio
       "data": "El ID ingresado no pertenece a ningun pokemon existente"
     }
 ```
-<a name="8-buscar-pokémon-por-nombre-o-código"></a>
-## 🔡 8. Listar pokemon por nombre o codigo
+<a name="9-buscar-pokémon-por-nombre-o-código"></a>
+## 🔡 9. Listar pokemon por nombre o codigo
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/pokemon/{nameorcode}` 
@@ -592,8 +594,8 @@ Este endpoint te suministrará una busqueda de pokemons tipo like %""%, este bus
 }
 ```
 
-<a name="9-listar-pokémon-por-mayor-peso"></a>
-## ⚖️ 9. Listar pokemons por mayor peso
+<a name="10-listar-pokémon-por-mayor-peso"></a>
+## ⚖️ 10. Listar pokemons por mayor peso
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/pokemon/weight/desc` 
@@ -601,8 +603,8 @@ Este endpoint te suministrará una busqueda de pokemons tipo like %""%, este bus
 #### 📝 Descripción
 Este endpoint te suministrará todos los pokémons ordenados por su peso  de mayor a menor.
 
-<a name="10-listar-pokémon-por-menor-peso"></a>
-## 🪶 10. Listar pokemons por menor peso
+<a name="11-listar-pokémon-por-menor-peso"></a>
+## 🪶 11. Listar pokemons por menor peso
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/pokemon/weight/asc` 
@@ -610,8 +612,8 @@ Este endpoint te suministrará todos los pokémons ordenados por su peso  de may
 #### 📝 Descripción
 Este endpoint te suministrará todos los pokémons ordenados por su peso  de menor a mayor.
 
-<a name="11-listar-pokémon-por-mayor-altura"></a>
-## 📏 11. Listar pokemons por mayor altura:
+<a name="12-listar-pokémon-por-mayor-altura"></a>
+## 📏 12. Listar pokemons por mayor altura:
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/pokemon/height/desc` 
@@ -619,8 +621,8 @@ Este endpoint te suministrará todos los pokémons ordenados por su peso  de men
 #### 📝 Descripción
 Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de mayor a menor.
 
-<a name="12-listar-pokémon-por-menor-altura"></a>
-## 📐 12. Listar pokemons por menor altura:
+<a name="13-listar-pokémon-por-menor-altura"></a>
+## 📐 13. Listar pokemons por menor altura:
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/pokemon/height/asc` 
@@ -629,8 +631,8 @@ Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de 
 Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de menor a mayor.
 
 
-<a name="13-crear-evolución"></a>
-## 🌱 13. Crear evolución
+<a name="14-crear-evolución"></a>
+## 🌱 14. Crear evolución
 
 **Método:** `POST`  
 **Endpoint:** `/api/pokedex/evolution/create`  
@@ -693,8 +695,8 @@ Crea una nueva evolución asociada a un Pokémon existente con los datos suminis
 }
 ```
 
-<a name="14-actualizar-evolución"></a>
-## ✏️ 14. Actualizar evolución
+<a name="15-actualizar-evolución"></a>
+## ✏️ 15. Actualizar evolución
 
 **Método:** `PUT`  
 **Endpoint:** `/api/pokedex/evolution/update/{id}`  
@@ -746,8 +748,8 @@ Actualiza los datos de una evolución existente usando su ID.
 }
 ```
 
-<a name="15-agregar-tipos-a-una-evolución"></a>
-## 🏷️ 15. Agregar tipos a la evolución
+<a name="16-agregar-tipos-a-una-evolución"></a>
+## 🏷️ 16. Agregar tipos a la evolución
 
 **Método:** `POST`  
 **Endpoint:** `api/pokedex/evolution/add/{id}/type`  
@@ -806,8 +808,8 @@ Puedes asociar los tipos a las evolucciones existentes (fuego, tierra, hielo), d
 }
 ```
 
-<a name="16-agregar-debilidades-a-una-evolución"></a>
-## ⚠️ 16. Agregar debilidades a la evolución
+<a name="17-agregar-debilidades-a-una-evolución"></a>
+## ⚠️ 17. Agregar debilidades a la evolución
 
 **Método:** `POST`  
 **Endpoint:** `api/pokedex/evolution/add/{id}/weakness`  
@@ -865,8 +867,8 @@ Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hie
 }
 ```
 
-<a name="17-agregar-estadísticas-a-una-evolución"></a>
-## 📊 17. Agregar Estadisticas a la evolución
+<a name="18-agregar-estadísticas-a-una-evolución"></a>
+## 📊 18. Agregar Estadisticas a la evolución
 
 **Método:** `POST`  
 **Endpoint:** `api/pokedex/statistic/create/evolution`  
@@ -915,8 +917,8 @@ Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hie
   "data": "El ID ingresado no pertenece a ninguna evolución existente"
 }
 ```
-<a name="18-listar-todas-las-evoluciones"></a>
-## 🧬 18. Listar todas las evoluciones
+<a name="20-listar-todas-las-evoluciones"></a>
+## 🧬 20. Listar todas las evoluciones
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/evolution`  
@@ -949,8 +951,8 @@ Este endpoint te va a listar todos los registros de las evoluciones.
         }, ..................................
 ```
 
-<a name="19-buscar-evolución-por-id"></a>
-## 🔍 19. Listar evolución por id
+<a name="21-buscar-evolución-por-id"></a>
+## 🔍 21. Listar evolución por id
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/evolution/{id}`  
@@ -1013,8 +1015,8 @@ Este endpoint te va a listar las evoluciones por sus id.
 }
 ```
 
-<a name="20-buscar-evolución-por-nombre-o-código"></a>
-## 🔍 20. Listar evolución por nombre o codigo
+<a name="22-buscar-evolución-por-nombre-o-código"></a>
+## 🔍 22. Listar evolución por nombre o codigo
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/evolution/nameorcode/{nameorcode}`  
@@ -1059,8 +1061,8 @@ Este endpoint te suministrará una busqueda de las evoluciones tipo like %""%, e
 }
 ```
 
-<a name="21-listar-evoluciones-por-mayor-peso"></a>
-## ⚖️ 21. Listar evoluciones por mayor peso
+<a name="23-listar-evoluciones-por-mayor-peso"></a>
+## ⚖️ 23. Listar evoluciones por mayor peso
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/evolution/weight/desc`  
@@ -1068,8 +1070,8 @@ Este endpoint te suministrará una busqueda de las evoluciones tipo like %""%, e
 #### 📝 Descripción
 Este endpoint te suministrará todos las evoluciones ordenadas por su peso  de mayor a menor.
 
-<a name="22-listar-evoluciones-por-menor-peso"></a>
-## 🪶 22. Listar evoluciones por menor peso
+<a name="24-listar-evoluciones-por-menor-peso"></a>
+## 🪶 24. Listar evoluciones por menor peso
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/evolution/weight/asc`  
@@ -1078,8 +1080,8 @@ Este endpoint te suministrará todos las evoluciones ordenadas por su peso  de m
 Este endpoint te suministrará todos las evoluciones ordenados por su peso de menor a mayor.
 
 
-<a name="23-listar-evoluciones-por-mayor-altura"></a>
-## 📏 23. Listar evoluciones por mayor altura
+<a name="25-listar-evoluciones-por-mayor-altura"></a>
+## 📏 25. Listar evoluciones por mayor altura
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/evolution/height/desc`  
@@ -1087,8 +1089,8 @@ Este endpoint te suministrará todos las evoluciones ordenados por su peso de me
 #### 📝 Descripción
 Este endpoint te suministrará todos las evoluciones ordenados por su tamaño  de mayor a menor.
 
-<a name="24-listar-evoluciones-por-menor-altura"></a>
-## 📐 24. Listar evoluciones por menor altura
+<a name="26-listar-evoluciones-por-menor-altura"></a>
+## 📐 26. Listar evoluciones por menor altura
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/evolution/height/asc`  
@@ -1097,8 +1099,8 @@ Este endpoint te suministrará todos las evoluciones ordenados por su tamaño  d
 Este endpoint te suministrará todas las evoluciones ordenados por su tamaño  de menor a mayor.
 
 
-<a name="25-listar-todos-los-tipos"></a>
-## 🧩 25. Listar todos los tipos
+<a name="27-listar-todos-los-tipos"></a>
+## 🧩 27. Listar todos los tipos
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/type`  
@@ -1122,8 +1124,8 @@ Este endpoint te suministrará todos los tipos para que puedas usarlos en el reg
             "description": "Tipo de Pokemon que es fuerte contra Fuego, Roca y Tierra, y debil contra Agua, Dragon y Planta."
         },..............................
 ```
-<a name="26-buscar-tipo-por-id"></a>
-## 🔍 26. Listar tipos por su id
+<a name="28-buscar-tipo-por-id"></a>
+## 🔍 28. Listar tipos por su id
 
 **Método:** `GET`  
 **Endpoint:** `api/pokedex/type/{id}`  
