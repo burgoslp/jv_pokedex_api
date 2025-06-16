@@ -77,8 +77,8 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 - 🔍 [28. Buscar tipo por ID](#28-buscar-tipo-por-id)
   
 <a name="1-crear-pokemon"></a>
-## 🌱 1. Crear Pokémon  📋[índice](#1-crear-pokemon)
-
+## 🌱 1. Crear Pokémon  
+📋[Volver al índice](#indice)
 **Método:** `POST`  
 **Endpoint:** `/api/pokedex/pokemon/create`  
 
