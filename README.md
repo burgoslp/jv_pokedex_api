@@ -77,13 +77,15 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 - 🔍 [28. Buscar tipo por ID](#28-buscar-tipo-por-id)
   
 <a name="1-crear-pokemon"></a>
-## 🌱 1. Crear Pokémon  
-📋[Volver al índice](#indice)
+## 🌱 1. Crear Pokémon  [📋](#indice)
+
 **Método:** `POST`  
 **Endpoint:** `/api/pokedex/pokemon/create`  
 
 #### 📝 Descripción
-Crea un nuevo Pokémon con los datos suministrados.
+Crea un nuevo Pokémon con los datos suministrados. [🔙 Volver al índice](#indice)
+
+
 
 ```json
 {
@@ -144,7 +146,7 @@ Crea un nuevo Pokémon con los datos suministrados.
 **Endpoint:** `api/pokedex/pokemon/update/{id}`  
 
 #### 📝 Descripción
-Actualiza los datos de los Pokémons suministrando los siguientes datos.
+Actualiza los datos de los Pokémons suministrando los siguientes datos. [🔙 Volver al índice](#indice)
 
 ```json
 {
@@ -214,7 +216,7 @@ Actualiza los datos de los Pokémons suministrando los siguientes datos.
 **Endpoint:** `api/pokedex/pokemon/add/{id}/type` 
 
 #### 📝 Descripción
-Puedes agregar que tipo de pokemon es (fuego, tierra, hielo), debes enviar una lista de id.
+Puedes agregar que tipo de pokemon es (fuego, tierra, hielo), debes enviar una lista de id. [🔙 Volver al índice](#indice)
 
 ```json
 [9,6]
@@ -304,7 +306,7 @@ Puedes agregar que tipo de pokemon es (fuego, tierra, hielo), debes enviar una l
 **Endpoint:** `api/pokedex/pokemon/add/{id}/weakness` 
 
 #### 📝 Descripción
-Puedes agregar debilidades a los  pokemon que crees (fuego, tierra, hielo), debes enviar una lista de id.
+Puedes agregar debilidades a los  pokemon que crees (fuego, tierra, hielo), debes enviar una lista de id. [🔙 Volver al índice](#indice)
 
  ```json
  [1,4]
@@ -394,7 +396,7 @@ Puedes agregar debilidades a los  pokemon que crees (fuego, tierra, hielo), debe
 **Endpoint:** `api/pokedex/statistic/create/pokemon` 
 
 #### 📝 Descripción
-Puedes agregar las estadisticas a tus pokemon para que crees graficos comparativos.
+Puedes agregar las estadisticas a tus pokemon para que crees graficos comparativos. [🔙 Volver al índice](#indice)
 
 ```json
    {
@@ -447,7 +449,7 @@ Puedes agregar las estadisticas a tus pokemon para que crees graficos comparativ
 **Endpoint:** `api/pokedex/pokemon` 
 
 #### 📝 Descripción
-Este endpoint te suministrará todos los pokemons.
+Este endpoint te suministrará todos los pokemons. [🔙 Volver al índice](#indice)
 
 ```json
 {
@@ -482,7 +484,7 @@ Este endpoint te suministrará todos los pokemons.
 **Endpoint:** `api/pokedex/pokemon/{id}` 
 
 #### 📝 Descripción
-Este endpoint te suministrará todos el pokemon a detalle, con todas sus relaciones.
+Este endpoint te suministrará todos el pokemon a detalle, con todas sus relaciones. [🔙 Volver al índice](#indice)
 
 
 ```json
@@ -557,7 +559,7 @@ Este endpoint te suministrará todos el pokemon a detalle, con todas sus relacio
 **Endpoint:** `api/pokedex/pokemon/{nameorcode}` 
 
 #### 📝 Descripción
-Este endpoint te suministrará una busqueda de pokemons tipo like %""%, este busca por el nombre o el codigo (campo unico) puede arrojar un registro o varios.
+Este endpoint te suministrará una busqueda de pokemons tipo like %""%, este busca por el nombre o el codigo (campo unico) puede arrojar un registro o varios. [🔙 Volver al índice](#indice)
 
 ```json
 {
@@ -602,7 +604,7 @@ Este endpoint te suministrará una busqueda de pokemons tipo like %""%, este bus
 **Endpoint:** `api/pokedex/pokemon/weight/desc` 
 
 #### 📝 Descripción
-Este endpoint te suministrará todos los pokémons ordenados por su peso  de mayor a menor.
+Este endpoint te suministrará todos los pokémons ordenados por su peso  de mayor a menor. [🔙 Volver al índice](#indice)
 
 <a name="11-listar-pokémon-por-menor-peso"></a>
 ## 🪶 11. Listar pokemons por menor peso
@@ -611,7 +613,7 @@ Este endpoint te suministrará todos los pokémons ordenados por su peso  de may
 **Endpoint:** `api/pokedex/pokemon/weight/asc` 
 
 #### 📝 Descripción
-Este endpoint te suministrará todos los pokémons ordenados por su peso  de menor a mayor.
+Este endpoint te suministrará todos los pokémons ordenados por su peso  de menor a mayor. [🔙 Volver al índice](#indice)
 
 <a name="12-listar-pokémon-por-mayor-altura"></a>
 ## 📏 12. Listar pokemons por mayor altura:
@@ -620,7 +622,7 @@ Este endpoint te suministrará todos los pokémons ordenados por su peso  de men
 **Endpoint:** `api/pokedex/pokemon/height/desc` 
 
 #### 📝 Descripción
-Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de mayor a menor.
+Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de mayor a menor. [🔙 Volver al índice](#indice)
 
 <a name="13-listar-pokémon-por-menor-altura"></a>
 ## 📐 13. Listar pokemons por menor altura:
@@ -629,7 +631,7 @@ Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de 
 **Endpoint:** `api/pokedex/pokemon/height/asc` 
 
 #### 📝 Descripción
-Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de menor a mayor.
+Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de menor a mayor. [🔙 Volver al índice](#indice)
 
 
 <a name="14-crear-evolución"></a>
@@ -640,7 +642,7 @@ Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de 
 
 #### 📝 Descripción
 
-Crea una nueva evolución asociada a un Pokémon existente con los datos suministrados.
+Crea una nueva evolución asociada a un Pokémon existente con los datos suministrados. [🔙 Volver al índice](#indice)
 
 ```json
 {
@@ -703,7 +705,7 @@ Crea una nueva evolución asociada a un Pokémon existente con los datos suminis
 **Endpoint:** `/api/pokedex/evolution/update/{id}`  
 
 #### 📝 Descripción
-Actualiza los datos de una evolución existente usando su ID.
+Actualiza los datos de una evolución existente usando su ID. [🔙 Volver al índice](#indice)
 
 ```json
 {
@@ -756,7 +758,7 @@ Actualiza los datos de una evolución existente usando su ID.
 **Endpoint:** `api/pokedex/evolution/add/{id}/type`  
 
 #### 📝 Descripción
-Puedes asociar los tipos a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id.
+Puedes asociar los tipos a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id. [🔙 Volver al índice](#indice)
 
 ```json
 [9,6]
@@ -816,7 +818,7 @@ Puedes asociar los tipos a las evolucciones existentes (fuego, tierra, hielo), d
 **Endpoint:** `api/pokedex/evolution/add/{id}/weakness`  
 
 #### 📝 Descripción
-Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id.
+Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id. [🔙 Volver al índice](#indice)
 
 ```json
    [1,4]
@@ -875,7 +877,7 @@ Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hie
 **Endpoint:** `api/pokedex/statistic/create/evolution`  
 
 #### 📝 Descripción
-Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id.
+Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id. [🔙 Volver al índice](#indice)
 
 ```json
 {
@@ -925,7 +927,7 @@ Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hie
 **Endpoint:** `api/pokedex/evolution`  
 
 #### 📝 Descripción
-Este endpoint te va a listar todos los registros de las evoluciones.
+Este endpoint te va a listar todos los registros de las evoluciones. [🔙 Volver al índice](#indice)
 
 ```json
 {
@@ -959,7 +961,7 @@ Este endpoint te va a listar todos los registros de las evoluciones.
 **Endpoint:** `api/pokedex/evolution/{id}`  
 
 #### 📝 Descripción
-Este endpoint te va a listar las evoluciones por sus id.
+Este endpoint te va a listar las evoluciones por sus id. [🔙 Volver al índice](#indice)
 
 ```json
 {
@@ -1023,7 +1025,7 @@ Este endpoint te va a listar las evoluciones por sus id.
 **Endpoint:** `api/pokedex/evolution/nameorcode/{nameorcode}`  
 
 #### 📝 Descripción
-Este endpoint te suministrará una busqueda de las evoluciones tipo like %""%, este busca por el nombre o el codigo (campo unico) puede arrojar un registro o varios.
+Este endpoint te suministrará una busqueda de las evoluciones tipo like %""%, este busca por el nombre o el codigo (campo unico) puede arrojar un registro o varios. [🔙 Volver al índice](#indice)
 
 ```json
 {
@@ -1069,7 +1071,7 @@ Este endpoint te suministrará una busqueda de las evoluciones tipo like %""%, e
 **Endpoint:** `api/pokedex/evolution/weight/desc`  
 
 #### 📝 Descripción
-Este endpoint te suministrará todos las evoluciones ordenadas por su peso  de mayor a menor.
+Este endpoint te suministrará todos las evoluciones ordenadas por su peso  de mayor a menor. [🔙 Volver al índice](#indice)
 
 <a name="24-listar-evoluciones-por-menor-peso"></a>
 ## 🪶 24. Listar evoluciones por menor peso
@@ -1078,7 +1080,7 @@ Este endpoint te suministrará todos las evoluciones ordenadas por su peso  de m
 **Endpoint:** `api/pokedex/evolution/weight/asc`  
 
 #### 📝 Descripción
-Este endpoint te suministrará todos las evoluciones ordenados por su peso de menor a mayor.
+Este endpoint te suministrará todos las evoluciones ordenados por su peso de menor a mayor. [🔙 Volver al índice](#indice)
 
 
 <a name="25-listar-evoluciones-por-mayor-altura"></a>
@@ -1088,7 +1090,7 @@ Este endpoint te suministrará todos las evoluciones ordenados por su peso de me
 **Endpoint:** `api/pokedex/evolution/height/desc`  
 
 #### 📝 Descripción
-Este endpoint te suministrará todos las evoluciones ordenados por su tamaño  de mayor a menor.
+Este endpoint te suministrará todos las evoluciones ordenados por su tamaño  de mayor a menor. [🔙 Volver al índice](#indice)
 
 <a name="26-listar-evoluciones-por-menor-altura"></a>
 ## 📐 26. Listar evoluciones por menor altura
@@ -1097,7 +1099,7 @@ Este endpoint te suministrará todos las evoluciones ordenados por su tamaño  d
 **Endpoint:** `api/pokedex/evolution/height/asc`  
 
 #### 📝 Descripción
-Este endpoint te suministrará todas las evoluciones ordenados por su tamaño  de menor a mayor.
+Este endpoint te suministrará todas las evoluciones ordenados por su tamaño  de menor a mayor. [🔙 Volver al índice](#indice)
 
 
 <a name="27-listar-todos-los-tipos"></a>
@@ -1107,7 +1109,7 @@ Este endpoint te suministrará todas las evoluciones ordenados por su tamaño  d
 **Endpoint:** `api/pokedex/type`  
 
 #### 📝 Descripción
-Este endpoint te suministrará todos los tipos para que puedas usarlos en el registro de tus pokemones y evoluciones.
+Este endpoint te suministrará todos los tipos para que puedas usarlos en el registro de tus pokemones y evoluciones. [🔙 Volver al índice](#indice)
 
 ```json
   {
@@ -1132,7 +1134,7 @@ Este endpoint te suministrará todos los tipos para que puedas usarlos en el reg
 **Endpoint:** `api/pokedex/type/{id}`  
 
 #### 📝 Descripción
-Este endpoint te suministrará un tipo filtrado por su id.
+Este endpoint te suministrará un tipo filtrado por su id. [🔙 Volver al índice](#indice)
 
 ```json
   {
