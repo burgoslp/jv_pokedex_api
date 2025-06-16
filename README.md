@@ -441,6 +441,33 @@ Puedes agregar las estadisticas a tus pokemon para que crees graficos comparativ
   "data": "El ID ingresado no pertenece a ningun pokémon existente"
 }
 ```
+<a name="6-eliminar-a-un-pokémon"></a>
+## 🗑️ 6. Eliminar a un pokémon
+
+**Método:** `DELETE`  
+**Endpoint:** `api/pokedex/pokemon/{id}` 
+
+#### ✅ Respuesta exitosa
+```json
+{
+    "code": 200,
+    "message": "OK",
+    "data": "Pokemon eliminado con exito"
+}
+```
+#### ❌ Validación del pokémon id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun pokémon existente"
+}
+```
+
+#### 📝 Descripción
+Cuando elimines pokémons recuerda que este eliminará en cascada las evoluciones, estadisticas y registros asociados al id del pokemon para evitar registros huerfanos. [🔙 Volver al índice](#indice)
+
 
 <a name="7-listar-todos-los-pokémon"></a>
 ## 📋 7. Listar todos los pokémons
