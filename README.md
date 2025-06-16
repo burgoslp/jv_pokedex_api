@@ -65,7 +65,7 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
 - 🏷️ [16. Agregar tipos a una evolución](#16-agregar-tipos-a-una-evolución)
 - ⚠️ [17. Agregar debilidades a una evolución](#17-agregar-debilidades-a-una-evolución)
 - 📊 [18. Agregar estadísticas a una evolución](#18-agregar-estadísticas-a-una-evolución)
-- 🗑️ [19. eliminar una evolución](#19-eliminar-a-un-pokémon)
+- 🗑️ [19. eliminar una evolución](#19-eliminar-una-evolución)
 - 🧬 [20. Listar todas las evoluciones](#20-listar-todas-las-evoluciones)
 - 🔍 [21. Buscar evolución por ID](#21-buscar-evolución-por-id)
 - 🔡 [22. Buscar evolución por nombre o código](#22-buscar-evolución-por-nombre-o-código)
@@ -946,6 +946,35 @@ Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hie
   "data": "El ID ingresado no pertenece a ninguna evolución existente"
 }
 ```
+
+<a name="19-eliminar-una-evolución"></a>
+## 📊 19. Eliminar una evolución
+
+**Método:** `DELETE`  
+**Endpoint:** `api/pokedex/evolution/{id}`  
+
+#### 📝 Descripción
+Cuando elimines evoluciones recuerda que esta eliminará en cascada todos los registros asociados al id de la evolución para evitar registros huerfanos. [🔙 Volver al índice](#indice)
+
+#### ✅ Respuesta exitosa
+```json
+{
+    "code": 200,
+    "message": "OK",
+    "data": "Se ha eliminado la evolución con exito."
+}
+```
+
+#### ❌ Validación del id de la evolución 
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+
 <a name="20-listar-todas-las-evoluciones"></a>
 ## 🧬 20. Listar todas las evoluciones
 
