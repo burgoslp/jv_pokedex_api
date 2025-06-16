@@ -447,6 +447,9 @@ Puedes agregar las estadisticas a tus pokemon para que crees graficos comparativ
 **Método:** `DELETE`  
 **Endpoint:** `api/pokedex/pokemon/{id}` 
 
+#### 📝 Descripción
+Cuando elimines pokémons recuerda que este eliminará en cascada las evoluciones, estadisticas y registros asociados al id del pokemon para evitar registros huerfanos. [🔙 Volver al índice](#indice)
+
 #### ✅ Respuesta exitosa
 ```json
 {
@@ -464,10 +467,6 @@ Puedes agregar las estadisticas a tus pokemon para que crees graficos comparativ
   "data": "El ID ingresado no pertenece a ningun pokémon existente"
 }
 ```
-
-#### 📝 Descripción
-Cuando elimines pokémons recuerda que este eliminará en cascada las evoluciones, estadisticas y registros asociados al id del pokemon para evitar registros huerfanos. [🔙 Volver al índice](#indice)
-
 
 <a name="7-listar-todos-los-pokémon"></a>
 ## 📋 7. Listar todos los pokémons
