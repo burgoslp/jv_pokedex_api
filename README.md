@@ -1,27 +1,30 @@
-<h1>API POKEDEX</h1>
+![Sin título](https://github.com/user-attachments/assets/e9c3c9fd-7786-4f12-8a27-b0e7bd215abd)
+
+<h1>🐾 API POKÉDEX</h1>
 Esta es una API REST construida con Java y el framework Spring Boot, diseñada para proporcionar información detallada sobre Pokémons.
 
-<h2>Descripción general</h2>
+<h2>📖 Descripción general</h2>
 Esta API Pokedex ofrece una interfaz para acceder a datos completos sobre Pokémon, incluyendo sus estadisticas, tipos, debilidades y evoluciones. 
 Creada con Java 17 y Spring Boot, la API destaca por su eficiencia y facilidad de uso. Se utilizan las librerías Lombok y Maven para mejorar la productividad y la gestión del proyecto.
 
-<h2>Características</h2>
+<h2>✨ Características</h2>
 <ul>
   <li><strong>Información Detallada:</strong> Accede a datos exhaustivos de cada Pokémon, como tipos, debilidades, estadísticas, evoluciones.</li>
-  <li><strong>Arquitectura REST:</strong> Diseño basado en principios REST para una integración sencilla, respuestas con formatos estadarizados y un rendimiento óptimo.</li>
-  <li><strong>Fácil de Usar:</strong> Endpoints intuitivos que facilitan la consulta y manipulación de la información.</li>
+  <li><strong>🔗 Arquitectura REST:</strong> Diseño basado en principios REST para una integración sencilla, respuestas con formatos estadarizados y un rendimiento óptimo.</li>
+  <li><strong>🔍 Fácil de Usar:</strong> Endpoints intuitivos que facilitan la consulta y manipulación de la información.</li>
+  <li><strong>📄 JsonApiResponse</strong> La aplicacion maneja el standard JsonApiResponse lo que permite al Client-APP optener una respuesta de los endpoint estandarizada para su consumo.</li>
+  
 </ul>
 
-<h2>Requisitos</h2>
+<h2>🛠️ Requisitos</h2>
 <ul>
   <li><strong>Java 17</strong> Asegurate de instalar la versión correcta del <a href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">JDK</a></li>
-  <li><strong>MySQL</strong> Esta API utiliza una base de datos MySQL para almacenar y gestionar la información de los Pokémon. Se emplean las librerías del conector MySQL para facilitar la persistencia de las entidades y la carga inicial de datos mediante el archivo `import.sql`.</li>
-  <li><strong>JsonApiResponse</strong> La aplicacion maneja el standard JsonApiResponse lo que permite al Client-APP optener una respuesta de los endpoint estandarizada para su consumo.</li>
+  <li><strong>📦 MySQL</strong> Esta API utiliza una base de datos MySQL para almacenar y gestionar la información de los Pokémon. Se emplean las librerías del conector MySQL para facilitar la persistencia de las entidades y la carga inicial de datos mediante el archivo `import.sql`.</li>
 </ul>
 
-<h2>Funcionamiento de la API</h2>
+<h2>🔍 Funcionamiento de la API</h2>
 La API de Pokedex está diseñada para administrar información completa sobre Pokémon, sus evoluciones, tipos, debilidades y sus estadisticas. Utiliza diversas relaciones para conectar estos elementos: 
-<h3>Relaciones:</h3>
+<h3>🔗 Relaciones:</h3>
 <ul>
   <li><strong>Uno a Muchos (Pokémon - Evoluciones):</strong> Un Pokémon puede tener múltiples evoluciones, pero cada evolución pertenece a un Pokémon específico.</li>
   <li><strong>Muchos a Muchos (Pokémon - Tipos):</strong> Un Pokémon puede tener múltiples tipos (ej. Agua/Volador), y un tipo puede ser compartido por muchos Pokémon.</li>
@@ -31,7 +34,7 @@ La API de Pokedex está diseñada para administrar información completa sobre P
   <li><strong>Uno a uno (Pokémon - Estadisticas):</strong> Un pokémon puede tener una estadistica (ataque, defesa,velocidad,vida), y una estadistica tener solo un Pokémon.</li>
   <li><strong>Uno a uno (Evolución - Estadisticas):</strong> Una evolución puede tener una estadistica (ataque, defesa,velocidad,vida), y una estadistica tener solo un Pokémon.</li>
 </ul>
-<h3>Comportamiento en cascada:</h3>
+<h3>♻️ Comportamiento en cascada:</h3>
  La API implementa un comportamiento en cascada para la eliminación de Pokémon. Esto significa que si se elimina un Pokémon, todas sus evoluciones y estadisticas asociadas también se eliminarán automáticamente.
 Esta función garantiza la integridad de los datos, evitando evoluciones y estadisticas huérfanas en la base de datos.
 
@@ -40,125 +43,198 @@ Esta función garantiza la integridad de los datos, evitando evoluciones y estad
 ![imagen](https://github.com/user-attachments/assets/cd5d9c05-c418-4f6e-803a-f5b2bc6b86c7)
 
 
-<h2>Listado de endpoints:</h2>
+## 📜 Listado de endpoints 
 la api cuenta con multiples rutas que nos permite la creación, eliminación, actualización y lectura de los pokemons y sus evoluciones, ademas cuenta con rutas aparte para agregar tipos, debilidades y estadisticas.
 
-<h3>1. Creación del pokemon</h3>
-<hr>
-<span>POST:</span> <strong>api/pokedex/pokemon/create</strong>
- <pre>
-   {
-      "name": "pikachu",
-      "description":"descripción aquí",
-      "weight": 80,
-      "height": 2.5,
-      "image": "pikachu.png",
-      "code": "#1111"
-    }
- </pre>
- <span>Respuesta:</span>
- <pre>
-   {
-        "code": 200,
-        "message": "OK",
-        "data": {
-            "id": 6,
-            "name": "lucario",
-            "description": "descripción aquí",
-            "height": 2.5,
-            "weight": 80.0,
-            "code": "#1111",
-            "image": "lucario.png",
-            "evolutions": null,
-            "types": null,
-            "weaknesses": null,
-            "statistic": null
-        }
-    }
- </pre>
- <span>Validaciones:</span>
- <pre>
-   {
-      "code": 400,
-      "message": "Bad Request",
-      "data": [
-          "name: no debe estar vacío",
-          "weight: no debe ser nulo",
-          "image: no debe estar vacío",
-          "height: no debe ser nulo",
-          "code: no debe ser nulo",
-          "description: no debe estar vacío"
-      ]
-  }
- </pre>
-<h3>2. Actualizar pokemon</h3>
- <hr>
- <span>PUT:</span> <strong>api/pokedex/pokemon/update/{id}</strong>
-<pre>
-  {
-    "name": "lucario",
-    "description":"descripción aquí",
-    "weight": 80,
-    "height": 2.5,
-    "image": "lucario.png",
-    "code": "#1111"
-  }
-</pre>
- <span>Validaciones:</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": [
-        "image: no debe estar vacío",
-        "height: no debe ser nulo",
-        "weight: no debe ser nulo",
-        "name: no debe estar vacío",
-        "code: no debe ser nulo",
-        "description: no debe estar vacío"
-    ]
+<a name="indice"></a>
+## 📑 Índice de Endpoints
+
+- 🌱 [1. Crear Pokémon](#1-crear-pokemon)
+- ✏️ [2. Actualizar Pokémon](#2-actualizar-pokemon)
+- 🏷️ [3. Agregar tipos a un Pokémon](#3-agregar-tipos-a-un-pokémon)
+- ⚠️ [4. Agregar debilidades a un Pokémon](#4-agregar-debilidades-a-un-pokémon)
+- 📊 [5. Agregar estadísticas a un Pokémon](#5-agregar-estadísticas-a-un-pokémon)
+- 🗑️ [6. eliminar a un pokémon](#6-eliminar-a-un-pokémon)
+- 📋 [7. Listar todos los Pokémon](#7-listar-todos-los-pokémon)
+- 🔍 [8. Buscar Pokémon por ID](#8-buscar-pokémon-por-id)
+- 🔡 [9. Buscar Pokémon por nombre o código](#9-buscar-pokémon-por-nombre-o-código)
+- ⚖️ [10. Listar Pokémon por mayor peso](#10-listar-pokémon-por-mayor-peso)
+- 🪶 [11. Listar Pokémon por menor peso](#11-listar-pokémon-por-menor-peso)
+- 📏 [12. Listar Pokémon por mayor altura](#12-listar-pokémon-por-mayor-altura)
+- 📐 [13. Listar Pokémon por menor altura](#13-listar-pokémon-por-menor-altura)
+- 🌱 [14. Crear evolución](#14-crear-evolución)
+- ✏️ [15. Actualizar evolución](#15-actualizar-evolución)
+- 🏷️ [16. Agregar tipos a una evolución](#16-agregar-tipos-a-una-evolución)
+- ⚠️ [17. Agregar debilidades a una evolución](#17-agregar-debilidades-a-una-evolución)
+- 📊 [18. Agregar estadísticas a una evolución](#18-agregar-estadísticas-a-una-evolución)
+- 🗑️ [19. eliminar una evolución](#19-eliminar-una-evolución)
+- 🧬 [20. Listar todas las evoluciones](#20-listar-todas-las-evoluciones)
+- 🔍 [21. Buscar evolución por ID](#21-buscar-evolución-por-id)
+- 🔡 [22. Buscar evolución por nombre o código](#22-buscar-evolución-por-nombre-o-código)
+- ⚖️ [23. Listar evoluciones por mayor peso](#23-listar-evoluciones-por-mayor-peso)
+- 🪶 [24. Listar evoluciones por menor peso](#24-listar-evoluciones-por-menor-peso)
+- 📏 [25. Listar evoluciones por mayor altura](#25-listar-evoluciones-por-mayor-altura)
+- 📐 [26. Listar evoluciones por menor altura](#26-listar-evoluciones-por-menor-altura)
+- 🧩 [27. Listar todos los tipos](#27-listar-todos-los-tipos)
+- 🔍 [28. Buscar tipo por ID](#28-buscar-tipo-por-id)
+  
+<a name="1-crear-pokemon"></a>
+## 🌱 1. Crear Pokémon  [📋](#indice)
+
+**Método:** `POST`  
+**Endpoint:** `/api/pokedex/pokemon/create`  
+
+#### 📝 Descripción
+Crea un nuevo Pokémon con los datos suministrados. [🔙 Volver al índice](#indice)
+
+
+
+```json
+{
+  "name": "pikachu",
+  "description": "descripción aquí",
+  "weight": 80,
+  "height": 2.5,
+  "image": "pikachu.png",
+  "code": "#1111"
 }
- </pre>
- <span>Validación del pokemon id</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ningun pokemon existente"
+```
+#### ✅ Respuesta exitosa
+
+```json
+{
+  "code": 200,
+  "message": "OK",
+  "data": {
+    "id": 6,
+    "name": "lucario",
+    "description": "descripción aquí",
+    "height": 2.5,
+    "weight": 80.0,
+    "code": "#1111",
+    "image": "lucario.png"  
   }
- </pre>
-<h3>3. Agregar tipos al pokemon</h3>
-<hr>
-<span>POST:</span> <strong>api/pokedex/pokemon/add/{id}/type</strong>
-<pre>
-  [9,6]
-</pre>
-<span>Respuesta:</span>
-<pre>
-  {
+}
+```
+#### ❌ Respuesta de validación
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": [
+    "name: no debe estar vacío",
+    "weight: no debe ser nulo",
+    "image: no debe estar vacío",
+    "height: no debe ser nulo",
+    "code: no debe ser nulo",
+    "description: no debe estar vacío"
+  ]
+}
+```
+
+### ❌ Validación del pokémon code
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "code: El código del pokemon ya existe en la base de datos"
+}
+```
+
+<a name="2-actualizar-pokemon"></a>
+## ✏️ 2. Actualizar Pokémon
+
+**Método:** `PUT`  
+**Endpoint:** `api/pokedex/pokemon/update/{id}`  
+
+#### 📝 Descripción
+Actualiza los datos de los Pokémons suministrando los siguientes datos. [🔙 Volver al índice](#indice)
+
+```json
+{
+  "name": "lucario",
+  "description":"descripción aquí",
+  "weight": 80,
+  "height": 2.5,
+  "image": "lucario.png",
+  "code": "#1111"
+}
+```
+#### ✅ Respuesta exitosa
+
+```json
+{
     "code": 201,
     "message": "Created",
-    "data": "Los tipos se han agregado correctamente"
-  }
-</pre>
-<span>Validacion:</span>
-<pre>
-  {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "La lista de valores se encuentran vacios o no existen"
+    "data": {
+              "id": 1,
+               "name": "lucario",
+              "description":"descripción aquí",
+              "weight": 80,
+              "height": 2.5,
+              "image": "lucario.png",
+              "code": "#1111"
+          }
 }
-</pre>
-<span>Validación del pokemon id</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ningun pokemon existente"
-  }
- </pre>
-<span>Pokemon con tipos agregados:</span>
-<pre>
+```
+#### ❌ Respuesta de validación
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": [
+            "name: no debe estar vacío",
+            "weight: no debe ser nulo",
+            "image: no debe estar vacío",
+            "height: no debe ser nulo",
+            "code: no debe ser nulo",
+            "description: no debe estar vacío"
+          ]
+}
+```
+#### ❌ Validación del pokémon id
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun pokémon existente"
+}
+```
+### ❌ Validación del pokémon code
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "code: El código del pokemon ya existe en la base de datos"
+}
+```
+
+
+<a name="3-agregar-tipos-a-un-pokémon"></a>
+## 🏷️ 3. Agregar tipos al pokemon
+
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/pokemon/add/{id}/type` 
+
+#### 📝 Descripción
+Puedes agregar que tipo de pokemon es (fuego, tierra, hielo), debes enviar una lista de id. [🔙 Volver al índice](#indice)
+
+```json
+[9,6]
+```
+#### ✅ Respuesta exitosa
+
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Los tipos se han agregado correctamente"
+}
+```
+#### ✅ Ejemplo de un pokémon con los tipos añadidos
+
+```json
   {
     "code": 200,
     "message": "OK",
@@ -170,7 +246,6 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
         "weight": 80.0,
         "code": "#1111",
         "image": "lucario.png",
-        "evolutions": [],
         "types": [
             {
                 "id": 9,
@@ -183,46 +258,75 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
                 "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
             }
         ],
-        "weaknesses": [],
-        "statistic": null
     }
 }
-</pre>
- <h3>4. Agregar debilidades al pokemon:</h3>
- <hr>
- <span>GET:</span> <strong>api/pokedex/pokemon/add/{id}/weakness</strong>
- <pre>
-   [1,4]
- </pre>
- <span>Respuesta:</span>
- <pre>
-   {
-      "code": 201,
-      "message": "Created",
-      "data": "Las debilidades se han agregado correctamente"
-  }
- </pre>
- <span>Validacion:</span>
-<pre>
-  {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "La lista de valores se encuentran vacios o no existen"
+```
+
+#### ❌ Respuesta de validación
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "La lista de valores se encuentran vacios o no existen"
 }
-</pre>
-<span>Validación del pokemon id</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ningun pokemon existente"
-  }
- </pre>
- <span>
-   Pokemon con debilidades agregadas:
- </span>
- <pre>
-   {
+```
+
+#### ❌ Validación del pokémon id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun pokémon existente"
+}
+```
+
+#### ❌ Validación del type id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado no pertenece a ningun tipo"
+}
+```
+#### ❌ Validación del type id repetido
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado ya esta agregado en los tipos."
+}
+```
+
+<a name="4-agregar-debilidades-a-un-pokémon"></a>
+## ⚠️ 4. Agregar debilidades al pokemon
+
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/pokemon/add/{id}/weakness` 
+
+#### 📝 Descripción
+Puedes agregar debilidades a los  pokemon que crees (fuego, tierra, hielo), debes enviar una lista de id. [🔙 Volver al índice](#indice)
+
+ ```json
+ [1,4]
+```
+#### ✅ Respuesta exitosa
+
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Las debilidades se han agregado correctamente"
+}
+ ```
+
+#### ✅ Ejemplo de un pokémon con los tipos añadidos
+
+```json
+{
       "code": 200,
       "message": "OK",
       "data": {
@@ -233,19 +337,6 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
           "weight": 80.0,
           "code": "#1111",
           "image": "lucario.png",
-          "evolutions": [],
-          "types": [
-              {
-                  "id": 9,
-                  "name": "Hielo",
-                  "description": "Tipo de Pokemon que es fuerte contra Dragon, Planta, Tierra y Volador, y debil contra Acero, Agua, Fuego e Hielo."
-              },
-              {
-                  "id": 6,
-                  "name": "Fantasma",
-                  "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
-              }            
-          ],
           "weaknesses": [
               {
                   "id": 1,
@@ -258,32 +349,79 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
                   "description": "Tipo de Pokemon que es fuerte contra Agua y Volador, y debil contra Dragon, Electrico y Planta."
               }
           ],
-          "statistic": null
       }
   }
- </pre>
- <h3>5. Agregar Estadisticas al Pokemon</h3>
- <hr>
- <span>POST: <strong>api/pokedex/statistic/create/pokemon</strong></span>
- <pre>
+```
+
+#### ❌ Respuesta de validación
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "La lista de valores se encuentran vacios o no existen"
+}
+```
+#### ❌ Validación del pokémon id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun pokémon existente"
+}
+```
+
+#### ❌ Validación del weaknness id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado no pertenece a ninguna debilidad"
+}
+```
+
+#### ❌ Validación del weaknness id repetido
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado ya esta agregado en las debilidades."
+}
+```
+
+<a name="5-agregar-estadísticas-a-un-pokémon"></a>
+## 📊 5. Agregar Estadisticas al Pokémon
+
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/statistic/create/pokemon` 
+
+#### 📝 Descripción
+Puedes agregar las estadisticas a tus pokemon para que crees graficos comparativos. [🔙 Volver al índice](#indice)
+
+```json
    {
+    "pokemonId":6
     "attack":20,
     "defence":60,
     "velocity":80,
     "life":50,
-    "pokemonId":6
   }
- </pre>
-<span>Respuesta:</span>
- <pre>
-   {
-       "code": 201,
-       "message": "Created",
-       "data": "Se han creado las estadisticas del pokemon"
-    }
- </pre>
- <span>validación:</span>
- <pre>
+```
+
+#### ✅ Respuesta exitosa
+
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Se han creado las estadisticas del pokemon"
+}
+```
+#### ❌ Respuesta de validación
+
+ ```json
    {
       "code": 400,
       "message": "Bad Request",
@@ -295,382 +433,501 @@ la api cuenta con multiples rutas que nos permite la creación, eliminación, ac
           "life: no debe ser nulo"
       ]
   }
- </pre>
- <span>Validación del pokemon id:</span>
- <pre>
-   {
+ ```
+#### ❌ Validación del pokémon id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun pokémon existente"
+}
+```
+<a name="6-eliminar-a-un-pokémon"></a>
+## 🗑️ 6. Eliminar a un pokémon
+
+**Método:** `DELETE`  
+**Endpoint:** `api/pokedex/pokemon/{id}` 
+
+#### 📝 Descripción
+Cuando elimines pokémons recuerda que este eliminará en cascada las evoluciones, estadisticas y registros asociados al id del pokemon para evitar registros huerfanos. [🔙 Volver al índice](#indice)
+
+#### ✅ Respuesta exitosa
+```json
+{
+    "code": 200,
+    "message": "OK",
+    "data": "Pokemon eliminado con exito"
+}
+```
+#### ❌ Validación del pokémon id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun pokémon existente"
+}
+```
+
+<a name="7-listar-todos-los-pokémon"></a>
+## 📋 7. Listar todos los pokémons
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los pokemons. [🔙 Volver al índice](#indice)
+
+```json
+{
+  "code": 200,
+  "message": "OK",
+  "data": [
+            {
+              "id": 1,
+              "name": "pichu",
+              "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+              "height": 1.0,
+              "weight": 4.4,
+              "code": "#0172",
+              "image": "pichu.png"
+            },
+            {
+              "id": 2,
+              "name": "bulbasaur",
+              "description": "Bulbasaur es un PokÃ©mon de tipo planta y veneno. Es conocido por tener una planta en su espalda que crecerÃ¡ a medida que evoluciona. Tiene un cuerpo de color verde y unas manchas mÃ¡s oscuras en su piel. Es pequeÃ±o pero muy fuerte y Ã¡gil, y a menudo es considerado un excelente compaÃ±ero por los entrenadores.",
+              "height": 2.04,
+              "weight": 15.2,
+              "code": "#0001",
+              "image": "bulbasaur.png"
+            }
+          ]
+}
+```
+<a name="8-buscar-pokémon-por-id"></a>
+## 🔍 8. Listar pokémons por id
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/{id}` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos el pokemon a detalle, con todas sus relaciones. [🔙 Volver al índice](#indice)
+
+
+```json
+{
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "name": "pichu",
+        "description": "Pichu está basado en un roedor. Pichu tiene una piel de color amarillo pálido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeño tamaño puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+        "height": 1.0,
+        "weight": 4.4,
+        "code": "#0172",
+        "image": "pichu.png",
+        "evolutions": [
+            {
+                "id": 1,
+                "name": "pikachu",
+                "description": "Pikachu es un pequeño Pokémon cuya morfología se encuentra basada en un roedor. Aunque su nombre y su categoría hagan alusión a un ratón, según su diseñadora, sus mejillas están basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran círculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazón si es hembra.",
+                "height": 1.04,
+                "weight": 13.2,
+                "code": "#0025",
+                "image": "pikachu.png"
+            },
+            {
+                "id": 2,
+                "name": "raichu",
+                "description": "Este Pokémon es un gran roedor bípedo. Tiene un pelaje anaranjado, una cola oscura y gruesa como un cable de tendido eléctrico que termina en forma de rayo y totalmente plano, que además puede soportar grandes cargas.",
+                "height": 2.07,
+                "weight": 66.1,
+                "code": "#0026",
+                "image": "raichu.png"
+            }
+        ],
+        "types": [
+            {
+                "id": 5,
+                "name": "Electrico",
+                "description": "Tipo de Pokemon que es fuerte contra Agua y Volador, y debil contra Dragon, Electrico y Planta."
+            }
+        ],
+        "weaknesses": [
+            {
+                "id": 16,
+                "name": "Tierra",
+                "description": "Tipo de Pokemon que es fuerte contra Acero, Electrico, Fuego, Roca y Veneno, y debil contra Bicho, Planta y Volador."
+            }
+        ],
+        "statistic": {
+            "id": 1,
+            "attack": 40,
+            "defence": 15,
+            "velocity": 60,
+            "life": 20
+        }
+    }
+}
+```
+
+#### ❌ Respuesta de validación del Id
+```json
+    {
       "code": 400,
       "message": "Bad Request",
       "data": "El ID ingresado no pertenece a ningun pokemon existente"
-  }
- </pre>
- <h3>6. Listar todos los pokemons</h3>
- <hr>
- <span>GET:</span> <strong>api/pokedex/pokemon</strong>
-<pre>
-  {
+    }
+```
+<a name="9-buscar-pokémon-por-nombre-o-código"></a>
+## 🔡 9. Listar pokemon por nombre o codigo
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/{nameorcode}` 
+
+#### 📝 Descripción
+Este endpoint te suministrará una busqueda de pokemons tipo like %""%, este busca por el nombre o el codigo (campo unico) puede arrojar un registro o varios. [🔙 Volver al índice](#indice)
+
+```json
+{
     "code": 200,
     "message": "OK",
     "data": [
-                {
-                    "id": 1,
-                    "name": "pichu",
-                    "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
-                    "height": 1.0,
-                    "weight": 4.4,
-                    "code": "#0172",
-                    "image": "pichu.png",
-                    "evolutions": [
-                        {
-                            "id": 1,
-                            "name": "pikachu",
-                            "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
-                            "height": 1.04,
-                            "weight": 13.2,
-                            "code": "#0025",
-                            "image": "pikachu.png"
-                        } ................................................
-          ]
-  }
-</pre>
-
-<h3>7. Listar pokemon por id:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/{id}</strong>
-<pre>
-  {
-    "code": 200,
-    "message": "OK",
-    "data": {
-        "id": 1,
-        "name": "pichu",
-        "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
-        "height": 1.0,
-        "weight": 4.4,
-        "code": "#0172",
-        "image": "pichu.png",
-        "evolutions": [
-            {
-                "id": 1,
-                "name": "pikachu",
-                "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
-                "height": 1.04,
-                "weight": 13.2,
-                "code": "#0025",
-                "image": "pikachu.png"
-            }.......................................................
-      ]
-    }
-}
-</pre>
-<span>Excepción: En caso de no existir el pokemon solicitado se mostrará un mensaje 400.</span>
-<pre>
-    {
-      "code": 400,
-      "message": "Bad Request",
-      "data": "El ID ingresado no pertenece a ningun pokemon existente"
-    }
-</pre>
-<h3>8. Listar pokemon por nombre o codigo:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/{nameorcode}</strong><br>
-PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codigo (campo unico) puede arrojar un unico registro o varios
-<pre>
-  {
-    "code": 200,
-    "message": "OK",
-    "data": {
-        "id": 1,
-        "name": "pichu",
-        "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
-        "height": 1.0,
-        "weight": 4.4,
-        "code": "#0172",
-        "image": "pichu.png",
-        "evolutions": [
-            {
-                "id": 1,
-                "name": "pikachu",
-                "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
-                "height": 1.04,
-                "weight": 13.2,
-                "code": "#0025",
-                "image": "pikachu.png"
-            }.......................................................
-      ]
-    }
-}
-</pre>
-
- <span>Excepción: En caso de no existir un pokemon con el valor ingresado:</span>
-<pre>
-    {
-      "code": 400,
-      "message": "Bad Request",
-      "data": "El valor ingresado no pertenece a algun pokemon"
-    }
-</pre>
-
-<h3>9. Listar pokemons por mayor peso:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/weight/desc</strong><br>
-<h3>10. Listar pokemons por menor peso:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/weight/asc</strong><br>
-<h3>11. Listar pokemons por mayor altura:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/height/desc</strong><br>
-<h3>12. Listar pokemons por menor altura:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/pokemon/height/asc</strong><br>
-<h3>13. Crear Evolución:</h3>
-<hr>
-<span>POST:</span> <strong>api/pokedex/evolution/create</strong><br>
-<pre>
-  {
-     "name": "lucario",
-     "description":"descripción aquí",
-     "weight": 80,
-     "height": 2.5,
-     "image": "lucario.png",
-     "code": "#1111",
-     "pokemonId":1
-  }
-</pre>
-<span>Validaciones: </span>
-<pre>
-  {
-        "code": 400,
-        "message": "Bad Request",
-        "data": [
-            "name: no debe estar vacío",
-            "pokemonId: no debe ser nulo",
-            "weight: no debe ser nulo",
-            "image: no debe estar vacío",
-            "code: no debe ser nulo",
-            "height: no debe ser nulo",
-            "description: no debe estar vacío"
-        ]
-}
-</pre>
-<span>Validación pokemon id: </span>
-<pre>
-  {
-      "code": 400,
-      "message": "Bad Request",
-      "data": "El ID ingresado no pertenece a ningun pokemon existente"
-  }
-</pre>
-<span>Respuesta: </span>
-<pre>
-  {
-        "code": 201,
-        "message": "Created",
-        "data": {
-            "id": 14,
-            "name": "lucario",
-            "description": "descripción aquí",
-            "height": 2.5,
-            "weight": 80.0,
-            "code": "#8888",
-            "image": "lucario.png",
+        {
+            "id": 1,
+            "name": "pichu",
+            "description": "Pichu está basado en un roedor. Pichu tiene una piel de color amarillo pálido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeño tamaño puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+            "height": 1.0,
+            "weight": 4.4,
+            "code": "#0172",
+            "image": "pichu.png"
+        },
+        {
+            "id": 5,
+            "name": "caterpie",
+            "description": "Caterpie es un Pokémon de tipo bicho que se asemeja a una oruga. Es conocido por ser uno de los Pokémon más débiles pero también uno de los más abundantes. Su cuerpo es de un verde brillante, y tiene grandes ojos que le permiten ver en todas direcciones.",
+            "height": 1.0,
+            "weight": 6.4,
+            "code": "#0010",
+            "image": "caterpie.png"
         }
-  }
-</pre>
-<h3>14. Actualizar Evolución:</h3>
-<hr>
-<span>PUT:</span> <strong>api/pokedex/evolution/update/{id}</strong><br>
-<pre>
-  {
-      "name": "lucario",
-      "code": "#0056",
-      "description": "description",
-      "weight": 85,
-      "image": "lucario.png",
-      "height": 70  
-  }
-</pre>
-<span>Validaciones: </span>
-<pre>
-  {
-      "code": 400,
-      "message": "Bad Request",
-      "data": [
-          "image: no debe estar vacío",
-          "height: no debe ser nulo",
-          "code: no debe ser nulo",
-          "description: no debe estar vacío",
-          "name: no debe estar vacío",
-          "weight: no debe ser nulo"
-      ]
-  }
-</pre>
-<span>Validación evolución id:</span>
-<pre>
-  {
-      "code": 400,
-      "message": "Bad Request",
-      "data": "El ID ingresado no pertenece a ninguna evolución existente"
-  }
-</pre>
-<h3>15. Agregar tipos a la evolución</h3>
-<hr>
-<span>POST:</span> <strong>api/pokedex/evolution/add/{id}/type</strong>
-<pre>
-  [9,6]
-</pre>
-<span>Respuesta:</span>
-<pre>
-  {
+    ]
+}
+```
+
+#### ❌ En caso de no existir un pokemon con el valor ingresado
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El valor ingresado no pertenece a algun pokemon"
+}
+```
+
+<a name="10-listar-pokémon-por-mayor-peso"></a>
+## ⚖️ 10. Listar pokemons por mayor peso
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/weight/desc` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los pokémons ordenados por su peso  de mayor a menor. [🔙 Volver al índice](#indice)
+
+<a name="11-listar-pokémon-por-menor-peso"></a>
+## 🪶 11. Listar pokemons por menor peso
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/weight/asc` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los pokémons ordenados por su peso  de menor a mayor. [🔙 Volver al índice](#indice)
+
+<a name="12-listar-pokémon-por-mayor-altura"></a>
+## 📏 12. Listar pokemons por mayor altura:
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/height/desc` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de mayor a menor. [🔙 Volver al índice](#indice)
+
+<a name="13-listar-pokémon-por-menor-altura"></a>
+## 📐 13. Listar pokemons por menor altura:
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/pokemon/height/asc` 
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los pokémons ordenados por su tamaño  de menor a mayor. [🔙 Volver al índice](#indice)
+
+
+<a name="14-crear-evolución"></a>
+## 🌱 14. Crear evolución
+
+**Método:** `POST`  
+**Endpoint:** `/api/pokedex/evolution/create`  
+
+#### 📝 Descripción
+
+Crea una nueva evolución asociada a un Pokémon existente con los datos suministrados. [🔙 Volver al índice](#indice)
+
+```json
+{
+  "name": "lucario",
+  "description": "descripción aquí",
+  "weight": 80,
+  "height": 2.5,
+  "image": "lucario.png",
+  "code": "#1111",
+  "pokemonId": 1
+}
+
+#### ✅ Respuesta exitosa
+
+```json
+{
     "code": 201,
     "message": "Created",
-    "data": "Los tipos se han agregado correctamente"
-  }
-</pre>
-<span>Validacion:</span>
-<pre>
-  {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "La lista de valores se encuentran vacios o no existen"
-}
-</pre>
-<span>Validación del evolución id</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ninguna evolución existente"
-  }
- </pre>
-<span>Evolución con tipos agregados:</span>
-<pre>
-  {
-    "code": 200,
-    "message": "OK",
     "data": {
-        "id": 8,
+        "id": 11,
         "name": "lucario",
         "description": "descripción aquí",
         "height": 2.5,
         "weight": 80.0,
         "code": "#1111",
-        "image": "lucario.png",
-        "pokemon": [],
-        "types": [
-            {
-                "id": 9,
-                "name": "Hielo",
-                "description": "Tipo de Pokemon que es fuerte contra Dragon, Planta, Tierra y Volador, y debil contra Acero, Agua, Fuego e Hielo."
-            },
-            {
-                "id": 6,
-                "name": "Fantasma",
-                "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
-            }
-        ],
-        "weaknesses": [],
-        "statistic": null
+        "image": "lucario.png"
     }
 }
-</pre>
- <h3>16. Agregar debilidades a la evolución:</h3>
- <hr>
- <span>GET:</span> <strong>api/pokedex/evolution/add/{id}/weakness</strong>
- <pre>
-   [1,4]
- </pre>
- <span>Respuesta:</span>
- <pre>
-   {
-      "code": 201,
-      "message": "Created",
-      "data": "Las debilidades se han agregado correctamente"
-  }
- </pre>
- <span>Validacion:</span>
-<pre>
-  {
+```
+#### ❌ Respuesta de validación
+```json
+{
     "code": 400,
     "message": "Bad Request",
-    "data": "La lista de valores se encuentran vacios o no existen"
+    "data": [
+        "description: no debe estar vacío",
+        "pokemonId: no debe ser nulo",
+        "code: no debe ser nulo",
+        "weight: no debe ser nulo",
+        "image: no debe estar vacío",
+        "height: no debe ser nulo",
+        "name: no debe estar vacío"
+    ]
 }
-</pre>
-<span>Validación del evolución id</span>
- <pre>
-   {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ninguna evolución existente"
-  }
- </pre>
- <span>
-   evolución con debilidades agregadas:
- </span>
- <pre>
-   {
-      "code": 200,
-      "message": "OK",
-      "data": {
-          "id": 8,
-          "name": "lucario",
-          "description": "descripción aquí",
-          "height": 2.5,
-          "weight": 80.0,
-          "code": "#1111",
-          "image": "lucario.png",
-          "evolutions": [],
-          "types": [
-              {
-                  "id": 9,
-                  "name": "Hielo",
-                  "description": "Tipo de Pokemon que es fuerte contra Dragon, Planta, Tierra y Volador, y debil contra Acero, Agua, Fuego e Hielo."
-              },
-              {
-                  "id": 6,
-                  "name": "Fantasma",
-                  "description": "Tipo de Pokemon que es fuerte contra Fantasma y PsÃ­quico, y debil contra Normal y Siniestro."
-              }            
-          ],
-          "weaknesses": [
-              {
-                  "id": 1,
-                  "name": "Acero",
-                  "description": "Tipo de Pokemon que es fuerte contra Hielo, Roca y Hada, y debil contra Fuego, Lucha y Tierra."
-              },
-              {
-                  "id": 4,
-                  "name": "Electrico",
-                  "description": "Tipo de Pokemon que es fuerte contra Agua y Volador, y debil contra Dragon, Electrico y Planta."
-              }
-          ],
-          "statistic": null
-      }
-  }
- </pre>
- <h3>17. Agregar Estadisticas a la evolución</h3>
- <hr>
- <span>POST: <strong>api/pokedex/statistic/create/evolution</strong></span>
- <pre>
-   {
+```
+
+### ❌ Validación del evolution code
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "code: El código de la evolución ya existe en la base de datos"
+}
+```
+
+<a name="15-actualizar-evolución"></a>
+## ✏️ 15. Actualizar evolución
+
+**Método:** `PUT`  
+**Endpoint:** `/api/pokedex/evolution/update/{id}`  
+
+#### 📝 Descripción
+Actualiza los datos de una evolución existente usando su ID. [🔙 Volver al índice](#indice)
+
+```json
+{
+  "name": "lucario",
+  "code": "#0056",
+  "description": "description",
+  "weight": 85,
+  "image": "lucario.png",
+  "height": 70
+}
+
+#### ✅ Respuesta exitosa
+
+```json
+{
+    "code": 201,
+    "message": "Created",
+    "data": {
+        "id": 11,
+        "name": "lucarion",
+        "description": "descripción aquí",
+        "height": 2.5,
+        "weight": 80.0,
+        "code": "#1111",
+        "image": "lucario.png"
+    }
+}
+```
+### ❌ Validación del evolución id
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+### ❌ Validación del evolution code
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "code: El código de la evolución ya existe en la base de datos"
+}
+```
+
+<a name="16-agregar-tipos-a-una-evolución"></a>
+## 🏷️ 16. Agregar tipos a la evolución
+
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/evolution/add/{id}/type`  
+
+#### 📝 Descripción
+Puedes asociar los tipos a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id. [🔙 Volver al índice](#indice)
+
+```json
+[9,6]
+```
+
+#### ✅ Respuesta exitosa
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Los tipos se han agregado correctamente"
+}
+```
+#### ❌ Respuesta de validación
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "La lista de valores se encuentran vacios o no existen"
+}
+```
+
+#### ❌ Validación del id de la evolución 
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+
+#### ❌ Validación del type id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado no pertenece a ningun tipo"
+}
+```
+#### ❌ Validación del type id repetido
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado ya esta agregado en los tipos."
+}
+```
+
+<a name="17-agregar-debilidades-a-una-evolución"></a>
+## ⚠️ 17. Agregar debilidades a la evolución
+
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/evolution/add/{id}/weakness`  
+
+#### 📝 Descripción
+Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id. [🔙 Volver al índice](#indice)
+
+```json
+   [1,4]
+```
+#### ✅ Respuesta exitosa
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Las debilidades se han agregado correctamente"
+}
+```
+#### ❌ Respuesta de validación
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "La lista de valores se encuentran vacios o no existen"
+}
+```
+
+#### ❌ Validación del id de la evolución 
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+
+#### ❌ Validación del type id
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado no pertenece a ningun tipo"
+}
+```
+#### ❌ Validación del type id repetido
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "Uno de los ID ingresado ya esta agregado en los tipos."
+}
+```
+
+<a name="18-agregar-estadísticas-a-una-evolución"></a>
+## 📊 18. Agregar Estadisticas a la evolución
+
+**Método:** `POST`  
+**Endpoint:** `api/pokedex/statistic/create/evolution`  
+
+#### 📝 Descripción
+Puedes asociar las debilidades a las evolucciones existentes (fuego, tierra, hielo), debes enviar una lista de id. [🔙 Volver al índice](#indice)
+
+```json
+{
     "attack":20,
     "defence":60,
     "velocity":80,
     "life":50,
     "evolutionId":8
-  }
- </pre>
-<span>Respuesta:</span>
- <pre>
-   {
-       "code": 201,
-       "message": "Created",
-       "data": "Se han creado las estadisticas de la evolución"
-    }
- </pre>
- <span>validación:</span>
- <pre>
-   {
+}
+```
+#### ✅ Respuesta exitosa
+```json
+{
+  "code": 201,
+  "message": "Created",
+  "data": "Se han creado las estadisticas de la evolución"
+}
+```
+#### ❌ Respuesta de validación
+
+```json
+{
       "code": 400,
       "message": "Bad Request",
       "data": [
@@ -680,45 +937,97 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
           "evolutionId: no debe ser nulo",
           "life: no debe ser nulo"
       ]
-  }
- </pre>
- <span>Validación del evolución id:</span>
- <pre>
-   {
-      "code": 400,
-      "message": "Bad Request",
-      "data": "El ID ingresado no pertenece a ninguna evolución existente"
-  }
- </pre>
-<h3>18. Listar todas las evoluciones</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution</strong>
-<pre>
-  {
+}
+```
+#### ❌ Validación del id de la evolución 
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+
+<a name="19-eliminar-una-evolución"></a>
+## 📊 19. Eliminar una evolución
+
+**Método:** `DELETE`  
+**Endpoint:** `api/pokedex/evolution/{id}`  
+
+#### 📝 Descripción
+Cuando elimines evoluciones recuerda que esta eliminará en cascada todos los registros asociados al id de la evolución para evitar registros huerfanos. [🔙 Volver al índice](#indice)
+
+#### ✅ Respuesta exitosa
+```json
+{
+    "code": 200,
+    "message": "OK",
+    "data": "Se ha eliminado la evolución con exito."
+}
+```
+
+#### ❌ Validación del id de la evolución 
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+
+<a name="20-listar-todas-las-evoluciones"></a>
+## 🧬 20. Listar todas las evoluciones
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution`  
+
+#### 📝 Descripción
+Este endpoint te va a listar todos los registros de las evoluciones. [🔙 Volver al índice](#indice)
+
+```json
+{
     "code": 200,
     "message": "OK",
     "data": [
         {
             "id": 1,
             "name": "pikachu",
-            "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
+            "description": "Pikachu es un pequeño Pokémon cuya morfología se encuentra basada en un roedor. Aunque su nombre y su categoría hagan alusión a un ratón, según su diseñadora, sus mejillas están basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran círculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazón si es hembra.",
             "height": 1.04,
             "weight": 13.2,
             "code": "#0025",
-            "image": "pikachu.png"            
-        }, ........................
-</pre>
-<h3>18. Listar evolución por id</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution/{id}</strong>
-<pre>
-  {
+            "image": "pikachu.png"
+        },
+        {
+            "id": 2,
+            "name": "raichu",
+            "description": "Este Pokémon es un gran roedor bípedo. Tiene un pelaje anaranjado, una cola oscura y gruesa como un cable de tendido eléctrico que termina en forma de rayo y totalmente plano, que además puede soportar grandes cargas.",
+            "height": 2.07,
+            "weight": 66.1,
+            "code": "#0026",
+            "image": "raichu.png"
+        }, ..................................
+```
+
+<a name="21-buscar-evolución-por-id"></a>
+## 🔍 21. Listar evolución por id
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution/{id}`  
+
+#### 📝 Descripción
+Este endpoint te va a listar las evoluciones por sus id. [🔙 Volver al índice](#indice)
+
+```json
+{
     "code": 200,
     "message": "OK",
     "data": {
         "id": 1,
         "name": "pikachu",
-        "description": "Pikachu es un pequeÃ±o PokÃ©mon cuya morfologÃ­a se encuentra basada en un roedor. Aunque su nombre y su categorÃ­a hagan alusiÃ³n a un ratÃ³n, segÃºn su diseÃ±adora, sus mejillas estÃ¡n basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran cÃ­rculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazÃ³n si es hembra.",
+        "description": "Pikachu es un pequeño Pokémon cuya morfología se encuentra basada en un roedor. Aunque su nombre y su categoría hagan alusión a un ratón, según su diseñadora, sus mejillas están basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran círculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazón si es hembra.",
         "height": 1.04,
         "weight": 13.2,
         "code": "#0025",
@@ -726,15 +1035,11 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
         "pokemon": {
             "id": 1,
             "name": "pichu",
-            "description": "Pichu estÃ¡ basado en un roedor. Pichu tiene una piel de color amarillo pÃ¡lido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeÃ±o tamaÃ±o puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
+            "description": "Pichu está basado en un roedor. Pichu tiene una piel de color amarillo pálido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeño tamaño puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.",
             "height": 1.0,
             "weight": 4.4,
             "code": "#0172",
-            "image": "pichu.png",
-            "evolutions": null,
-            "types": null,
-            "weaknesses": null,
-            "statistic": null
+            "image": "pichu.png"
         },
         "types": [
             {
@@ -743,7 +1048,13 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
                 "description": "Tipo de Pokemon que es fuerte contra Agua y Volador, y debil contra Dragon, Electrico y Planta."
             }
         ],
-        "weaknesses": [],
+        "weaknesses": [
+            {
+                "id": 16,
+                "name": "Tierra",
+                "description": "Tipo de Pokemon que es fuerte contra Acero, Electrico, Fuego, Roca y Veneno, y debil contra Bicho, Planta y Volador."
+            }
+        ],
         "statistic": {
             "id": 2,
             "attack": 55,
@@ -753,44 +1064,111 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
         }
     }
 }
-</pre>
-<h3>19. Listar evolución por nombre o codigo</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution/nameorcode/{nameorcode}</strong>
-PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codigo (campo unico) puede arrojar un unico registro o varios
-<pre>
-  {
+```
+#### ❌ Validación del id de la evolución 
+
+```json
+{
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ninguna evolución existente"
+}
+```
+
+<a name="22-buscar-evolución-por-nombre-o-código"></a>
+## 🔍 22. Listar evolución por nombre o codigo
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution/nameorcode/{nameorcode}`  
+
+#### 📝 Descripción
+Este endpoint te suministrará una busqueda de las evoluciones tipo like %""%, este busca por el nombre o el codigo (campo unico) puede arrojar un registro o varios. [🔙 Volver al índice](#indice)
+
+```json
+{
     "code": 200,
     "message": "OK",
     "data": [
         {
-            "id": 10,
-            "name": "butterfree",
-            "description": "Butterfree es la forma final de Caterpie. Es un hermoso PokÃ©mon de tipo bicho y volador con grandes alas que le permiten volar y libar nÃ©ctar de las flores. Butterfree es considerado un PokÃ©mon muy elegante y es conocido por sus habilidades en batalla.",
-            "height": 3.07,
-            "weight": 70.5,
-            "code": "#0012",
-            "image": "butterfree.png"            
+            "id": 1,
+            "name": "pikachu",
+            "description": "Pikachu es un pequeño Pokémon cuya morfología se encuentra basada en un roedor. Aunque su nombre y su categoría hagan alusión a un ratón, según su diseñadora, sus mejillas están basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran círculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazón si es hembra.",
+            "height": 1.04,
+            "weight": 13.2,
+            "code": "#0025",
+            "image": "pikachu.png"
+        },
+        {
+            "id": 9,
+            "name": "metapod",
+            "description": "Metapod es la evolución de Caterpie. Su cuerpo se transforma en una cápsula duradera, y aunque no tiene mucha capacidad de movimiento o ataque, es fuerte defensivamente y está en proceso de convertirse en un Pokémon más potente.",
+            "height": 2.04,
+            "weight": 21.8,
+            "code": "#0011",
+            "image": "metapod.png"
         }
     ]
 }
-</pre>
-<h3>20. Listar evoluciones por mayor peso:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution/weight/desc</strong><br>
-<h3>21. Listar evoluciones por menor peso:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution/weight/asc</strong><br>
-<h3>22. Listar evoluciones por mayor altura:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution/height/desc</strong><br>
-<h3>23. Listar evoluciones por menor altura:</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/evolution/height/asc</strong><br>
-<h3>24. Listar todos los tipos</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/type</strong><br>
-<pre>
+```
+
+#### ❌ Validación en caso de existir coincidencias 
+
+```json
+{
+    "code": 400,
+    "message": "Bad Request",
+    "data": "No se han encontrado resultados en las evoluciones"
+}
+```
+
+<a name="23-listar-evoluciones-por-mayor-peso"></a>
+## ⚖️ 23. Listar evoluciones por mayor peso
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution/weight/desc`  
+
+#### 📝 Descripción
+Este endpoint te suministrará todos las evoluciones ordenadas por su peso  de mayor a menor. [🔙 Volver al índice](#indice)
+
+<a name="24-listar-evoluciones-por-menor-peso"></a>
+## 🪶 24. Listar evoluciones por menor peso
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution/weight/asc`  
+
+#### 📝 Descripción
+Este endpoint te suministrará todos las evoluciones ordenados por su peso de menor a mayor. [🔙 Volver al índice](#indice)
+
+
+<a name="25-listar-evoluciones-por-mayor-altura"></a>
+## 📏 25. Listar evoluciones por mayor altura
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution/height/desc`  
+
+#### 📝 Descripción
+Este endpoint te suministrará todos las evoluciones ordenados por su tamaño  de mayor a menor. [🔙 Volver al índice](#indice)
+
+<a name="26-listar-evoluciones-por-menor-altura"></a>
+## 📐 26. Listar evoluciones por menor altura
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/evolution/height/asc`  
+
+#### 📝 Descripción
+Este endpoint te suministrará todas las evoluciones ordenados por su tamaño  de menor a mayor. [🔙 Volver al índice](#indice)
+
+
+<a name="27-listar-todos-los-tipos"></a>
+## 🧩 27. Listar todos los tipos
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/type`  
+
+#### 📝 Descripción
+Este endpoint te suministrará todos los tipos para que puedas usarlos en el registro de tus pokemones y evoluciones. [🔙 Volver al índice](#indice)
+
+```json
   {
     "code": 200,
     "message": "OK",
@@ -805,11 +1183,17 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
             "name": "Agua",
             "description": "Tipo de Pokemon que es fuerte contra Fuego, Roca y Tierra, y debil contra Agua, Dragon y Planta."
         },..............................
-</pre>
-<h3>25. Listar tipos por su id</h3>
-<hr>
-<span>GET:</span> <strong>api/pokedex/type</strong><br>
-<pre>
+```
+<a name="28-buscar-tipo-por-id"></a>
+## 🔍 28. Listar tipos por su id
+
+**Método:** `GET`  
+**Endpoint:** `api/pokedex/type/{id}`  
+
+#### 📝 Descripción
+Este endpoint te suministrará un tipo filtrado por su id. [🔙 Volver al índice](#indice)
+
+```json
   {
     "code": 200,
     "message": "OK",
@@ -819,12 +1203,14 @@ PD: esta es una busqueda de tipo like %""% que busca por el nombre o por el codi
         "description": "Tipo de Pokemon que es fuerte contra Hielo, Roca y Hada, y debil contra Fuego, Lucha y Tierra."
     }
   }
-</pre>
-<span>Validación del id del tipo:</span>
-<pre>
+```
+
+#### ❌ Validación del id del id del tipo 
+```json
 {
-    "code": 400,
-    "message": "Bad Request",
-    "data": "El ID ingresado no pertenece a ningun tipo"
+  "code": 400,
+  "message": "Bad Request",
+  "data": "El ID ingresado no pertenece a ningun tipo"
 }
-</pre>
+```
+
