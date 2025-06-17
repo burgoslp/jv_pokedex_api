@@ -1,4 +1,6 @@
-<h1>🐾 API POKEDEX</h1>
+![Sin título](https://github.com/user-attachments/assets/e9c3c9fd-7786-4f12-8a27-b0e7bd215abd)
+
+<h1>🐾 API POKÉDEX</h1>
 Esta es una API REST construida con Java y el framework Spring Boot, diseñada para proporcionar información detallada sobre Pokémons.
 
 <h2>📖 Descripción general</h2>
