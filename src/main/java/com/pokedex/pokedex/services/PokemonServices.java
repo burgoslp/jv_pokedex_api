@@ -12,6 +12,7 @@ import com.pokedex.pokedex.repositories.ITypeRepository;
 import com.pokedex.pokedex.services.interfaces.IPokemonServices;
 import com.pokedex.pokedex.util.MapToDto;
 import com.pokedex.pokedex.dtos.Pokemon.CreatePokemonDto;
+import com.pokedex.pokedex.dtos.Pokemon.PokemonUpdateDto;
 import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 import com.pokedex.pokedex.exceptions.APIError;
 import com.pokedex.pokedex.exceptions.APIException;
@@ -93,15 +94,15 @@ public class PokemonServices implements IPokemonServices {
     }
 
     @Override
-    public JsonApiresponse update(Long id, CreatePokemonDto CreatePokemonDto) {
+    public JsonApiresponse update(Long id, PokemonUpdateDto pokemonUpdateDto) {
        Pokemon pokemon= pr.findById(id).orElseThrow(()-> new APIException(APIError.POKEMON_BYID_NOT_FOUND));
 
-       pokemon.setName(CreatePokemonDto.getName() != null ? CreatePokemonDto.getName() : pokemon.getName());
-       pokemon.setName(CreatePokemonDto.getDescription() != null ? CreatePokemonDto.getDescription() : pokemon.getDescription());
-       pokemon.setHeight(CreatePokemonDto.getHeight() != null ? CreatePokemonDto.getHeight() : pokemon.getHeight());
-       pokemon.setWeight(CreatePokemonDto.getWeight() != null ? CreatePokemonDto.getWeight() : pokemon.getWeight());
-       pokemon.setCode(CreatePokemonDto.getCode() != null ? CreatePokemonDto.getCode() : pokemon.getCode());
-       pokemon.setImage(CreatePokemonDto.getImage() != null ? CreatePokemonDto.getImage() : pokemon.getImage());
+       pokemon.setName(pokemonUpdateDto.getName() != null ? pokemonUpdateDto.getName() : pokemon.getName());
+       pokemon.setDescription(pokemonUpdateDto.getDescription() != null ? pokemonUpdateDto.getDescription() : pokemon.getDescription());
+       pokemon.setHeight(pokemonUpdateDto.getHeight() != null ? pokemonUpdateDto.getHeight() : pokemon.getHeight());
+       pokemon.setWeight(pokemonUpdateDto.getWeight() != null ? pokemonUpdateDto.getWeight() : pokemon.getWeight());
+       pokemon.setCode(pokemonUpdateDto.getCode() != null ? pokemonUpdateDto.getCode() : pokemon.getCode());
+       pokemon.setImage(pokemonUpdateDto.getImage() != null ? pokemonUpdateDto.getImage() : pokemon.getImage());
 
 
        return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.pokemonToPokemonSumaryDto(pr.save(pokemon))).build();
@@ -140,7 +141,7 @@ public class PokemonServices implements IPokemonServices {
         List<Type> weaknessList= new ArrayList<>();
         weaknessIdList.forEach(id ->{
 
-            Type type=tr.findById(id).orElseThrow(()-> new APIException(APIError.TYPELIST_BYID_NOT_FOUND));
+            Type type=tr.findById(id).orElseThrow(()-> new APIException(APIError.WEAKNESSLIST_BYID_NOT_FOUND));
 
             //verificar si el tipo ya existe en la lista de debilidades
             if(pokemon.getWeaknesses().stream().anyMatch(t -> t.getId().equals(type.getId()))){

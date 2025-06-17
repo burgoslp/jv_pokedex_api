@@ -1,8 +1,5 @@
-package com.pokedex.pokedex.dtos.Evolution;
-
+package com.pokedex.pokedex.dtos.Pokemon;
 import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class EvolutionUpdateDto {
+public class PokemonUpdateDto {
     @Size(min = 1, max = 20)
     private String name;
     @Column(length = 1000)

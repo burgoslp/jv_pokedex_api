@@ -14,3 +14,4 @@ public interface IPokemonRepository extends CrudRepository<Pokemon,Long> {
 
     Boolean existsByCode(String code);
 }
+    

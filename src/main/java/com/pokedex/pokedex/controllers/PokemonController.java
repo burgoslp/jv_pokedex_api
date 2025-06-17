@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.pokedex.pokedex.dtos.Pokemon.CreatePokemonDto;
+import com.pokedex.pokedex.dtos.Pokemon.PokemonUpdateDto;
 import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 import com.pokedex.pokedex.services.PokemonServices;
 import jakarta.validation.Valid;
@@ -86,11 +87,11 @@ public class PokemonController {
     
     //actualizar pokemon existente
     @PutMapping("update/{id}")
-    public ResponseEntity<JsonApiresponse> update(@PathVariable Long id,@Valid @RequestBody CreatePokemonDto CreatePokemonDto) {                 
+    public ResponseEntity<JsonApiresponse> update(@PathVariable Long id,@Valid @RequestBody PokemonUpdateDto CreatePokemonDto) {                 
         return ResponseEntity.status(HttpStatus.CREATED).body(ps.update(id, CreatePokemonDto));
     }
     //eliminar pokemon existente
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<JsonApiresponse>  delete(@PathVariable Long id){
 
         return ResponseEntity.status(HttpStatus.OK).body(ps.delete(id));

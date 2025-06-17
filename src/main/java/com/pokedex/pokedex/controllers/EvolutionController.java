@@ -91,7 +91,7 @@ public class EvolutionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(es.update(id,evolutionUpdateDto));
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<JsonApiresponse> delete(@PathVariable Long id){
 
         return ResponseEntity.ok().body(es.delete(id));

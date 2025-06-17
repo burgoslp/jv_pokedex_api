@@ -18,10 +18,8 @@ public class UniquePokemonCodeValidator implements ConstraintValidator<UniquePok
     public boolean isValid(String code, ConstraintValidatorContext context) {
        
         if(code == null || code.isEmpty()) {
-            return true; // Si el código es nulo o vacío, no se valida
+            return true; 
         }
-
-
         return !pokemonRepository.existsByCode(code);
     }
 }   

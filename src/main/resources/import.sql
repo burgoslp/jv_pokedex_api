@@ -19,20 +19,20 @@ INSERT INTO `types` (`id`,`name`,`description`) VALUES (NULL, 'Veneno', 'Tipo de
 INSERT INTO `types` (`id`,`name`,`description`) VALUES (NULL, 'Volador', 'Tipo de Pokemon que es fuerte contra Bicho, Lucha y Planta, y debil contra Acero, Electrico y Roca.');
 
 /*pokemon 1*/
-INSERT INTO `pokemons` (`id`,`name`,`description`,`height`, `weight`,`code`, `image`) VALUES (NULL, 'pichu','Pichu está basado en un roedor. Pichu tiene una piel de color amarillo pálido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeño tamaño puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.','1.00', '4.4', '#0172','pichu.png')
+INSERT INTO `pokemons` (`id`,`name`,`description`,`height`, `weight`,`code`, `image`) VALUES (NULL, 'pichu','Pichu está basado en un roedor. Pichu tiene una piel de color amarillo pálido, con las mejillas rosadas, una cola corta negra y orejas grandes, con bordeados de color negro. Su pequeño tamaño puede despistar a cualquier entrenador novato, pero puede paralizar incluso a humanos adultos si no se tiene cuidado.','1.00', '4.4', '#0172','pichu.png');
 INSERT INTO `pokemons_types` (`pokemons_id`, `types_id`) VALUES (1, (SELECT id FROM types WHERE name = 'Electrico'));
 INSERT INTO `pokemons_weaknesses` (`pokemons_id`, `types_id`) VALUES (1, (SELECT id FROM types WHERE name = 'Tierra'));
 INSERT INTO `statistics` (`id`, `pokemon_id`, `evolution_id`, `attack`, `defence`, `velocity`, `life`) VALUES (1, 1, NULL, 40, 15, 60, 20); 
 
 /*evolution 1*/
-INSERT INTO `evolutions` (`id`, `pokemon_id`, `name`,`description`,`height`, `weight`, `code` ,`image`) VALUES (NULL, 1, 'pikachu','Pikachu es un pequeño Pokémon cuya morfología se encuentra basada en un roedor. Aunque su nombre y su categoría hagan alusión a un ratón, según su diseñadora, sus mejillas están basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran círculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazón si es hembra.', '1.04', '13.2','#0025','pikachu.png')
+INSERT INTO `evolutions` (`id`, `pokemon_id`, `name`,`description`,`height`, `weight`, `code` ,`image`) VALUES (NULL, 1, 'pikachu','Pikachu es un pequeño Pokémon cuya morfología se encuentra basada en un roedor. Aunque su nombre y su categoría hagan alusión a un ratón, según su diseñadora, sus mejillas están basadas en las de una ardilla. Su cuerpo es de color amarillo con dos rayas marrones en su espalda y en la base de la cola. La punta de sus orejas de color negro, y presenta un gran círculo rojo en cada una de sus mejillas. Tiene una cola con forma de rayo si es macho y en forma de corazón si es hembra.', '1.04', '13.2','#0025','pikachu.png');
 INSERT INTO `evolutions_types` (`evolutions_id`, `types_id`) VALUES (1, (SELECT id FROM types WHERE name = 'Electrico'));
 INSERT INTO `evolutions_weaknesses` (`evolutions_id`, `types_id`) VALUES (1, (SELECT id FROM types WHERE name = 'Tierra'));
 
 INSERT INTO `statistics` (`id`, `pokemon_id`, `evolution_id`, `attack`, `defence`, `velocity`, `life`) VALUES (NULL, NULL, 1, 55, 40, 90, 35);
 
 /*evolution 2*/
-INSERT INTO `evolutions` (`id`, `pokemon_id`, `name`,`description`,`height`, `weight`, `code` ,`image`) VALUES (NULL, 1, 'raichu','Este Pokémon es un gran roedor bípedo. Tiene un pelaje anaranjado, una cola oscura y gruesa como un cable de tendido eléctrico que termina en forma de rayo y totalmente plano, que además puede soportar grandes cargas.','2.07', '66.1', '#0026', 'raichu.png')
+INSERT INTO `evolutions` (`id`, `pokemon_id`, `name`,`description`,`height`, `weight`, `code` ,`image`) VALUES (NULL, 1, 'raichu','Este Pokémon es un gran roedor bípedo. Tiene un pelaje anaranjado, una cola oscura y gruesa como un cable de tendido eléctrico que termina en forma de rayo y totalmente plano, que además puede soportar grandes cargas.','2.07', '66.1', '#0026', 'raichu.png');
 INSERT INTO `evolutions_types` (`evolutions_id`, `types_id`) VALUES (2, (SELECT id FROM types WHERE name = 'Electrico'));
 INSERT INTO `evolutions_weaknesses` (`evolutions_id`, `types_id`) VALUES (1, (SELECT id FROM types WHERE name = 'Tierra'));
 INSERT INTO `statistics` (`id`, `pokemon_id`, `evolution_id`, `attack`, `defence`, `velocity`, `life`) VALUES (NULL, NULL, 2, 90, 55, 100, 60);
@@ -41,10 +41,10 @@ INSERT INTO `statistics` (`id`, `pokemon_id`, `evolution_id`, `attack`, `defence
 INSERT INTO `pokemons` (`id`,`name`,`description`,`height`, `weight`,`code`, `image`) VALUES (NULL, 'bulbasaur', 'Bulbasaur es un Pokémon de tipo planta y veneno. Es conocido por tener una planta en su espalda que crecerá a medida que evoluciona. Tiene un cuerpo de color verde y unas manchas más oscuras en su piel. Es pequeño pero muy fuerte y ágil, y a menudo es considerado un excelente compañero por los entrenadores.', '2.04', '15.2','#0001','bulbasaur.png');
 INSERT INTO `pokemons_types` (`pokemons_id`, `types_id`) VALUES (2, (SELECT id FROM types WHERE name = 'Planta'));
 INSERT INTO `pokemons_types` (`pokemons_id`, `types_id`) VALUES (2, (SELECT id FROM types WHERE name = 'Veneno'));
-INSERT INTO `pokemons_weaknesses` (`pokemons_id`, `types_id`) VALUES (1, (SELECT id FROM types WHERE name = 'Fuego'));
-INSERT INTO `pokemons_weaknesses` (`pokemons_id`, `types_id`) VALUES (1, (SELECT id FROM types WHERE name = 'Hielo'));
-INSERT INTO `pokemons_weaknesses` (`pokemons_id`, `types_id`) VALUES (1, (SELECT id FROM types WHERE name = 'Psiquico'));
-INSERT INTO `pokemons_weaknesses` (`pokemons_id`, `types_id`) VALUES (1, (SELECT id FROM types WHERE name = 'Psiquico'));
+INSERT INTO `pokemons_weaknesses` (`pokemons_id`, `types_id`) VALUES (2, (SELECT id FROM types WHERE name = 'Fuego'));
+INSERT INTO `pokemons_weaknesses` (`pokemons_id`, `types_id`) VALUES (2, (SELECT id FROM types WHERE name = 'Hielo'));
+INSERT INTO `pokemons_weaknesses` (`pokemons_id`, `types_id`) VALUES (2, (SELECT id FROM types WHERE name = 'Psiquico'));
+INSERT INTO `pokemons_weaknesses` (`pokemons_id`, `types_id`) VALUES (2, (SELECT id FROM types WHERE name = 'Psiquico'));
 INSERT INTO `statistics` (`id`, `pokemon_id`, `evolution_id`, `attack`, `defence`, `velocity`, `life`) VALUES (NULL, 2, NULL, 49, 49, 45, 45); 
 
 /*evolution 3*/
