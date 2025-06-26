@@ -12,6 +12,8 @@ import com.pokedex.pokedex.repositories.ITypeRepository;
 import com.pokedex.pokedex.services.interfaces.IPokemonServices;
 import com.pokedex.pokedex.util.MapToDto;
 import com.pokedex.pokedex.dtos.Pokemon.CreatePokemonDto;
+import com.pokedex.pokedex.dtos.Pokemon.PokemonDetailsDto;
+import com.pokedex.pokedex.dtos.Pokemon.PokemonSumaryDto;
 import com.pokedex.pokedex.dtos.Pokemon.PokemonUpdateDto;
 import com.pokedex.pokedex.dtos.json.JsonApiresponse;
 import com.pokedex.pokedex.exceptions.APIError;
@@ -33,39 +35,39 @@ public class PokemonServices implements IPokemonServices {
     @Override
     public JsonApiresponse findAll() {       
         List<Pokemon> pokemons =(List<Pokemon>)pr.findAll();
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.mapListToDtoList(pokemons,PokemonSumaryDto.class)).build();
     }
 
     @Override
     public JsonApiresponse findAllByOrderByWeightDesc() {
        List<Pokemon> pokemons = pr.findAllByOrderByWeightDesc();
-       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
+       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.mapListToDtoList(pokemons,PokemonSumaryDto.class)).build();
 
     }
 
     @Override
     public JsonApiresponse findAllByOrderByWeightAsc() {
         List<Pokemon> pokemons=pr.findAllByOrderByWeightAsc();
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.mapListToDtoList(pokemons,PokemonSumaryDto.class)).build();
     }
     
 
     @Override
     public JsonApiresponse findAllByOrderByHeightDesc() {
        List<Pokemon> pokemons = pr.findAllByOrderByHeightDesc();
-       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
+       return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.mapListToDtoList(pokemons,PokemonSumaryDto.class)).build();
     }
 
     @Override
     public JsonApiresponse findAllByOrderByHeightAsc() {
         List<Pokemon> pokemons = pr.findAllByOrderByHeightAsc();
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.mapListToDtoList(pokemons,PokemonSumaryDto.class)).build();
     }
 
     @Override
     public JsonApiresponse findById(Long id)  {
         Optional<Pokemon> pokemon= pr.findById(id); 
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonToPokemonDetailsDto(pokemon.orElseThrow(()->new APIException(APIError.POKEMON_BYID_NOT_FOUND)))).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.mapToDto(pokemon.orElseThrow(()->new APIException(APIError.POKEMON_BYID_NOT_FOUND)),PokemonDetailsDto.class)).build();
       
     }
 
@@ -75,7 +77,7 @@ public class PokemonServices implements IPokemonServices {
         if (pokemons.isEmpty()) {
             throw new APIException(APIError.POKEMON_VALUE_NOT_FOUND);
         }
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.pokemonListToPokemonSumaryDtoList(pokemons)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.mapListToDtoList(pokemons,PokemonSumaryDto.class)).build();
     }
 
 
@@ -90,7 +92,7 @@ public class PokemonServices implements IPokemonServices {
                                             .code(createPokemonDto.getCode())
                                             .image(createPokemonDto.getImage())                                            
                                             .build();
-        return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.pokemonToPokemonSumaryDto(pr.save(pokemon))).build();
+        return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.mapToDto(pr.save(pokemon),PokemonSumaryDto.class)).build();
     }
 
     @Override
@@ -105,7 +107,7 @@ public class PokemonServices implements IPokemonServices {
        pokemon.setImage(pokemonUpdateDto.getImage() != null ? pokemonUpdateDto.getImage() : pokemon.getImage());
 
 
-       return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.pokemonToPokemonSumaryDto(pr.save(pokemon))).build();
+       return JsonApiresponse.builder().code(HttpStatus.CREATED.value()).message(HttpStatus.CREATED.getReasonPhrase()).data(map.mapToDto(pr.save(pokemon),PokemonSumaryDto.class)).build();
     }
 
    

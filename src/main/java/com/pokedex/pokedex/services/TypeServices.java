@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.pokedex.pokedex.dtos.json.JsonApiresponse;
+import com.pokedex.pokedex.dtos.type.TypeDto;
 import com.pokedex.pokedex.exceptions.APIError;
 import com.pokedex.pokedex.exceptions.APIException;
 import com.pokedex.pokedex.models.Type;
@@ -22,12 +23,12 @@ public class TypeServices implements ITypeServices{
     @Override
     public JsonApiresponse findAll() {
         List<Type> typeList=(List<Type>)tr.findAll();
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.typeToDtoList(typeList)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.mapListToDtoList(typeList,TypeDto.class)).build();
     }
 
     @Override
     public JsonApiresponse findById(Long id) {
         Type type = tr.findById(id).orElseThrow(() -> new APIException(APIError.TYPE_BYID_NOT_FOUND));        
-        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.typeToDto(type)).build();
+        return JsonApiresponse.builder().code(HttpStatus.OK.value()).message(HttpStatus.OK.getReasonPhrase()).data(map.mapToDto(type,TypeDto.class)).build();
     }
 }
